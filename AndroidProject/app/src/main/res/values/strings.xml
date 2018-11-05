@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Udacity_Capstone</string>
 
-    <string name="admob_app_id">ca-app-pub-5510176989515053/6414674502</string>
-    <string name="app_id">ca-app-pub-5510176989515053~3520917855</string>
+    <string name="admob_app_id">ca-app-pub-5510176989515053~3520917855</string>
+    <string name="admob_unit_id">ca-app-pub-5510176989515053/6414674502</string>
 </resources>

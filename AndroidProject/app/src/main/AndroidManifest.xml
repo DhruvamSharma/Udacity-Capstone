@@ -18,8 +18,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
-            android:name="com.google.android.gms.ads.ca-app-pub-5510176989515053~3520917855"
-            android:value="ca-app-pub-5510176989515053/6414674502"/>
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
 
 
         <activity android:name=".MainActivity">

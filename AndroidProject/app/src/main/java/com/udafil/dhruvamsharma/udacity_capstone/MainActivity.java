@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        MobileAds.initialize(this, getResources().getString(R.string.app_id));
+        MobileAds.initialize(this, getResources().getString(R.string.admob_app_id));
     }
 }
