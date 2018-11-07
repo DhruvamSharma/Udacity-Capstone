@@ -69,7 +69,7 @@ dependencies {
     implementation "com.android.support:cardview-v7:$appcompat_version"
 
     //Recyclerview Dependency
-    implementation "com.android.support:cardview-v7:$appcompat_version"
+    implementation "com.android.support:recyclerview-v7:$appcompat_version"
 
 }
 
