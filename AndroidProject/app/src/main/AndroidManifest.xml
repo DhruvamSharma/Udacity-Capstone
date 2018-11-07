@@ -26,7 +26,7 @@
             android:resource="@array/preloaded_fonts" />
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui_controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
