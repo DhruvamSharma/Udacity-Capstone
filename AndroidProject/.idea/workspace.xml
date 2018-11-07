@@ -2484,7 +2484,6 @@
           <select />
         </subPane>
       </pane>
-
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -2505,7 +2504,6 @@
       <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="AndroidView" />
-
     </panes>
   </component>
   <component name="PropertiesComponent">
