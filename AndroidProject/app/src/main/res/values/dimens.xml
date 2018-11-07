@@ -2,5 +2,7 @@
 <resources>
 
     <dimen name="element_margin">16dp</dimen>
+    <dimen name="bottom_sheet_corner_radius">8dp</dimen>
+    <dimen name="bottom_sheet_top_padding">4dp</dimen>
 
 </resources>
