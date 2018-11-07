@@ -41,6 +41,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="613">
               <caret line="74" column="25" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+
             </state>
           </provider>
         </entry>
@@ -105,6 +106,7 @@
           </provider>
         </entry>
       </file>
+
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -2515,11 +2517,14 @@
             <path>
               <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+
             </path>
             <path>
               <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -2546,6 +2551,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="udacity_capstone" type="462c0819:PsiDirectoryNode" />
+
             </path>
           </expand>
           <select />
@@ -2581,6 +2587,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
             </path>
+
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
@@ -2601,6 +2608,7 @@
           <select />
         </subPane>
       </pane>
+
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2748,12 +2756,16 @@
       <window_info anchor="right" id="Preview" order="3" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
+
       <window_info anchor="bottom" id="Terminal" visible="true" weight="0.32969698" />
       <window_info anchor="bottom" id="Logcat" weight="0.32969698" />
+
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
+
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+
       <window_info anchor="bottom" id="Build" weight="0.32969698" />
       <window_info anchor="right" id="Gradle" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -2796,6 +2808,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -2880,8 +2893,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="-12">
           <caret line="2528" column="31" selection-start-line="2528" selection-start-column="31" selection-end-line="2528" selection-end-column="31" />
+
         </state>
       </provider>
     </entry>
@@ -3101,6 +3116,7 @@
           </folding>
         </state>
       </provider>
+
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -3108,6 +3124,7 @@
           <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
+
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/repository/CommonRepository.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3183,6 +3200,7 @@
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+
       <provider selected="true" editor-type-id="text-editor">
         <state />
       </provider>
