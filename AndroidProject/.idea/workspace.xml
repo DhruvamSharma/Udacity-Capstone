@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLayouts">
-    <shared>
-      <config />
-    </shared>
-  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1559750c-e029-4dbd-9f09-8413f38ad74d" name="Default" comment="" />
+    <list default="true" id="b3175cbb-f1a2-4f29-9d98-d9033d70feae" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -2489,6 +2484,28 @@
           <select />
         </subPane>
       </pane>
+
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
+
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2614,11 +2631,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1559750c-e029-4dbd-9f09-8413f38ad74d" name="Default" comment="" />
-      <created>1541424747411</created>
+      <changelist id="b3175cbb-f1a2-4f29-9d98-d9033d70feae" name="Default" comment="" />
+      <created>1541599843388</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1541424747411</updated>
+      <updated>1541599843388</updated>
     </task>
     <servers />
   </component>
