@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 
 import java.util.ArrayList;
@@ -60,6 +61,16 @@ public class MainActivity extends AppCompatActivity {
         mTaskList.setAdapter(adapter);
 
         setUpAds();
+
+        FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
+        newTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setupBottomSheet();
+
+            }
+        });
     }
 
     /**
@@ -87,36 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomSheet() {
 
-        mBottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
-
-        mBottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
-
-        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View view, int i) {
-
-                switch ( i ) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED: {
-
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_COLLAPSED: {
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                        break;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View view, float v) {
-
-            }
-        });
+        MainActivityBottomSheetFragment bottomSheetFragment = new MainActivityBottomSheetFragment();
+        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
 
 
     }
