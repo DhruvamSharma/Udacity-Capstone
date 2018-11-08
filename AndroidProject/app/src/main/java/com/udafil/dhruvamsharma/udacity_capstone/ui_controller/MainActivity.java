@@ -1,15 +1,16 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.google.android.gms.ads.MobileAds;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * This is the activity that displays the
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mTaskList = findViewById(R.id.task_list_main_activity_rv);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
 
         MainActivityTaskListAdapter adapter = new MainActivityTaskListAdapter(getData());
 
