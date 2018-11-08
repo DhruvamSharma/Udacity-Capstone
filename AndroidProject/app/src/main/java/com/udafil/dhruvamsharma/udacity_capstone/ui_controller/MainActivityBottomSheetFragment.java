@@ -24,7 +24,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_main_bottom_sheet_fragment,
+        return inflater.inflate(R.layout.activity_main_new_task_bottom_sheet_fragment,
                 container, false);
     }
 
