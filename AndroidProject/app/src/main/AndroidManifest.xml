@@ -29,7 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui_controller.UpdateTaskActivity"></activity>
+        <activity android:name=".ui_controller.task.UpdateTaskActivity" />
+        <activity android:name=".ui_controller.list.UpdateListActivity" />
+        <activity android:name=".ui_controller.list.NewListActivity"></activity>
     </application>
 
 </manifest>

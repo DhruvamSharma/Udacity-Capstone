@@ -1,4 +1,4 @@
-package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
+package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,9 @@ import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.CommonRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
 
 import org.parceler.Parcels;
 
@@ -56,7 +55,7 @@ public class UpdateTaskActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 task.setTaskDescription(updatedText.getText().toString());
-                CommonRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
+                TaskRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
                 finish();
             }
         });

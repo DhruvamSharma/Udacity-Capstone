@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui_controller.task.UpdateTaskActivity">
+    tools:context=".ui_controller.list.NewListActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/update_activity_edit_task_til"
+        android:id="@+id/new_list_activity_create_list_til"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/update_activity_edit_task_et"
+            android:id="@+id/new_list_activity_create_list_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -23,13 +23,13 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/update_activity_update_task_btn"
+        android:id="@+id/new_list_activity_create_list_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
-        android:text="@string/update_activity_button_text_update"
+        android:text="@string/new_list_activity_button_text_create"
 
-        app:layout_constraintEnd_toEndOf="@id/update_activity_edit_task_til"
-        app:layout_constraintTop_toBottomOf="@id/update_activity_edit_task_til"/>
+        app:layout_constraintEnd_toEndOf="@id/new_list_activity_create_list_til"
+        app:layout_constraintTop_toBottomOf="@id/new_list_activity_create_list_til"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,13 +12,13 @@ import java.util.List;
  * This is a repository for all the network and database calls
  * It follows a singleton pattern
  */
-public class CommonRepository {
+public class TaskRepository {
 
-    private static CommonRepository sRepository;
+    private static TaskRepository sRepository;
     private static final Object LOCK = new Object();
     private static DatabaseInstance mDb;
 
-    private CommonRepository(Context context) {
+    private TaskRepository(Context context) {
 
         mDb = DatabaseInstance.getInstance(context);
 
@@ -49,12 +49,12 @@ public class CommonRepository {
      * @param context
      * @return
      */
-    public static CommonRepository getCommonRepository(Context context) {
+    public static TaskRepository getCommonRepository(Context context) {
 
         if(sRepository == null) {
             synchronized (LOCK) {
 
-                sRepository = new CommonRepository(context);
+                sRepository = new TaskRepository(context);
 
             }
 

@@ -1,4 +1,4 @@
-package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
+package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.database.DatabaseInstance;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.CommonRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
 
 import java.util.Date;
 
@@ -68,9 +66,10 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
         if(newTask.getText() != null || newTask.getText().toString().equals("")) {
             mTaskDescription = newTask.getText().toString();
 
+            //TODO 3: Change List ID
             Task task = new Task(mTaskDescription, false, 1, new Date());
 
-            CommonRepository repository = CommonRepository.getCommonRepository(view.getContext());
+            TaskRepository repository = TaskRepository.getCommonRepository(view.getContext());
             repository.insertTask(task);
 
         }
