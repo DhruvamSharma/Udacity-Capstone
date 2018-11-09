@@ -29,10 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui_controller.NewTaskBottomSheet"
-            android:theme="@style/Widget.MaterialComponents.BottomSheet.Modal">
-
-        </activity>
+        <activity android:name=".ui_controller.UpdateTaskActivity"></activity>
     </application>
 
 </manifest>

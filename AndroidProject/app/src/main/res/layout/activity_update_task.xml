@@ -4,14 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bottom_sheet_background"
-    style="@style/BottomSheetDialogTheme"
-    android:paddingBottom="8dp"
-    android:paddingTop="8dp"
-    tools:context=".ui_controller.NewTaskBottomSheet">
+    tools:context=".ui_controller.UpdateTaskActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/main_activity_bottom_sheet_edit_task_til"
+        android:id="@+id/update_activity_edit_task_til"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
@@ -19,21 +15,21 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/main_activity_bottom_sheet_edit_task_et"
+            android:id="@+id/update_activity_edit_task_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/main_activity_bottom_sheet_save_task_fab"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update_activity_update_task_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
-        app:fabSize="mini"
+        android:text="@string/update_activity_button_text_update"
 
-        app:layout_constraintEnd_toEndOf="@id/main_activity_bottom_sheet_edit_task_til"
-        app:layout_constraintTop_toBottomOf="@id/main_activity_bottom_sheet_edit_task_til"/>
+        app:layout_constraintEnd_toEndOf="@id/update_activity_edit_task_til"
+        app:layout_constraintTop_toBottomOf="@id/update_activity_edit_task_til"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
