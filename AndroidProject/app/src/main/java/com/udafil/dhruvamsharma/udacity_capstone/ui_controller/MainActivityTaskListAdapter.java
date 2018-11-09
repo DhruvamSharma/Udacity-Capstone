@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -15,13 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivityTaskListAdapter.TaskViewHolder> {
 
-    private List<String> mData;
+    private List<Task> tasks;
 
-    public MainActivityTaskListAdapter(List<String> data) {
+    public MainActivityTaskListAdapter() {
 
-        this.mData = data;
+        this.tasks = new ArrayList<>();
 
     }
+
 
 
     @NonNull
@@ -38,14 +41,14 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
 
-        taskViewHolder.taskTextView.setText(mData.get(i));
+        taskViewHolder.taskTextView.setText(tasks.get(i).getTaskDescription());
 
 
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return tasks.size();
     }
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -57,5 +60,12 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
             taskTextView = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
         }
+    }
+
+    public void updateTasks(List<Task> tasks) {
+
+        this.tasks = tasks;
+        notifyDataSetChanged();
+
     }
 }

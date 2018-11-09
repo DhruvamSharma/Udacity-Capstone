@@ -1,13 +1,16 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.CommonRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +24,18 @@ import androidx.recyclerview.widget.RecyclerView;
  * This is the activity that displays the
  * tasks and the list to the user
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityBottomSheetFragment.BottomSheetCallBacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
-    private LinearLayout mBottomSheet;
-    private BottomSheetBehavior mBottomSheetBehavior;
+    //A common repository for all the network and
+    //database operations
+    private CommonRepository repository;
+
+    //Task Adapter
+    MainActivityTaskListAdapter mAdapter;
+
+    MainActivityBottomSheetFragment mBottomSheetFragment;
 
     /**
      * Method when the activity is created
@@ -50,15 +59,18 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setUpActivity() {
 
+        //setting up the repository
+        repository = CommonRepository.getCommonRepository(MainActivity.this);
+
         mTaskList = findViewById(R.id.task_list_main_activity_rv);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        MainActivityTaskListAdapter adapter = new MainActivityTaskListAdapter(getData());
+        mAdapter = new MainActivityTaskListAdapter();
 
         mTaskList.setLayoutManager(layoutManager);
-        mTaskList.setAdapter(adapter);
+        mTaskList.setAdapter(mAdapter);
 
         setUpAds();
 
@@ -83,24 +95,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-    private List<String> getData() {
+        mAdapter.updateTasks(repository.getAllTasks());
 
-        List<String> data = new ArrayList<>();
 
-        data.add("hello");
-        data.add("bye");
-        data.add("tata");
+    }
 
-        return data;
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        Log.e("error", "onPause");
     }
 
     private void setupBottomSheet() {
 
-        MainActivityBottomSheetFragment bottomSheetFragment = new MainActivityBottomSheetFragment();
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        mBottomSheetFragment = new MainActivityBottomSheetFragment();
+        mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
+    }
 
+    @Override
+    public void onBottomSheetDismiss() {
+
+        mAdapter.updateTasks(repository.getAllTasks());
 
     }
 }

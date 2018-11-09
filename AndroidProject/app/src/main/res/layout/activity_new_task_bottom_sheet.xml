@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet_background"
     style="@style/BottomSheetDialogTheme"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
-    android:background="@drawable/bottom_sheet_background">
+    tools:context=".ui_controller.NewTaskBottomSheet">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/main_activity_bottom_sheet_edit_task_til"
@@ -34,7 +35,5 @@
 
         app:layout_constraintEnd_toEndOf="@id/main_activity_bottom_sheet_edit_task_til"
         app:layout_constraintTop_toBottomOf="@id/main_activity_bottom_sheet_edit_task_til"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
