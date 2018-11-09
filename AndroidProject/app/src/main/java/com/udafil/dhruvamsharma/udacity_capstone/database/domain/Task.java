@@ -1,5 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
+import org.parceler.Parcel;
+
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -8,6 +10,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
+@Parcel
 public class Task {
 
     @PrimaryKey (autoGenerate = true)
@@ -27,7 +30,10 @@ public class Task {
     private Date createdAt;
 
 
+    @Ignore
+    public Task() {
 
+    }
 
     public Task(int taskId, String taskDescription, Boolean isComlpleted, int listId, Date createdAt) {
         this.taskId = taskId;

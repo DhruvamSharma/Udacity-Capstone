@@ -3,19 +3,12 @@ package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.repository.CommonRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mAdapter = new MainActivityTaskListAdapter();
+        mAdapter = new MainActivityTaskListAdapter(this);
 
         mTaskList.setLayoutManager(layoutManager);
         mTaskList.setAdapter(mAdapter);
@@ -99,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     protected void onResume() {
         super.onResume();
 
-        mAdapter.updateTasks(repository.getAllTasks());
+        mAdapter.updateTasksData(repository.getAllTasks());
 
 
     }
@@ -120,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     @Override
     public void onBottomSheetDismiss() {
 
-        mAdapter.updateTasks(repository.getAllTasks());
+        mAdapter.updateTasksData(repository.getAllTasks());
 
     }
 }

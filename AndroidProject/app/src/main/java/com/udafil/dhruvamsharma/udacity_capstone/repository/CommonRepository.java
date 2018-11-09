@@ -30,6 +30,12 @@ public class CommonRepository {
 
     }
 
+    public void updateTask(Task currentTask) {
+
+        mDb.getTaskDao().updateTask(currentTask);
+
+    }
+
     public List<Task> getAllTasks() {
 
         return mDb.getTaskDao().getAllTasks();
