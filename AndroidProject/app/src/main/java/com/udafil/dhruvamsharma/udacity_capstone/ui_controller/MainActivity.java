@@ -1,13 +1,25 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.CommonRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
+
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,14 +33,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
-    //A common repository for all the network and
+    //recyclerview for all the lists
+    private RecyclerView mListList;
+
+    //A common taskRepository for all the network and
     //database operations
-    private CommonRepository repository;
+    private TaskRepository taskRepository;
+    private ListRepository listRepository;
+
+    //List name
+    private TextView mListName;
 
     //Task Adapter
-    MainActivityTaskListAdapter mAdapter;
+    MainActivityTaskListAdapter mTaskAdapter;
 
-    MainActivityBottomSheetFragment mBottomSheetFragment;
+    //List Adapter
+    BottomSheetListAdapter mListAdapter;
+
+    MainActivityBottomSheetFragment mBottomSheetFragment
+            = new MainActivityBottomSheetFragment();
+
 
     /**
      * Method when the activity is created
@@ -52,20 +76,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      */
     private void setUpActivity() {
 
-        //setting up the repository
-        repository = CommonRepository.getCommonRepository(MainActivity.this);
+        setUpSharedPreferences();
 
-        mTaskList = findViewById(R.id.task_list_main_activity_rv);
+        //setting up the taskRepository
+        taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mAdapter = new MainActivityTaskListAdapter(this);
 
-        mTaskList.setLayoutManager(layoutManager);
-        mTaskList.setAdapter(mAdapter);
-
+        setUpTaskRecyclerView();
+        setUpListRecyclerView();
         setUpAds();
+
+
+        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
+        newListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NewListActivity.class));
+            }
+        });
 
         FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
         newTaskButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +105,79 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
             }
         });
+    }
+
+
+    /**
+     * This method takes the responsibility
+     * of setting up the list recycler view.
+     */
+    private void setUpListRecyclerView() {
+
+        mListList = findViewById(R.id.list_list_main_activity_rv);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        mListAdapter = new BottomSheetListAdapter(MainActivity.this);
+
+        mListList.setLayoutManager(layoutManager);
+        mListList.setAdapter(mListAdapter);
+
+    }
+
+
+    /**
+     * This method takes the responsibility
+     * of setting up the task recycler view.
+     */
+    private void setUpTaskRecyclerView() {
+
+        mTaskList = findViewById(R.id.task_list_main_activity_rv);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        mTaskAdapter = new MainActivityTaskListAdapter(this);
+
+        mTaskList.setLayoutManager(layoutManager);
+        mTaskList.setAdapter(mTaskAdapter);
+
+    }
+
+    /**
+     * This method takes the responsibility
+     * of setting the shared preferences.
+     */
+    private void setUpSharedPreferences() {
+
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+        boolean isFirstTime = preferences.getBoolean("is_first_time", true);
+        listRepository = ListRepository.getCommonRepository(this);
+
+        if(isFirstTime) {
+
+
+            //TODO 2: Change User ID
+            List currentList = new List(1, "My List", new Date());
+
+            listRepository.insertList(currentList);
+
+            /*TODO 6: This should present the last list user was accessing
+                which was stored in onPause()
+             */
+            mListName = findViewById(R.id.list_name_main_activity_tv);
+            mListName.setText(currentList.getListName());
+
+            SharedPreferences.Editor editor = preferences.edit();
+
+            editor.putBoolean("is_first_time", false);
+
+            editor.apply();
+
+        }
+
     }
 
     /**
@@ -92,28 +194,24 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     protected void onResume() {
         super.onResume();
 
-        mAdapter.updateTasksData(repository.getAllTasks());
-
+        mTaskAdapter.updateTasksData(taskRepository.getAllTasks());
+        mListAdapter.updateListsData(listRepository.getAllLists());
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        Log.e("error", "onPause");
-    }
-
+    /**
+     * This method takes care of
+     * setting up the bottom sheet
+     */
     private void setupBottomSheet() {
 
-        mBottomSheetFragment = new MainActivityBottomSheetFragment();
         mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
     }
 
     @Override
     public void onBottomSheetDismiss() {
 
-        mAdapter.updateTasksData(repository.getAllTasks());
+        mTaskAdapter.updateTasksData(taskRepository.getAllTasks());
 
     }
 }

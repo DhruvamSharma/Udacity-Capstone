@@ -4,4 +4,12 @@
     <string name="admob_app_id">ca-app-pub-5510176989515053~3520917855</string>
     <string name="admob_unit_id">ca-app-pub-5510176989515053/6414674502</string>
     <string name="update_activity_button_text_update">Update</string>
+    <string name="main_activity_single_task_bottom_sheet_button">Add a list</string>
+    <string name="new_list_activity_button_text_create">Save</string>
+
+    <style name="current_list">current_list</style>
+
+    <style name="current_task">current_task</style>
+
+    <style name="current_user">current_user</style>
 </resources>

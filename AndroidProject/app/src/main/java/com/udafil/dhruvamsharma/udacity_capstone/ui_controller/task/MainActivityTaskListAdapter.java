@@ -1,4 +1,4 @@
-package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
+package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 
 
 import android.content.Context;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 
-import org.parceler.Parcel;
 import org.parceler.Parcels;
 
 import java.lang.ref.WeakReference;

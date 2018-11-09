@@ -1,5 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
+import org.parceler.Parcel;
+
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -8,6 +10,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
+@Parcel
 public class List {
 
     @PrimaryKey (autoGenerate = true)
@@ -35,6 +38,11 @@ public class List {
         this.userId = userId;
         this.listName = listName;
         this.createdAt = createdAt;
+    }
+
+    @Ignore
+    public List() {
+
     }
 
     public int getListId() {
