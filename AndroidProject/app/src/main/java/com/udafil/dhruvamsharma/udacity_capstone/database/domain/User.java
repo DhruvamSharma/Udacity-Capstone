@@ -1,23 +1,34 @@
-package com.udafil.dhruvamsharma.udacity_capstone.domain;
+package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
 import java.util.Date;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class User {
 
+    @PrimaryKey (autoGenerate = true)
+    @ColumnInfo(name = "user_id")
     private int userId;
 
+    @ColumnInfo (name = "user_name")
     private String name;
 
+    @ColumnInfo (name = "created_at")
     private Date createdAt;
 
+    @ColumnInfo (name = "user_password")
     private String password;
 
+    @ColumnInfo (name = "user_email")
     private String emailId;
 
+    @ColumnInfo (name = "user_is_signed_in")
     private Boolean isSignedIn;
 
+    @ColumnInfo (name = "user_score")
     private int score;
 
     public int getUserId() {
