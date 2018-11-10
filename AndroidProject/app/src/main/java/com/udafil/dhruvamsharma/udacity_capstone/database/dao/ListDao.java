@@ -12,9 +12,9 @@ import androidx.room.Update;
 @Dao
 public interface ListDao {
 
-    @Query("SELECT * FROM list")
+    @Query("SELECT * FROM list WHERE user_id = :userId")
     List<com.udafil.dhruvamsharma.
-            udacity_capstone.database.domain.List> getAllLists();
+            udacity_capstone.database.domain.List> getAllLists(int userId);
 
     @Delete
     void deleteList(com.udafil.dhruvamsharma.
@@ -32,4 +32,7 @@ public interface ListDao {
     void deleteAllLists(com.udafil.dhruvamsharma.
                                 udacity_capstone.database.domain.List currentList);
 
+    @Query("SELECT * FROM list WHERE list_id = :listId")
+    com.udafil.dhruvamsharma.
+            udacity_capstone.database.domain.List getCurrentList(int listId);
 }

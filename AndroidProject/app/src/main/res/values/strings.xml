@@ -7,9 +7,11 @@
     <string name="main_activity_single_task_bottom_sheet_button">Add a list</string>
     <string name="new_list_activity_button_text_create">Save</string>
 
-    <style name="current_list">current_list</style>
+    <string name="current_list">current_list</string>
+    <string name="current_task">current_task</string>
+    <string name="current_user">current_user</string>
 
-    <style name="current_task">current_task</style>
+    <string name="is_first_time_install">first_time</string>
 
-    <style name="current_user">current_user</style>
+
 </resources>

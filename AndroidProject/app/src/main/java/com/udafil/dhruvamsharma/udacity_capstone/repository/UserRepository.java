@@ -50,22 +50,14 @@ public class UserRepository {
     }
 
 
-    public com.udafil.dhruvamsharma.
-            udacity_capstone.database.domain.List createTempUser(Context context) {
+    public User createTempUser(Context context) {
 
         User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);
 
         mDb.getUserDao().insertUser(tempUser);
 
-        //TODO 2: Change User ID
-        com.udafil.dhruvamsharma.udacity_capstone.
-                database.domain.List currentList = new com.udafil.dhruvamsharma.
-                udacity_capstone.database.domain.List(tempUser.getUserId(), "My List", new Date());
-
-        ListRepository.getCommonRepository(context).insertList(currentList);
-
-        return ListRepository.getCommonRepository(context).getAllLists().get(0);
+        return tempUser;
 
     }
 
@@ -93,6 +85,9 @@ public class UserRepository {
     }
 
 
+    public User getUser(int userId) {
 
+        return mDb.getUserDao().getUser(userId);
 
+    }
 }
