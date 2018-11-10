@@ -4,6 +4,7 @@ import java.util.Date;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -30,6 +31,27 @@ public class User {
 
     @ColumnInfo (name = "user_score")
     private int score;
+
+    public User(int userId, String name, Date createdAt, String password, String emailId, Boolean isSignedIn, int score) {
+        this.userId = userId;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.password = password;
+        this.emailId = emailId;
+        this.isSignedIn = isSignedIn;
+        this.score = score;
+    }
+
+    @Ignore
+    public User(String name, Date createdAt, String password, String emailId, Boolean isSignedIn, int score) {
+
+        this.name = name;
+        this.createdAt = createdAt;
+        this.password = password;
+        this.emailId = emailId;
+        this.isSignedIn = isSignedIn;
+        this.score = score;
+    }
 
     public int getUserId() {
         return userId;
