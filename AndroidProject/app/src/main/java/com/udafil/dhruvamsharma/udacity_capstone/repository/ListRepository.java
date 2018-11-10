@@ -6,6 +6,8 @@ import android.content.Context;
 import com.udafil.dhruvamsharma.udacity_capstone.database.DatabaseInstance;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 
+import java.util.Date;
+
 public class ListRepository {
 
     private static ListRepository sRepository;
@@ -30,8 +32,19 @@ public class ListRepository {
         mDb.getListDao().updateList(currentList);
     }
 
-    public java.util.List<List> getAllLists() {
-        return mDb.getListDao().getAllLists();
+    public java.util.List<List> getAllLists(int userId) {
+        return mDb.getListDao().getAllLists(userId);
+    }
+
+    public List createTempList(int userId) {
+
+        //TODO 2: Change User ID
+        List tempList = new List(userId, "My List", new Date());
+
+        mDb.getListDao().insertList(tempList);
+
+        return tempList;
+
     }
 
 
@@ -57,4 +70,9 @@ public class ListRepository {
 
     }
 
+    public List getList(int listId) {
+
+        return mDb.getListDao().getCurrentList(listId);
+
+    }
 }

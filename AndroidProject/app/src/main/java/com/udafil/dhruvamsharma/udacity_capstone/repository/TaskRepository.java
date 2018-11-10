@@ -26,6 +26,7 @@ public class TaskRepository {
 
     public void insertTask(Task currentTask) {
 
+
         mDb.getTaskDao().insertTask(currentTask);
 
     }
@@ -36,9 +37,9 @@ public class TaskRepository {
 
     }
 
-    public List<Task> getAllTasks() {
+    public List<Task> getAllTasks(int listId) {
 
-        return mDb.getTaskDao().getAllTasks();
+        return mDb.getTaskDao().getAllTasks(listId);
 
     }
 
