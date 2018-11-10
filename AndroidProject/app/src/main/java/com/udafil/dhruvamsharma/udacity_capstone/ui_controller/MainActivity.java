@@ -14,6 +14,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     //database operations
     private TaskRepository taskRepository;
     private ListRepository listRepository;
+    private UserRepository userRepository;
 
     //List name
     private TextView mListName;
@@ -78,8 +80,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
         setUpSharedPreferences();
 
-        //setting up the taskRepository
-        taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
 
 
 
@@ -154,21 +154,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
 
         boolean isFirstTime = preferences.getBoolean("is_first_time", true);
-        listRepository = ListRepository.getCommonRepository(this);
+
+        //setting up the taskRepository
+        listRepository = ListRepository.getCommonRepository(MainActivity.this);
+        taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
+        userRepository = UserRepository.getUserRepository(MainActivity.this);
 
         if(isFirstTime) {
 
 
-            //TODO 2: Change User ID
-            List currentList = new List(1, "My List", new Date());
 
-            listRepository.insertList(currentList);
+
+            List currentList = userRepository.createTempUser(MainActivity.this);
 
             /*TODO 6: This should present the last list user was accessing
                 which was stored in onPause()
              */
             mListName = findViewById(R.id.list_name_main_activity_tv);
             mListName.setText(currentList.getListName());
+
+
 
             SharedPreferences.Editor editor = preferences.edit();
 
