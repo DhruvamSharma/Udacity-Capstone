@@ -26,6 +26,6 @@ public interface UserDao {
     @Insert
     void insertUser(User currentUser);
 
-    @Query("SELECT * from user WHERE user_id = :userId")
+    @Query("SELECT * FROM user WHERE user_id = :userId")
     User getUser(int userId);
 }
