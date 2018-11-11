@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
             AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                 @Override
                 public void run() {
+
                     currentUser = userRepository.createTempUser(MainActivity.this);
                     currentList = listRepository.createTempList(currentUser.getUserId());
                     allTasks = new ArrayList<>();
@@ -178,11 +179,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 public void run() {
                     final int userId = preferences
                             .getInt(getResources().getString(R.string.current_user), -1);
-                    currentUser = userRepository.getUser(userId);
+
 
                     int listId = preferences.
                             getInt(getResources().getString(R.string.current_list), -1);
+
+
                     currentList = listRepository.getList(listId);
+                    currentUser = userRepository.getUser(userId);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -190,8 +194,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
                             Log.e("userId", "run: userId "+ userId );
 
-                            retrieveTasks(currentList.getListId());
-                            retrieveLists(currentUser.getUserId());
+//                            retrieveLists(currentUser.getUserId());
+//                            retrieveTasks(currentList.getListId());
                         }
                     });
 
@@ -224,60 +228,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        //Check for first-time installs
-        //Check for Last accessed items
-        setUpSharedPreferences();
-
-        setUpTaskRecyclerView();
-        setUpListRecyclerView();
-        setUpAds();
-
-        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
-        newListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewListActivity.class));
-            }
-        });
-
-        FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
-        newTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setupBottomSheet();
-
-            }
-        });
-
-
-
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
-
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(getResources().getString(R.string.current_user), currentUser.getUserId());
-                editor.putInt(getResources().getString(R.string.current_list), currentList.getListId());
-                editor.apply();
-            }
-        });
-
-
-
-    }
 
     /**
      * This method takes care of
@@ -332,6 +283,64 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
             }
         });
+
+    }
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Check for first-time installs
+        //Check for Last accessed items
+        setUpSharedPreferences();
+
+        setUpTaskRecyclerView();
+        setUpListRecyclerView();
+        setUpAds();
+
+        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
+        newListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NewListActivity.class));
+            }
+        });
+
+        FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
+        newTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setupBottomSheet();
+
+            }
+        });
+
+
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(getResources().getString(R.string.current_user), currentUser.getUserId());
+                editor.putInt(getResources().getString(R.string.current_list), currentList.getListId());
+                editor.apply();
+            }
+        });
+
+
 
     }
 
