@@ -50,7 +50,7 @@ public class UserRepository {
     }
 
 
-    public User createTempUser(Context context) {
+    public User createTempUser() {
 
         User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);

@@ -91,6 +91,31 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      */
     private void setUpActivity() {
 
+        //Check for first-time installs
+        //Check for Last accessed items
+        setUpSharedPreferences();
+
+        setUpTaskRecyclerView();
+        setUpListRecyclerView();
+        setUpAds();
+
+        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
+        newListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NewListActivity.class));
+            }
+        });
+
+        FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
+        newTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setupBottomSheet();
+
+            }
+        });
 
     }
 
@@ -158,8 +183,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 @Override
                 public void run() {
 
-                    currentUser = userRepository.createTempUser(MainActivity.this);
+                    currentUser = userRepository.createTempUser();
+                    Log.e("stop here", "user_id: "+ currentUser.getUserId());
                     currentList = listRepository.createTempList(currentUser.getUserId());
+                    Log.e("list_name", currentList.getListName());
                     allTasks = new ArrayList<>();
                     allLists = new ArrayList<>();
                     allLists.add(currentList);
@@ -194,8 +221,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
                             Log.e("userId", "run: userId "+ userId );
 
-//                            retrieveLists(currentUser.getUserId());
-//                            retrieveTasks(currentList.getListId());
+
                         }
                     });
 
@@ -206,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
 
         }
+
+        retrieveLists(currentUser.getUserId());
+        retrieveTasks(currentList.getListId());
 
         if (currentList != null)
         mListName.setText(currentList.getListName());
@@ -293,31 +322,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     protected void onResume() {
         super.onResume();
 
-        //Check for first-time installs
-        //Check for Last accessed items
-        setUpSharedPreferences();
 
-        setUpTaskRecyclerView();
-        setUpListRecyclerView();
-        setUpAds();
-
-        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
-        newListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewListActivity.class));
-            }
-        });
-
-        FloatingActionButton newTaskButton = findViewById(R.id.main_activity_new_task_fab);
-        newTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setupBottomSheet();
-
-            }
-        });
 
 
 
@@ -339,8 +344,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 editor.apply();
             }
         });
-
-
 
     }
 
