@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      */
     private void setUpSharedPreferences() {
 
-        final SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        final SharedPreferences preferences = getSharedPreferences("my_file", MODE_PRIVATE);
 
         boolean isFirstTime = preferences.getBoolean(getResources()
                 .getString(R.string.is_first_time_install), true);
@@ -196,6 +197,22 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                             .getString(R.string.is_first_time_install), false);
                     editor.apply();
 
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            retrieveLists(currentUser.getUserId());
+                            retrieveTasks(currentList.getListId());
+                            if (currentList != null)
+                                mListName.setText(currentList.getListName());
+                            else {
+
+                                //TODO 8: Finish the application gracefully
+                                //finish();
+                            }
+
+                        }
+                    });
+
                 }
             });
 
@@ -211,6 +228,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                     int listId = preferences.
                             getInt(getResources().getString(R.string.current_list), -1);
 
+                    Log.e("userId", "run: userId "+ userId + listId);
+
 
                     currentList = listRepository.getList(listId);
                     currentUser = userRepository.getUser(userId);
@@ -219,7 +238,21 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                         @Override
                         public void run() {
 
-                            Log.e("userId", "run: userId "+ userId );
+                            if(currentUser != null || currentList != null) {
+                                retrieveLists(currentUser.getUserId());
+                                retrieveTasks(currentList.getListId());
+
+
+                                mListName.setText(currentList.getListName());
+
+
+
+
+                            } else {
+                                //TODO 8: Finish the application gracefully
+                                //finish();
+                            }
+
 
 
                         }
@@ -233,19 +266,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
         }
 
-        retrieveLists(currentUser.getUserId());
-        retrieveTasks(currentList.getListId());
 
-        if (currentList != null)
-        mListName.setText(currentList.getListName());
-        else {
 
-            //TODO 8: Finish the application gracefully
-            //finish();
-        }
 
 
     }
+
+
 
     /**
      * This methods set ups the ads
@@ -283,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
             public void run() {
 
                 allTasks = taskRepository.getAllTasks(listId);
-
+                if(allTasks != null)
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -303,6 +330,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
             public void run() {
 
                 allLists = listRepository.getAllLists(userId);
+
+                if(allLists != null)
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -330,20 +359,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
 
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("my_file", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(getResources().getString(R.string.current_user), currentUser.getUserId());
+        editor.putInt(getResources().getString(R.string.current_list), currentList.getListId());
+        editor.apply();
 
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(getResources().getString(R.string.current_user), currentUser.getUserId());
-                editor.putInt(getResources().getString(R.string.current_list), currentList.getListId());
-                editor.apply();
-            }
-        });
+
+
 
     }
 
