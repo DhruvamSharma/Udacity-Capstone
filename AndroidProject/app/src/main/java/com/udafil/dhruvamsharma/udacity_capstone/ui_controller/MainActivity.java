@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      */
     private void setUpSharedPreferences() {
 
-        final SharedPreferences preferences = getSharedPreferences("my_file", MODE_PRIVATE);
+        final SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
 
         boolean isFirstTime = preferences.getBoolean(getResources()
                 .getString(R.string.is_first_time_install), true);
@@ -218,15 +218,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
         } else {
 
+
             AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                 @Override
                 public void run() {
+
                     final int userId = preferences
-                            .getInt(getResources().getString(R.string.current_user), -1);
+                            .getInt("user", -1);
 
 
                     int listId = preferences.
-                            getInt(getResources().getString(R.string.current_list), -1);
+                            getInt("list", -1);
 
                     Log.e("userId", "run: userId "+ userId + listId);
 
@@ -234,41 +236,22 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                     currentList = listRepository.getList(listId);
                     currentUser = userRepository.getUser(userId);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                            if(currentUser != null || currentList != null) {
-                                retrieveLists(currentUser.getUserId());
-                                retrieveTasks(currentList.getListId());
+                    if(currentUser != null && currentList != null) {
 
+                        retrieveLists(currentUser.getUserId());
+                        retrieveTasks(currentList.getListId());
+                        mListName.setText(currentList.getListName());
 
-                                mListName.setText(currentList.getListName());
-
-
-
-
-                            } else {
-                                //TODO 8: Finish the application gracefully
-                                //finish();
-                            }
-
-
-
-                        }
-                    });
-
+                    } else {
+                        //TODO 8: Finish the application gracefully
+                        //finish();
+                    }
 
                 }
             });
 
-
-
         }
-
-
-
-
 
     }
 
@@ -359,18 +342,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
 
-        SharedPreferences preferences = getSharedPreferences("my_file", MODE_PRIVATE);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt(getResources().getString(R.string.current_user), currentUser.getUserId());
-        editor.putInt(getResources().getString(R.string.current_list), currentList.getListId());
+        editor.putInt("user", currentUser.getUserId());
+        editor.putInt("list", currentList.getListId());
         editor.apply();
-
-
-
-
     }
 
 }
