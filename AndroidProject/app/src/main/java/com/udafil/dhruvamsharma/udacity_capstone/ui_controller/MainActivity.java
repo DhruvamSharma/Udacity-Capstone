@@ -276,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     private void setupBottomSheet() {
 
         mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
+        //Toast was here
     }
 
     @Override
