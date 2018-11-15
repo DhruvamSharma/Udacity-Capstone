@@ -7,12 +7,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
+import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
+import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class MyGoalsWidget extends AppWidgetProvider {
+
+    private static ListRepository listRepository;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -21,7 +26,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_goals_widget);
 
-        views.setTextViewText(R.id.widget_new_task_et, widgetText);
+        setUpWidget(context, views);
 
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -48,6 +53,32 @@ public class MyGoalsWidget extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    private static void setUpWidget(Context context, final RemoteViews views) {
+
+        listRepository = ListRepository.getCommonRepository(context);
+
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                List currentList = listRepository.getList(0);
+
+                if(currentList != null) {
+
+                    views.setTextViewText(R.id.widget_new_task_et, currentList.getListName());
+
+                } else {
+
+                    views.setTextViewText(R.id.widget_new_task_et, "NO TEXT");
+
+                }
+            }
+        });
+
+
     }
 }
 
