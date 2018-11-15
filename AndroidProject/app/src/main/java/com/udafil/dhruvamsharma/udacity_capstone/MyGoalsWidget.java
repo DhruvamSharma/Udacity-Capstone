@@ -1,9 +1,13 @@
 package com.udafil.dhruvamsharma.udacity_capstone;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
+
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 
 /**
  * Implementation of App Widget functionality.
@@ -16,7 +20,13 @@ public class MyGoalsWidget extends AppWidgetProvider {
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_goals_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        views.setTextViewText(R.id.widget_new_task_et, widgetText);
+
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+        views.setOnClickPendingIntent(R.id.widget_new_task_et, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
