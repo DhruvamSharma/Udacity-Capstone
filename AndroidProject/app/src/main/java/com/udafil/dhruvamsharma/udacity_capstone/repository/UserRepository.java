@@ -57,7 +57,7 @@ public class UserRepository {
 
         mDb.getUserDao().insertUser(tempUser);
 
-        return tempUser;
+        return getUser(tempUser.getUserId());
 
     }
 
