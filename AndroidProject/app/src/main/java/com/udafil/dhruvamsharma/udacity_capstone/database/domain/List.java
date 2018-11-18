@@ -1,6 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
 import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import java.util.Date;
 
@@ -41,9 +42,11 @@ public class List {
     }
 
     @Ignore
+    @ParcelConstructor
     public List() {
 
     }
+
 
     public int getListId() {
         return listId;
