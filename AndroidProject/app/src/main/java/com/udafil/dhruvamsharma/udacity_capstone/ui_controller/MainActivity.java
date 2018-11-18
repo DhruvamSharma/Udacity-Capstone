@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      */
     private void setUpActivity() {
 
+        //Setting up stetho Library
+        Stetho.initializeWithDefaults(this);
         //setting up the taskRepository
         listRepository = ListRepository.getCommonRepository(MainActivity.this);
         taskRepository = TaskRepository.getCommonRepository(MainActivity.this);

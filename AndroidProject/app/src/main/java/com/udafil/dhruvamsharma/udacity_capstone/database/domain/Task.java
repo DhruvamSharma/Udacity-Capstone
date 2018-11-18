@@ -1,6 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
 import org.parceler.Parcel;
+import org.parceler.ParcelConstructor;
 
 import java.util.Date;
 
@@ -30,10 +31,6 @@ public class Task {
     private Date createdAt;
 
 
-    @Ignore
-    public Task() {
-
-    }
 
     public Task(int taskId, String taskDescription, Boolean isComlpleted, int listId, Date createdAt) {
         this.taskId = taskId;
@@ -50,6 +47,12 @@ public class Task {
         this.isComlpleted = isComlpleted;
         this.listId = listId;
         this.createdAt = createdAt;
+    }
+
+    @Ignore
+    @ParcelConstructor
+    public Task() {
+
     }
 
     public int getTaskId() {

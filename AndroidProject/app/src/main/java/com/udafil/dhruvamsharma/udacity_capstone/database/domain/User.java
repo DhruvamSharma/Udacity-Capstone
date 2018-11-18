@@ -56,10 +56,7 @@ public class User {
         this.score = score;
     }
 
-    @Ignore
-    public User() {
 
-    }
 
     public int getUserId() {
         return userId;
