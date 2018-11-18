@@ -76,4 +76,6 @@ dependencies {
     annotationProcessor 'org.parceler:parceler:1.1.11'
 
 
+    //Stetho Dependency
+    implementation 'com.facebook.stetho:stetho:1.5.0'
 }
