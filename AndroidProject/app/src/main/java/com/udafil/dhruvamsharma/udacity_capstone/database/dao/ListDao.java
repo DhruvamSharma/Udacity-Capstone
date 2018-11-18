@@ -1,6 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.dao;
 
-import java.util.List;
+import com.udafil.dhruvamsharma.
+        udacity_capstone.database.domain.List;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -12,27 +13,21 @@ import androidx.room.Update;
 @Dao
 public interface ListDao {
 
-    @Query("SELECT * FROM list WHERE user_id = :userId")
-    List<com.udafil.dhruvamsharma.
-            udacity_capstone.database.domain.List> getAllLists(int userId);
+    @Query("SELECT * FROM lists WHERE user_id = :userId")
+    java.util.List<List> getAllLists(int userId);
 
     @Delete
-    void deleteList(com.udafil.dhruvamsharma.
-                            udacity_capstone.database.domain.List currentList);
+    void deleteList(List currentList);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateList(com.udafil.dhruvamsharma.
-                            udacity_capstone.database.domain.List currentList);
+    void updateList(List currentList);
 
     @Insert
-    void insertList(com.udafil.dhruvamsharma.
-                            udacity_capstone.database.domain.List currentList);
+    void insertList(List currentList);
 
     @Delete
-    void deleteAllLists(com.udafil.dhruvamsharma.
-                                udacity_capstone.database.domain.List currentList);
+    void deleteAllLists(List currentList);
 
-    @Query("SELECT * FROM list WHERE list_id = :listId")
-    com.udafil.dhruvamsharma.
-            udacity_capstone.database.domain.List getCurrentList(int listId);
+    @Query("SELECT * FROM lists WHERE list_id = :listId")
+    List getCurrentList(int listId);
 }

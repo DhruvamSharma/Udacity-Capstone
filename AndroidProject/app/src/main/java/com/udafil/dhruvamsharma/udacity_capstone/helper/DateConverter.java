@@ -3,7 +3,6 @@ package com.udafil.dhruvamsharma.udacity_capstone.helper;
 import java.util.Date;
 
 import androidx.room.TypeConverter;
-import androidx.room.TypeConverters;
 
 public class DateConverter {
 
