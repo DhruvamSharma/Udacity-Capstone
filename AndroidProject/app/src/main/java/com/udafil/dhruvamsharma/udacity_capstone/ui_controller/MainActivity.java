@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.database.DatabaseInstance;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
@@ -29,6 +30,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivity
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -91,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
      * It takes care of all the nitty-gritty details
      */
     private void setUpActivity() {
+
+        //setting up the taskRepository
+        listRepository = ListRepository.getCommonRepository(MainActivity.this);
+        taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
+        userRepository = UserRepository.getUserRepository(MainActivity.this);
 
         //Check for first-time installs
         //Check for Last accessed items
@@ -170,20 +177,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 .getString(R.string.is_first_time_install), true);
 
 
-        //setting up the taskRepository
-        listRepository = ListRepository.getCommonRepository(MainActivity.this);
-        taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
-        userRepository = UserRepository.getUserRepository(MainActivity.this);
+
 
         //List Name Text View
         mListName = findViewById(R.id.list_name_main_activity_tv);
 
         if(isFirstTime) {
 
+
             AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                 @Override
                 public void run() {
 
+                    // TODO application not working from here
                     currentUser = userRepository.createTempUser();
                     Log.e("stop here", "user_id: "+ currentUser.getUserId());
                     currentList = listRepository.createTempList(currentUser.getUserId());
@@ -202,8 +208,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                         public void run() {
                             retrieveLists(currentUser.getUserId());
                             retrieveTasks(currentList.getListId());
-                            if (currentList != null)
-                                mListName.setText(currentList.getListName());
+                            if (currentList != null) {
+
+                              mListName.setText(currentList.getListName());
+                            }
                             else {
 
                                 //TODO 8: Finish the application gracefully
@@ -237,11 +245,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                     currentUser = userRepository.getUser(userId);
 
 
+
+
+
                     if(currentUser != null && currentList != null) {
 
                         retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId());
                         mListName.setText(currentList.getListName());
+                        retrieveTasks(currentList.getListId());
 
                     } else {
                         //TODO 8: Finish the application gracefully
@@ -346,11 +357,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     protected void onDestroy() {
         super.onDestroy();
 
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("user", currentUser.getUserId());
-        editor.putInt("list", currentList.getListId());
-        editor.apply();
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("user", currentUser.getUserId());
+                editor.putInt("list", currentList.getListId());
+                editor.apply();
+
+                int listId = listRepository.getList(0).getListId();
+                int userId = listRepository.getList(0).getUserId();
+                Log.e("MY_TAG1", "" + listId);
+                Log.e("MY_TAG2", "" + userId);
+            }
+        });
+
+
+
     }
 
 }

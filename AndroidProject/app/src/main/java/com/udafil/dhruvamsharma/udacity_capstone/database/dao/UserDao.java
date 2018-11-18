@@ -14,7 +14,7 @@ import androidx.room.Update;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM users")
     List<User> getAllUsers();
 
     @Delete
@@ -26,6 +26,6 @@ public interface UserDao {
     @Insert
     void insertUser(User currentUser);
 
-    @Query("SELECT * FROM user WHERE user_id = :userId")
+    @Query("SELECT * FROM users WHERE user_id = :userId")
     User getUser(int userId);
 }
