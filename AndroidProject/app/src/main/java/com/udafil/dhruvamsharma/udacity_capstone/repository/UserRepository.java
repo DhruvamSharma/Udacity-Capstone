@@ -55,7 +55,7 @@ public class UserRepository {
         User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);
 
-        mDb.getUserDao().insertUser(tempUser);
+        createUser(tempUser);
 
         return getUser(tempUser.getUserId());
 

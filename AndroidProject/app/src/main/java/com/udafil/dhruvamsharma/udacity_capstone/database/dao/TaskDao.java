@@ -14,7 +14,7 @@ import androidx.room.Update;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM task WHERE list_id = :listId")
+    @Query("SELECT * FROM tasks WHERE list_id = :listId")
     List<Task> getAllTasks(int listId);
 
     @Delete

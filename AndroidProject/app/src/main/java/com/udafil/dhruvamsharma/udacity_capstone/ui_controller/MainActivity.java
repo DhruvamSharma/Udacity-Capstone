@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.database.DatabaseInstance;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
@@ -29,6 +30,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivity
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -182,10 +184,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
         if(isFirstTime) {
 
+
             AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                 @Override
                 public void run() {
 
+                    // TODO application not working from here
                     currentUser = userRepository.createTempUser();
                     Log.e("stop here", "user_id: "+ currentUser.getUserId());
                     currentList = listRepository.createTempList(currentUser.getUserId());
@@ -204,8 +208,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                         public void run() {
                             retrieveLists(currentUser.getUserId());
                             retrieveTasks(currentList.getListId());
-                            if (currentList != null)
-                                mListName.setText(currentList.getListName());
+                            if (currentList != null) {
+
+                              mListName.setText(currentList.getListName());
+                            }
                             else {
 
                                 //TODO 8: Finish the application gracefully
@@ -239,11 +245,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                     currentUser = userRepository.getUser(userId);
 
 
+
+
+
                     if(currentUser != null && currentList != null) {
 
                         retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId());
                         mListName.setText(currentList.getListName());
+                        retrieveTasks(currentList.getListId());
 
                     } else {
                         //TODO 8: Finish the application gracefully

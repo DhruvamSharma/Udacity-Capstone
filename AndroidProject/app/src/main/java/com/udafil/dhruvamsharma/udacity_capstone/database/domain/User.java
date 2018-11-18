@@ -1,13 +1,16 @@
 package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
+import com.udafil.dhruvamsharma.udacity_capstone.helper.DateConverter;
+
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
-@Entity
+@Entity (tableName = "users")
 public class User {
 
     @PrimaryKey (autoGenerate = true)
@@ -51,6 +54,11 @@ public class User {
         this.emailId = emailId;
         this.isSignedIn = isSignedIn;
         this.score = score;
+    }
+
+    @Ignore
+    public User() {
+
     }
 
     public int getUserId() {

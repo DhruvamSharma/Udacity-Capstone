@@ -31,7 +31,6 @@ public abstract class DatabaseInstance extends RoomDatabase {
 
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
                         DatabaseInstance.class, DatabaseInstance.DATABASE_NAME)
-
                         .build();
 
             }
