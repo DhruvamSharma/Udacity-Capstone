@@ -37,31 +37,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="38" column="42" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/dao/UserDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="62" selection-start-column="62" selection-end-column="62" />
+            <state relative-caret-position="550">
+              <caret line="184" column="75" lean-forward="true" selection-start-line="184" selection-start-column="75" selection-end-line="184" selection-end-column="75" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#8786#8787#0" expanded="true" />
+                <element signature="e#8957#9004#0" expanded="true" />
+                <element signature="e#9487#9906#0" expanded="true" />
+                <element signature="e#9689#9879#0" expanded="true" />
+                <element signature="e#9878#9879#0" expanded="true" />
+                <element signature="e#9905#9906#0" expanded="true" />
+                <element signature="e#10024#10444#0" expanded="true" />
+                <element signature="e#10227#10417#0" expanded="true" />
+                <element signature="e#10416#10417#0" expanded="true" />
+                <element signature="e#10443#10444#0" expanded="true" />
+                <element signature="e#10674#11349#0" expanded="true" />
+                <element signature="e#11348#11349#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +63,8 @@
       <file leaf-file-name="UserRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/repository/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="781">
-              <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+            <state relative-caret-position="915">
+              <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,36 +72,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyGoalsWidget.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/MyGoalsWidget.java">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/domain/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            <state relative-caret-position="-422">
+              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/repository/ListRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_goals_widget.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
@@ -2601,6 +2570,50 @@
           <expand>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="helper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
@@ -2768,12 +2781,12 @@
       <window_info id="Image Layers" order="3" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007153" side_tool="true" weight="0.64484847" />
       <window_info anchor="right" id="Preview" order="3" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32969698" />
-      <window_info anchor="bottom" id="Logcat" order="7" weight="0.64484847" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.49928468" weight="0.64484847" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="3" />
@@ -3022,11 +3035,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="38" selection-start-column="38" selection-end-column="38" />
-          <folding>
-            <element signature="e#629#652#0" expanded="true" />
-            <element signature="e#1279#1302#0" expanded="true" />
-            <element signature="e#1334#1380#0" expanded="true" />
-          </folding>
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3066,8 +3074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/domain/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="-422">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -3200,8 +3208,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/repository/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
+        <state relative-caret-position="915">
+          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3227,8 +3235,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        <state relative-caret-position="550">
+          <caret line="184" column="75" lean-forward="true" selection-start-line="184" selection-start-column="75" selection-end-line="184" selection-end-column="75" />
+          <folding>
+            <element signature="e#8786#8787#0" expanded="true" />
+            <element signature="e#8957#9004#0" expanded="true" />
+            <element signature="e#9487#9906#0" expanded="true" />
+            <element signature="e#9689#9879#0" expanded="true" />
+            <element signature="e#9878#9879#0" expanded="true" />
+            <element signature="e#9905#9906#0" expanded="true" />
+            <element signature="e#10024#10444#0" expanded="true" />
+            <element signature="e#10227#10417#0" expanded="true" />
+            <element signature="e#10416#10417#0" expanded="true" />
+            <element signature="e#10443#10444#0" expanded="true" />
+            <element signature="e#10674#11349#0" expanded="true" />
+            <element signature="e#11348#11349#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
