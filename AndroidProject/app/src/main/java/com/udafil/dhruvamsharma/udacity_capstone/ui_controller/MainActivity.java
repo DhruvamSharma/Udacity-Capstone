@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         setUpActivity();
 
 
-
     }
 
     /**
@@ -194,9 +193,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
                     // TODO application not working from here
                     currentUser = userRepository.createTempUser();
-                    Log.e("stop here", "user_id: "+ currentUser.getUserId());
                     currentList = listRepository.createTempList(currentUser.getUserId());
-                    Log.e("list_name", currentList.getListName());
                     allTasks = new ArrayList<>();
                     allLists = new ArrayList<>();
                     allLists.add(currentList);
@@ -206,23 +203,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                             .getString(R.string.is_first_time_install), false);
                     editor.apply();
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            retrieveLists(currentUser.getUserId());
-                            retrieveTasks(currentList.getListId());
-                            if (currentList != null) {
-
-                              mListName.setText(currentList.getListName());
-                            }
-                            else {
-
-                                //TODO 8: Finish the application gracefully
-                                //finish();
-                            }
-
-                        }
-                    });
+                    setupActivity(currentList.getListId(), currentUser.getUserId());
 
                 }
             });
@@ -234,38 +215,44 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 @Override
                 public void run() {
 
-                    final int userId = preferences
+                    int userId = preferences
                             .getInt("user", -1);
 
 
                     int listId = preferences.
                             getInt("list", -1);
 
-                    Log.e("userId", "run: userId "+ userId + listId);
-
-
-                    currentList = listRepository.getList(listId);
-                    currentUser = userRepository.getUser(userId);
-
-
-
-
-
-                    if(currentUser != null && currentList != null) {
-
-                        retrieveLists(currentUser.getUserId());
-                        mListName.setText(currentList.getListName());
-                        retrieveTasks(currentList.getListId());
-
-                    } else {
-                        //TODO 8: Finish the application gracefully
-                        //finish();
-                    }
+                    setupActivity(listId, userId);
 
                 }
             });
 
         }
+
+    }
+
+    private void setupActivity(int listId, int userId) {
+
+        currentList = listRepository.getList(listId);
+        currentUser = userRepository.getUser(userId);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                retrieveLists(currentUser.getUserId());
+                retrieveTasks(currentList.getListId());
+                if (currentList != null) {
+
+                    mListName.setText(currentList.getListName());
+                }
+                else {
+
+                    //TODO 8: Finish the application gracefully
+                    //finish();
+                }
+
+            }
+        });
 
     }
 
@@ -296,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     @Override
     public void onBottomSheetDismiss() {
 
-        retrieveTasks(currentUser.getUserId());
+        retrieveTasks(currentList.getListId());
 
     }
 
@@ -349,17 +336,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     protected void onResume() {
         super.onResume();
 
-
-
-
+        if(currentList != null)
+        retrieveTasks(currentList.getListId());
 
     }
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
+    protected void onPause() {
+        super.onPause();
 
         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
@@ -371,14 +356,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                 editor.putInt("list", currentList.getListId());
                 editor.apply();
 
-                int listId = listRepository.getList(0).getListId();
-                int userId = listRepository.getList(0).getUserId();
-                Log.e("MY_TAG1", "" + listId);
-                Log.e("MY_TAG2", "" + userId);
             }
         });
-
-
 
     }
 
