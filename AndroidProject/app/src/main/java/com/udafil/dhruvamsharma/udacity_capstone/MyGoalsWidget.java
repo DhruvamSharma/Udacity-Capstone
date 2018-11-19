@@ -57,26 +57,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
 
     private static void setUpWidget(Context context, final RemoteViews views) {
 
-        listRepository = ListRepository.getCommonRepository(context);
 
-
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-
-                List currentList = listRepository.getList(0);
-
-                if(currentList != null) {
-
-                    views.setTextViewText(R.id.widget_new_task_et, currentList.getListName());
-
-                } else {
-
-                    views.setTextViewText(R.id.widget_new_task_et, "NO TEXT");
-
-                }
-            }
-        });
 
 
     }

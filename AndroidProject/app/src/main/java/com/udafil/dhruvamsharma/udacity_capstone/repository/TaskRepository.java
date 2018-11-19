@@ -8,6 +8,8 @@ import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+
 /**
  * This is a repository for all the network and database calls
  * It follows a singleton pattern
@@ -37,7 +39,7 @@ public class TaskRepository {
 
     }
 
-    public List<Task> getAllTasks(int listId) {
+    public LiveData<List<Task>> getAllTasks(int listId) {
 
         return mDb.getTaskDao().getAllTasks(listId);
 

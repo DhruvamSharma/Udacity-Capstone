@@ -4,6 +4,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -15,7 +16,7 @@ import androidx.room.Update;
 public interface TaskDao {
 
     @Query("SELECT * FROM tasks WHERE list_id = :listId")
-    List<Task> getAllTasks(int listId);
+    LiveData<List<Task>> getAllTasks(int listId);
 
     @Delete
     void deleteTask(Task currentTask);

@@ -4,6 +4,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -15,7 +16,7 @@ import androidx.room.Update;
 public interface UserDao {
 
     @Query("SELECT * FROM users")
-    List<User> getAllUsers();
+    LiveData<List<User>> getAllUsers();
 
     @Delete
     void deleteUser(User currentUser);
@@ -27,5 +28,8 @@ public interface UserDao {
     long insertUser(User currentUser);
 
     @Query("SELECT * FROM users WHERE user_id = :userId")
-    User getUser(int userId);
+    LiveData<User> getUser(int userId);
+
+    @Query("SELECT * FROM users WHERE user_id = :userId")
+    User getTempUser(int userId);
 }
