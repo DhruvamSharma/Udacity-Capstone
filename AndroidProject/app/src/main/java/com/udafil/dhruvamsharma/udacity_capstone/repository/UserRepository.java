@@ -43,9 +43,10 @@ public class UserRepository {
 
     }
 
-    public void createUser (User currentUser) {
+    public int createUser (User currentUser) {
 
-        mDb.getUserDao().insertUser(currentUser);
+        int id = (int) mDb.getUserDao().insertUser(currentUser);
+        return id;
 
     }
 
@@ -55,9 +56,9 @@ public class UserRepository {
         User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);
 
-        createUser(tempUser);
+        int id = createUser(tempUser);
 
-        return getUser(tempUser.getUserId());
+        return getUser(id);
 
     }
 
