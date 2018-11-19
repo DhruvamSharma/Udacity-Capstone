@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
+import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
 import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
 
 import org.parceler.Parcels;
@@ -25,13 +26,16 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This methods helps in setting up the activity
+     */
     private void setUpActivity() {
 
         Intent intent = getIntent();
 
         if(intent.hasExtra("current_task")) {
 
-            updateTask(intent);
+            update(intent);
 
         } else {
             //TODO 1: Add a nice error state
@@ -42,22 +46,76 @@ public class UpdateTaskActivity extends AppCompatActivity {
 
     }
 
-    private void updateTask(Intent intent) {
+    private void update(Intent intent) {
 
         final TextInputEditText updatedText = findViewById(R.id.update_activity_edit_task_et);
         final Task task = Parcels.unwrap(intent.getParcelableExtra("current_task"));
         updatedText.setText(task.getTaskDescription());
 
-        MaterialButton updateButton = findViewById(R.id.update_activity_update_task_btn);
+        final MaterialButton updateTaskButton = findViewById(R.id.update_activity_update_task_btn);
+        final MaterialButton deleteTaskButton = findViewById(R.id.update_activity_delete_task_btn);
 
-        updateButton.setOnClickListener(new View.OnClickListener() {
+        updateTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                task.setTaskDescription(updatedText.getText().toString());
-                TaskRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
-                finish();
+                updateTask(updatedText, task);
+
             }
         });
+
+        deleteTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                deleteTask(task);
+
+            }
+        });
+
+
+
+    }
+
+    private void updateTask(final TextInputEditText updatedText,final Task task) {
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                task.setTaskDescription(updatedText.getText().toString());
+                TaskRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                });
+
+            }
+        });
+
+
+    }
+
+
+    private void deleteTask(final Task task) {
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                TaskRepository.getCommonRepository(UpdateTaskActivity.this).deleteTask(task);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                });
+
+            }
+        });
+
+
+
+
     }
 }

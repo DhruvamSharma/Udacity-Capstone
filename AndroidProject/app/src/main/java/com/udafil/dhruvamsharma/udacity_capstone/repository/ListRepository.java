@@ -40,7 +40,7 @@ public class ListRepository {
 
         List tempList = new List(userId, "My List", new Date());
         int id = (int) mDb.getListDao().insertList(tempList);
-        
+
         return getList(id);
 
     }

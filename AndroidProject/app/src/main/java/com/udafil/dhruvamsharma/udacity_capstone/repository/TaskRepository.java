@@ -43,6 +43,12 @@ public class TaskRepository {
 
     }
 
+    public void deleteTask(Task task) {
+
+        mDb.getTaskDao().deleteTask(task);
+
+    }
+
 
     /**
      * This method makes sure that Repository
