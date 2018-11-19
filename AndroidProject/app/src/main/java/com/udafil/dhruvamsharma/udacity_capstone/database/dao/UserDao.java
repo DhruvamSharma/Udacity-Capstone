@@ -24,7 +24,7 @@ public interface UserDao {
     void updateUser(User currentUser);
 
     @Insert
-    void insertUser(User currentUser);
+    long insertUser(User currentUser);
 
     @Query("SELECT * FROM users WHERE user_id = :userId")
     User getUser(int userId);

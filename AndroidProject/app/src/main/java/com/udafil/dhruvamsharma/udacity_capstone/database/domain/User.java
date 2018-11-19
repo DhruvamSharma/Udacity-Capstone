@@ -2,6 +2,8 @@ package com.udafil.dhruvamsharma.udacity_capstone.database.domain;
 
 import com.udafil.dhruvamsharma.udacity_capstone.helper.DateConverter;
 
+import org.parceler.ParcelConstructor;
+
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -56,6 +58,11 @@ public class User {
         this.score = score;
     }
 
+    @Ignore
+    @ParcelConstructor
+    public User() {
+
+    }
 
 
     public int getUserId() {

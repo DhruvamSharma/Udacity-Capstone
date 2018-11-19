@@ -21,7 +21,7 @@ public abstract class DatabaseInstance extends RoomDatabase {
 
 
     private static final Object LOCK = new Object();
-    private static final String DATABASE_NAME = "goals";
+    private static final String DATABASE_NAME = "goalss";
     private static DatabaseInstance sInstance;
 
     public static DatabaseInstance getInstance(Context context) {
@@ -30,7 +30,8 @@ public abstract class DatabaseInstance extends RoomDatabase {
             synchronized (LOCK) {
 
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
-                        DatabaseInstance.class, DatabaseInstance.DATABASE_NAME)
+                        DatabaseInstance.class,
+                        DatabaseInstance.DATABASE_NAME)
                         .build();
 
             }

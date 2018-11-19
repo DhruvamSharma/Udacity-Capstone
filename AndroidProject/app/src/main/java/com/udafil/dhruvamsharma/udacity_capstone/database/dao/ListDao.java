@@ -23,7 +23,7 @@ public interface ListDao {
     void updateList(List currentList);
 
     @Insert
-    void insertList(List currentList);
+    long insertList(List currentList);
 
     @Delete
     void deleteAllLists(List currentList);
