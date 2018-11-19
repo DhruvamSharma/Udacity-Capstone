@@ -9,6 +9,8 @@ import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
 import java.util.Date;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+
 /**
  * This is a repository for all the network and database calls
  * It follows a singleton pattern
@@ -25,7 +27,7 @@ public class UserRepository {
 
     }
 
-    public List<User> getAllUsers() {
+    public LiveData<List<User>> getAllUsers() {
 
         return mDb.getUserDao().getAllUsers();
 
@@ -51,7 +53,7 @@ public class UserRepository {
     }
 
 
-    public User createTempUser() {
+    public LiveData<User> createTempUser() {
 
         User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);
@@ -86,7 +88,7 @@ public class UserRepository {
     }
 
 
-    public User getUser(int userId) {
+    public LiveData<User> getUser(int userId) {
 
         return mDb.getUserDao().getUser(userId);
 

@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
         //Setting up stetho Library
         Stetho.initializeWithDefaults(this);
+
         //setting up the taskRepository
         listRepository = ListRepository.getCommonRepository(MainActivity.this);
         taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
@@ -113,7 +116,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         newListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewListActivity.class));
+
+                Intent intent = new Intent(new Intent(MainActivity.this, NewListActivity.class));
+                intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
+                startActivity(intent);
             }
         });
 
@@ -178,78 +184,105 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         boolean isFirstTime = preferences.getBoolean(getResources()
                 .getString(R.string.is_first_time_install), true);
 
-
-
-
         //List Name Text View
         mListName = findViewById(R.id.list_name_main_activity_tv);
 
         if(isFirstTime) {
 
-
-            AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-
-                    // TODO application not working from here
-                    currentUser = userRepository.createTempUser();
-                    currentList = listRepository.createTempList(currentUser.getUserId());
-                    allTasks = new ArrayList<>();
-                    allLists = new ArrayList<>();
-                    allLists.add(currentList);
-
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean(getResources()
-                            .getString(R.string.is_first_time_install), false);
-                    editor.apply();
-
-                    setupActivity(currentList.getListId(), currentUser.getUserId());
-
-                }
-            });
+            firsTimeSetUp(preferences);
 
         } else {
 
-
-            AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-
-                    int userId = preferences
-                            .getInt("user", -1);
+            int userId = preferences
+                    .getInt("user", -1);
 
 
-                    int listId = preferences.
-                            getInt("list", -1);
+            int listId = preferences.
+                    getInt("list", -1);
 
-                    setupActivity(listId, userId);
-
-                }
-            });
-
+            setupActivity(listId, userId);
         }
+
+
+
 
     }
 
-    private void setupActivity(int listId, int userId) {
 
-        currentList = listRepository.getList(listId);
-        currentUser = userRepository.getUser(userId);
+    private void firsTimeSetUp(final SharedPreferences preferences) {
 
-        runOnUiThread(new Runnable() {
+        LiveData<User> tempUserLiveData = userRepository.createTempUser();
+        tempUserLiveData.observe(MainActivity.this, new Observer<User>() {
             @Override
-            public void run() {
-                retrieveLists(currentUser.getUserId());
-                retrieveTasks(currentList.getListId());
-                if (currentList != null) {
+            public void onChanged(User user) {
+                currentUser = user;
 
-                    mListName.setText(currentList.getListName());
-                }
-                else {
+                LiveData<List> tempListLiveData = listRepository.createTempList(currentUser.getUserId());
+                tempListLiveData.observe(MainActivity.this, new Observer<List>() {
+                    @Override
+                    public void onChanged(List list) {
+                        allTasks = new ArrayList<>();
+                        allLists = new ArrayList<>();
+                        allLists.add(currentList);
 
-                    //TODO 8: Finish the application gracefully
-                    //finish();
-                }
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean(getResources()
+                                .getString(R.string.is_first_time_install), false);
+                        editor.apply();
+
+                        retrieveLists(currentUser.getUserId());
+                        retrieveTasks(currentList.getListId());
+
+                        if (currentList != null) {
+
+                            mListName.setText(currentList.getListName());
+                        }
+                        else {
+
+                            //TODO 8: Finish the application gracefully
+                            //finish();
+                        }
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
+    private void setupActivity(final int listId, int userId) {
+
+        LiveData<User> userLiveData = userRepository.getUser(userId);
+
+        userLiveData.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                currentUser = user;
+
+                LiveData<List> listLiveData = listRepository.getList(listId);
+
+                listLiveData.observe(MainActivity.this, new Observer<List>() {
+                    @Override
+                    public void onChanged(List list) {
+
+                        currentList = list;
+                        retrieveLists(currentUser.getUserId());
+                        retrieveTasks(currentList.getListId());
+
+                        if (currentList != null) {
+
+                            mListName.setText(currentList.getListName());
+                        }
+                        else {
+
+                            //TODO 8: Finish the application gracefully
+                            //finish();
+                        }
+
+
+                    }
+                });
 
             }
         });
@@ -277,32 +310,28 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
     private void setupBottomSheet() {
 
         mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
-        //Toast was here
     }
 
-    @Override
-    public void onBottomSheetDismiss() {
 
-        retrieveTasks(currentList.getListId());
-
-    }
 
 
     private void retrieveTasks(final int listId) {
 
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+        LiveData<java.util.List<Task>> tasksLiveData =
+                taskRepository.getAllTasks(listId);
+
+        tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
-            public void run() {
+            public void onChanged(java.util.List<Task> tasks) {
 
-                allTasks = taskRepository.getAllTasks(listId);
+                allTasks = tasks;
                 if(allTasks != null)
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTaskAdapter.updateTasksData(allTasks);
-                    }
-                });
-
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTaskAdapter.updateTasksData(allTasks);
+                        }
+                    });
             }
         });
 
@@ -310,36 +339,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
     private void retrieveLists(final int userId) {
 
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
+        LiveData<java.util.List<List>> listLiveData =
+                listRepository.getAllLists(userId);
 
-                allLists = listRepository.getAllLists(userId);
+        listLiveData.observe(this, new Observer<java.util.List<List>>() {
+            @Override
+            public void onChanged(java.util.List<List> lists) {
+                allLists = lists;
 
                 if(allLists != null)
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mListAdapter.updateListsData(allLists);
-                    }
-                });
-
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListAdapter.updateListsData(allLists);
+                        }
+                    });
             }
         });
 
     }
 
 
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if(currentList != null)
-        retrieveTasks(currentList.getListId());
-
-    }
 
 
     @Override
@@ -361,4 +381,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
     }
 
+    @Override
+    public void onBottomSheetDismiss() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(currentUser != null)
+        retrieveLists(currentUser.getUserId());
+    }
 }

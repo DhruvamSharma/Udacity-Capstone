@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
+import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
 import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
 
 import org.parceler.Parcels;
@@ -54,8 +55,14 @@ public class UpdateListActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 list.setListName(updatedText.getText().toString());
-                ListRepository.getCommonRepository(UpdateListActivity.this).updateList(list);
-                finish();
+                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListRepository.getCommonRepository(UpdateListActivity.this).updateList(list);
+                        finish();
+                    }
+                });
+
             }
         });
     }

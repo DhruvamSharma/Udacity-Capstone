@@ -8,6 +8,8 @@ import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 
 import java.util.Date;
 
+import androidx.lifecycle.LiveData;
+
 public class ListRepository {
 
     private static ListRepository sRepository;
@@ -32,11 +34,11 @@ public class ListRepository {
         mDb.getListDao().updateList(currentList);
     }
 
-    public java.util.List<List> getAllLists(int userId) {
+    public LiveData<java.util.List<List>> getAllLists(int userId) {
         return mDb.getListDao().getAllLists(userId);
     }
 
-    public List createTempList(int userId) {
+    public LiveData<List> createTempList(int userId) {
 
         List tempList = new List(userId, "My List", new Date());
         int id = (int) mDb.getListDao().insertList(tempList);
@@ -68,7 +70,7 @@ public class ListRepository {
 
     }
 
-    public List getList(int listId) {
+    public LiveData<List> getList(int listId) {
 
         return mDb.getListDao().getCurrentList(listId);
 
