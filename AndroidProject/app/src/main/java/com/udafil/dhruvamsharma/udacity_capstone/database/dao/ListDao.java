@@ -32,6 +32,6 @@ public interface ListDao {
     @Query("SELECT * FROM lists WHERE list_id = :listId")
     LiveData<List> getCurrentList(int listId);
 
-    @Query("SELECT * FROM lists WHERE list_id = :listId")
-    List getTempList(int listId);
+    @Query("SELECT COUNT(list_id) FROM lists")
+    long getListCount();
 }
