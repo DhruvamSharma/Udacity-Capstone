@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_activity_username_edit_task_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_activity_username_edit_task_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_activity_password_edit_task_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toStartOf="@id/login_activity_username_edit_task_til"
+        app:layout_constraintTop_toBottomOf="@id/login_activity_username_edit_task_til">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_activity_password_edit_task_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_activity_password_again_edit_task_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toStartOf="@id/login_activity_password_edit_task_til"
+        app:layout_constraintTop_toBottomOf="@id/login_activity_password_edit_task_til">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_activity_password_again_edit_task_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_up_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_activity_sign_up_button_text"
+
+        app:layout_constraintEnd_toEndOf="@id/login_activity_password_again_edit_task_til"
+        app:layout_constraintTop_toBottomOf="@id/login_activity_password_again_edit_task_til"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

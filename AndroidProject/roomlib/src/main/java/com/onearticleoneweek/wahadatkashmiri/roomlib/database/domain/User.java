@@ -1,6 +1,7 @@
 package com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain;
 
 
+import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+@Parcel
 @Entity (tableName = "users")
 public class User {
 
