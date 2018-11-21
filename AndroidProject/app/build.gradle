@@ -33,17 +33,17 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "1.1.1"
-    def appcompat_version = "28.0.0"
-    def room_version = "1.1.1"
+    def lifecycle_version = "2.0.0"
+    def appcompat_version = "1.0.1"
+    def room_version = "2.0.0"
+    def constraint_layout_version = "1.1.0"
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-
 
     //Firebase Crashlytics Dependency
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
@@ -52,14 +52,13 @@ dependencies {
     //Firebase Core Dependency
     implementation 'com.google.firebase:firebase-core:16.0.4'
 
-
-
-
     // ViewModel and LiveData Dependencies
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
     //Room Dependency
-    implementation 'androidx.room:room-runtime:2.1.0-alpha02'
-    annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha02'
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //Glide Dependency
     implementation 'com.github.bumptech.glide:glide:4.8.0'
@@ -71,10 +70,14 @@ dependencies {
     //Recyclerview Dependency
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-
     //Material Component Dependency
     implementation 'com.google.android.material:material:1.0.0'
 
+    //Parceler Dependency
+    api 'org.parceler:parceler-api:1.1.11'
+    annotationProcessor 'org.parceler:parceler:1.1.11'
 
+
+    //Stetho Dependency
+    implementation 'com.facebook.stetho:stetho:1.5.0'
 }
-

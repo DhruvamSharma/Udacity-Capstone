@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui_controller.task.UpdateTaskActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/update_activity_edit_task_til"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/element_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/update_activity_edit_task_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update_activity_update_task_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/element_margin"
+        android:text="@string/update_activity_button_text_update"
+
+        app:layout_constraintEnd_toEndOf="@id/update_activity_edit_task_til"
+        app:layout_constraintTop_toBottomOf="@id/update_activity_edit_task_til"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update_activity_delete_task_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/element_margin"
+        android:text="@string/update_activity_delete_task_btn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+
+        app:layout_constraintTop_toTopOf="@+id/update_activity_update_task_btn"
+        app:layout_constraintBottom_toBottomOf="@+id/update_activity_update_task_btn"
+        app:layout_constraintEnd_toStartOf="@id/update_activity_update_task_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
