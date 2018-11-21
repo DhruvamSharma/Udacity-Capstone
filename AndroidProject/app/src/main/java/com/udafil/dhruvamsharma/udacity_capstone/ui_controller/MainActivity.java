@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
@@ -37,7 +38,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * This is the activity that displays the
  * tasks and the list to the user
  */
-public class MainActivity extends AppCompatActivity implements MainActivityBottomSheetFragment.BottomSheetCallBacks {
+public class MainActivity extends AppCompatActivity
+        implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
+        BottomSheetListAdapter.ListClickListener {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
@@ -111,9 +114,39 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(new Intent(MainActivity.this, NewListActivity.class));
-                intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
-                startActivity(intent);
+                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(listChecks()) {
+                            final Intent intent = new Intent(new Intent(MainActivity.this, NewListActivity.class));
+                            intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                }
+                            });
+                        } else {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Ask for login
+                                    Toast.makeText(MainActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+
+                        }
+
+                    }
+                });
+
+
+
+
             }
         });
 
@@ -389,5 +422,34 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
         super.onResume();
         if(currentUser != null)
         retrieveLists(currentUser.getUserId());
+    }
+
+    @Override
+    public void onListClick(int listId) {
+
+        setupActivity(listId, currentUser.getUserId(), false, null);
+
+    }
+
+    /**
+     * This methods checks for all the checks to be made
+     * before a user can create a list
+     * @return boolean
+     */
+    private boolean listChecks() {
+
+        boolean canMakeList = true;
+
+        if(!currentUser.getSignedIn()) {
+            if(!listRepository.canMakeMoreList()) {
+                canMakeList = false;
+            } else {
+                //Do nothing
+            }
+        } else {
+            //Do nothing
+        }
+
+        return canMakeList;
     }
 }

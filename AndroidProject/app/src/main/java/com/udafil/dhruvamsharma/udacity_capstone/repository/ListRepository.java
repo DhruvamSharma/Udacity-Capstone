@@ -38,6 +38,26 @@ public class ListRepository {
         return mDb.getListDao().getAllLists(userId);
     }
 
+    public int getListCount() {
+
+        int listCount = (int) mDb.getListDao().getListCount();
+        return listCount;
+    }
+
+    public boolean canMakeMoreList() {
+
+        Boolean canMakeList = false;
+
+        if(getListCount() < 3) {
+            canMakeList = true;
+        } else {
+            canMakeList = false;
+        }
+
+        return canMakeList;
+
+    }
+
 
     /**
      * This method makes sure that Repository

@@ -24,11 +24,14 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     List<com.udafil.dhruvamsharma.
             udacity_capstone.database.domain.List> mList;
     private WeakReference<Context> mWeakReference;
+    private ListClickListener mListener;
 
     public BottomSheetListAdapter(Context context) {
 
         mWeakReference = new WeakReference<>(context);
         mList = new ArrayList();
+        mListener = (ListClickListener) context;
+
     }
 
 
@@ -68,11 +71,13 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
                 @Override
                 public void onClick(View view) {
 
-                    Parcelable parcelable = Parcels.wrap(mList.get(getAdapterPosition()));
-                    Intent intent = new Intent(mWeakReference.get(), UpdateListActivity.class);
-                    intent.putExtra("current_list", parcelable);
+                    mListener.onListClick(mList.get(getAdapterPosition()).getListId());
 
-                    mWeakReference.get().startActivity(intent);
+//                    Parcelable parcelable = Parcels.wrap(mList.get(getAdapterPosition()));
+//                    Intent intent = new Intent(mWeakReference.get(), UpdateListActivity.class);
+//                    intent.putExtra("current_list", parcelable);
+//
+//                    mWeakReference.get().startActivity(intent);
 
                 }
             });
@@ -84,5 +89,9 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
         mList = list;
         notifyDataSetChanged();
 
+    }
+
+    public interface ListClickListener {
+        void onListClick(int listId);
     }
 }
