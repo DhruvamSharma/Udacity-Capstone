@@ -51,6 +51,11 @@ public class UserRepository {
 
     }
 
+    public int findUserByEmail(String email) {
+
+        return (int) mDb.getUserDao().findUserByEmail(email);
+    }
+
 
     /**
      * This method makes sure that Repository

@@ -3,6 +3,7 @@ package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.onearticleoneweek.wahadatkashmiri.loginlib.LoginActivity;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
@@ -23,6 +25,8 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActiv
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
 
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,18 +112,24 @@ public class MainActivity extends AppCompatActivity
         setUpListRecyclerView();
         setUpAds();
 
-        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
+        MaterialButton newListButton
+                = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
         newListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+                AppExecutor
+                        .getsInstance().getDiskIO().execute(new Runnable() {
                     @Override
                     public void run() {
 
                         if(listChecks()) {
-                            final Intent intent = new Intent(new Intent(MainActivity.this, NewListActivity.class));
-                            intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
+                            final Intent intent
+                                    = new Intent(new Intent(
+                                            MainActivity.this, NewListActivity.class));
+                            intent.putExtra(
+                                    getResources().getString(R.string.current_user)
+                                    , currentUser.getUserId());
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -131,15 +141,18 @@ public class MainActivity extends AppCompatActivity
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-//                                    //Ask for login
-//                                    final Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
-//                                    intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
-//                                    runOnUiThread(new Runnable() {
-//                                        @Override
-//                                        public void run() {
-//                                            startActivity(intent);
-//                                        }
-//                                    });
+                                    //Ask for login
+                                    final Intent intent
+                                            = new Intent(MainActivity.this,
+                                            LoginActivity.class);
+                                    Parcelable user = Parcels.wrap(currentUser);
+                                    intent.putExtra(getResources().getString(R.string.current_user), user);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                        }
+                                    });
 
                                 }
                             });
