@@ -111,7 +111,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
 
-        mBottomSheetCallBacks.onBottomSheetDismiss();
+       // mBottomSheetCallBacks.onBottomSheetDismiss();
 
     }
 

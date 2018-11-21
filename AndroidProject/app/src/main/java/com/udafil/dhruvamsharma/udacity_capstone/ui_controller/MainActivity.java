@@ -2,21 +2,15 @@ package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.database.DatabaseInstance;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
@@ -200,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
             int listId = preferences.
                     getInt("list", -1);
 
-            setupActivity(listId, userId);
+            setupActivity(listId, userId, false, preferences);
         }
 
 
@@ -211,47 +205,38 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
 
     private void firsTimeSetUp(final SharedPreferences preferences) {
 
-        LiveData<User> tempUserLiveData = userRepository.createTempUser();
-        tempUserLiveData.observe(MainActivity.this, new Observer<User>() {
+        final User tempUser = new User("User", new Date(),
+                "password", "emailId", false, 0);
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
-            public void onChanged(User user) {
-                currentUser = user;
+            public void run() {
 
-                LiveData<List> tempListLiveData = listRepository.createTempList(currentUser.getUserId());
-                tempListLiveData.observe(MainActivity.this, new Observer<List>() {
+                final int userId = userRepository.createUser(tempUser);
+                List tempList = new List(userId, "My List", new Date());
+                final int listId = listRepository.insertList(tempList);
+
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void onChanged(List list) {
-                        allTasks = new ArrayList<>();
-                        allLists = new ArrayList<>();
-                        allLists.add(currentList);
-
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putBoolean(getResources()
-                                .getString(R.string.is_first_time_install), false);
-                        editor.apply();
-
-                        retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId());
-
-                        if (currentList != null) {
-
-                            mListName.setText(currentList.getListName());
-                        }
-                        else {
-
-                            //TODO 8: Finish the application gracefully
-                            //finish();
-                        }
+                    public void run() {
+                        setupActivity(listId, userId, true, preferences);
                     }
                 });
+
+
             }
         });
+
+
+
+
 
     }
 
 
 
-    private void setupActivity(final int listId, int userId) {
+    private void setupActivity(final int listId, int userId,
+                               final boolean isFirstTime, final SharedPreferences preferences) {
 
         LiveData<User> userLiveData = userRepository.getUser(userId);
 
@@ -267,6 +252,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityBotto
                     public void onChanged(List list) {
 
                         currentList = list;
+
+                        if (isFirstTime) {
+
+                            allTasks = new ArrayList<>();
+                            allLists = new ArrayList<>();
+                            allLists.add(currentList);
+
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putBoolean(getResources()
+                                    .getString(R.string.is_first_time_install), false);
+                            editor.apply();
+                        }
+
                         retrieveLists(currentUser.getUserId());
                         retrieveTasks(currentList.getListId());
 

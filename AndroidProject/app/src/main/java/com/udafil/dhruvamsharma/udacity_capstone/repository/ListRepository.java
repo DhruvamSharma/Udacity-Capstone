@@ -23,9 +23,9 @@ public class ListRepository {
 
     }
 
-    public void insertList(List currentList) {
+    public int insertList(List currentList) {
 
-        mDb.getListDao().insertList(currentList);
+        return (int) mDb.getListDao().insertList(currentList);
 
     }
 
@@ -36,15 +36,6 @@ public class ListRepository {
 
     public LiveData<java.util.List<List>> getAllLists(int userId) {
         return mDb.getListDao().getAllLists(userId);
-    }
-
-    public LiveData<List> createTempList(int userId) {
-
-        List tempList = new List(userId, "My List", new Date());
-        int id = (int) mDb.getListDao().insertList(tempList);
-
-        return getList(id);
-
     }
 
 
