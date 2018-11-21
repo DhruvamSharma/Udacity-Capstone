@@ -47,20 +47,7 @@ public class UserRepository {
 
     public int createUser (User currentUser) {
 
-        int id = (int) mDb.getUserDao().insertUser(currentUser);
-        return id;
-
-    }
-
-
-    public LiveData<User> createTempUser() {
-
-        User tempUser = new User("User", new Date(),
-                "password", "emailId", false, 0);
-
-        int id = createUser(tempUser);
-
-        return getUser(id);
+        return (int) mDb.getUserDao().insertUser(currentUser);
 
     }
 

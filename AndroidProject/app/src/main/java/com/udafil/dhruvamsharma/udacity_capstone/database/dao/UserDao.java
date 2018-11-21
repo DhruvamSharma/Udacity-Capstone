@@ -29,7 +29,4 @@ public interface UserDao {
 
     @Query("SELECT * FROM users WHERE user_id = :userId")
     LiveData<User> getUser(int userId);
-
-    @Query("SELECT * FROM users WHERE user_id = :userId")
-    User getTempUser(int userId);
 }
