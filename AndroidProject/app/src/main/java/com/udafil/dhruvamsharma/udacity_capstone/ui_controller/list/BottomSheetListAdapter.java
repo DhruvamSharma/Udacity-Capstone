@@ -1,28 +1,23 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-
-import org.parceler.Parcels;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetListAdapter.ListViewHolder> {
 
-    List<com.udafil.dhruvamsharma.
-            udacity_capstone.database.domain.List> mList;
+    java.util.List<List> mList;
     private WeakReference<Context> mWeakReference;
     private ListClickListener mListener;
 
@@ -84,7 +79,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
         }
     }
 
-    public  void updateListsData(List<com.udafil.dhruvamsharma.udacity_capstone.database.domain.List> list) {
+    public  void updateListsData(java.util.List<List> list) {
 
         mList = list;
         notifyDataSetChanged();

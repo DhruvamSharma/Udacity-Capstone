@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
 
 import org.parceler.Parcels;
 

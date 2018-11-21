@@ -5,20 +5,19 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
-import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
@@ -132,8 +131,15 @@ public class MainActivity extends AppCompatActivity
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //Ask for login
-                                    Toast.makeText(MainActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+//                                    //Ask for login
+//                                    final Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+//                                    intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
+//                                    runOnUiThread(new Runnable() {
+//                                        @Override
+//                                        public void run() {
+//                                            startActivity(intent);
+//                                        }
+//                                    });
 
                                 }
                             });
