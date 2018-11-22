@@ -1,34 +1,42 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.onearticleoneweek.wahadatkashmiri.loginlib.LoginActivity;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.Task;
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.User;
-import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.TaskRepository;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
 
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,7 +48,8 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MainActivity extends AppCompatActivity
         implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
-        BottomSheetListAdapter.ListClickListener {
+        BottomSheetListAdapter.ListClickListener,
+        LoginActivity.SignUpCallbacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
@@ -72,6 +81,11 @@ public class MainActivity extends AppCompatActivity
     private java.util.List<List> allLists;
 
 
+    //BottomSheet for List
+    BottomSheetBehavior sheetBehavior;
+    ConstraintLayout bottomSheet;
+
+
     /**
      * Method when the activity is created
      * @param savedInstanceState
@@ -101,26 +115,38 @@ public class MainActivity extends AppCompatActivity
         taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
         userRepository = UserRepository.getUserRepository(MainActivity.this);
 
+
+
         //Check for first-time installs
         //Check for Last accessed items
         setUpSharedPreferences();
 
+
+
         setUpTaskRecyclerView();
         setUpListRecyclerView();
         setUpAds();
+        
+        
 
-        MaterialButton newListButton = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
+        MaterialButton newListButton
+                = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
         newListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+                AppExecutor
+                        .getsInstance().getDiskIO().execute(new Runnable() {
                     @Override
                     public void run() {
 
                         if(listChecks()) {
-                            final Intent intent = new Intent(new Intent(MainActivity.this, NewListActivity.class));
-                            intent.putExtra(getResources().getString(R.string.current_user), currentUser.getUserId());
+                            final Intent intent
+                                    = new Intent(new Intent(
+                                            MainActivity.this, NewListActivity.class));
+                            intent.putExtra(
+                                    getResources().getString(R.string.current_user)
+                                    , currentUser.getUserId());
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -133,7 +159,18 @@ public class MainActivity extends AppCompatActivity
                                 @Override
                                 public void run() {
                                     //Ask for login
-                                    Toast.makeText(MainActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+                                    final Intent intent
+                                            = new Intent(MainActivity.this,
+                                            LoginActivity.class);
+                                    Parcelable user = Parcels.wrap(currentUser);
+                                    intent.putExtra(getResources().getString(R.string.current_user), user);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(intent);
+                                            LoginActivity.init(getContext());
+                                        }
+                                    });
 
                                 }
                             });
@@ -156,6 +193,27 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 setupBottomSheet();
+
+            }
+        });
+
+        //setUpListBottomSheet();
+
+    }
+
+    private void setUpListBottomSheet() {
+
+        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
+        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int i) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
 
             }
         });
@@ -206,7 +264,8 @@ public class MainActivity extends AppCompatActivity
      */
     private void setUpSharedPreferences() {
 
-        final SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
+        final SharedPreferences preferences = getApplicationContext()
+                .getSharedPreferences("my_file", MODE_PRIVATE);
 
         boolean isFirstTime = preferences.getBoolean(getResources()
                 .getString(R.string.is_first_time_install), true);
@@ -337,9 +396,15 @@ public class MainActivity extends AppCompatActivity
     /**
      * This method takes care of
      * setting up the bottom sheet
+     * and passing the list id
+     * as a bundle
      */
     private void setupBottomSheet() {
 
+        Bundle bundle = new Bundle();
+        bundle.putString(getResources().getString(R.string.current_list), String.valueOf(currentList.getListId()));
+
+        mBottomSheetFragment.setArguments(bundle);
         mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
     }
 
@@ -349,7 +414,7 @@ public class MainActivity extends AppCompatActivity
     private void retrieveTasks(final int listId) {
 
         LiveData<java.util.List<Task>> tasksLiveData =
-                taskRepository.getAllTasks(listId);
+                taskRepository.getAllTasks(listId, false);
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
@@ -361,6 +426,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             mTaskAdapter.updateTasksData(allTasks);
+                            mTaskAdapter.updateUser(currentUser);
                         }
                     });
             }
@@ -401,7 +467,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
 
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
+                SharedPreferences preferences = getContext().getSharedPreferences("my_file", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("user", currentUser.getUserId());
                 editor.putInt("list", currentList.getListId());
@@ -427,6 +493,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListClick(int listId) {
 
+//        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
+//        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         setupActivity(listId, currentUser.getUserId(), false, null);
 
     }
@@ -452,4 +520,27 @@ public class MainActivity extends AppCompatActivity
 
         return canMakeList;
     }
+
+    @Override
+    public void onSignUpComplete() {
+
+        setupActivity(currentList.getListId(), currentUser.getUserId(),
+                false, null);
+
+    }
+
+    @Override
+    public void onSignUpFailed(String response) {
+
+        Toast.makeText(MainActivity.this,
+                response, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private Context getContext() {
+        return MainActivity.this;
+    }
+
+
+
 }

@@ -7,9 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.udafil.dhruvamsharma.udacity_capstone.database.domain.List;
-import com.udafil.dhruvamsharma.udacity_capstone.helper.AppExecutor;
-import com.udafil.dhruvamsharma.udacity_capstone.repository.ListRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 
 /**
