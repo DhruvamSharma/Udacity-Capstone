@@ -7,8 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
+
+
+import androidx.lifecycle.LiveData;
 
 /**
  * Implementation of App Widget functionality.
@@ -16,6 +21,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 public class MyGoalsWidget extends AppWidgetProvider {
 
     private static ListRepository listRepository;
+    private static int userId = -1;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -23,6 +29,8 @@ public class MyGoalsWidget extends AppWidgetProvider {
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_goals_widget);
+
+        listRepository = ListRepository.getCommonRepository(context);
 
         setUpWidget(context, views);
 
@@ -53,11 +61,54 @@ public class MyGoalsWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
+    /**
+     *This methods sets the data onto the widget
+     * @param context
+     * @param views
+     */
     private static void setUpWidget(Context context, final RemoteViews views) {
 
+        final StringBuilder data = new StringBuilder("No Data. Add a task");
+
+        if(userId == -1) {
+            userId = 0;
+        }
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                java.util.List<List> lists = listRepository.getListWithoutLiveData(userId);
+
+                for (List list: lists) {
+
+                    data.append(list.getListName());
+
+                }
+
+                AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        views.setTextViewText(R.id.widget_new_task_et, new String(data));
+                    }
+                });
 
 
 
+            }
+        });
+
+
+
+    }
+
+    /**
+     * This methods sets the userId
+     * for getting the lists
+     * @param userID
+     */
+    public static void setUpData(int userID) {
+        userId = userID;
     }
 }
 

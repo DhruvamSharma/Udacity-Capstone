@@ -22,6 +22,7 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.MyGoalsWidget;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
@@ -192,7 +193,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                setupBottomSheet();
+                MyGoalsWidget.setUpData(currentUser.getUserId());
+                //setupBottomSheet();
 
             }
         });
@@ -427,6 +429,9 @@ public class MainActivity extends AppCompatActivity
                         public void run() {
                             mTaskAdapter.updateTasksData(allTasks);
                             mTaskAdapter.updateUser(currentUser);
+
+                            if(currentUser != null)
+                                MyGoalsWidget.setUpData(currentUser.getUserId());
                         }
                     });
             }
