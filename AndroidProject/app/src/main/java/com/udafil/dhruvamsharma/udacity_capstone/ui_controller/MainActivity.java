@@ -1,11 +1,13 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
@@ -43,7 +45,8 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MainActivity extends AppCompatActivity
         implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
-        BottomSheetListAdapter.ListClickListener {
+        BottomSheetListAdapter.ListClickListener,
+        LoginActivity.SignUpCallbacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
@@ -151,6 +154,7 @@ public class MainActivity extends AppCompatActivity
                                         @Override
                                         public void run() {
                                             startActivity(intent);
+                                            LoginActivity.init(getContext());
                                         }
                                     });
 
@@ -225,7 +229,8 @@ public class MainActivity extends AppCompatActivity
      */
     private void setUpSharedPreferences() {
 
-        final SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
+        final SharedPreferences preferences = getApplicationContext()
+                .getSharedPreferences("my_file", MODE_PRIVATE);
 
         boolean isFirstTime = preferences.getBoolean(getResources()
                 .getString(R.string.is_first_time_install), true);
@@ -420,7 +425,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
 
-                SharedPreferences preferences = getApplicationContext().getSharedPreferences("my_file", MODE_PRIVATE);
+                SharedPreferences preferences = getContext().getSharedPreferences("my_file", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt("user", currentUser.getUserId());
                 editor.putInt("list", currentList.getListId());
@@ -470,5 +475,25 @@ public class MainActivity extends AppCompatActivity
         }
 
         return canMakeList;
+    }
+
+    @Override
+    public void onSignUpComplete() {
+
+        setupActivity(currentList.getListId(), currentUser.getUserId(),
+                false, null);
+
+    }
+
+    @Override
+    public void onSignUpFailed(String response) {
+
+        Toast.makeText(MainActivity.this,
+                response, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private Context getContext() {
+        return MainActivity.this;
     }
 }

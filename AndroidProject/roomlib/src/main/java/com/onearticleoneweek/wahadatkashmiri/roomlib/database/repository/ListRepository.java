@@ -50,7 +50,7 @@ public class ListRepository {
         if(getListCount() < 3) {
             canMakeList = true;
         } else {
-            canMakeList = false;
+            // Do nothing
         }
 
         return canMakeList;
