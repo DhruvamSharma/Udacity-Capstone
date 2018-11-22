@@ -15,8 +15,8 @@ import androidx.room.Update;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM tasks WHERE list_id = :listId")
-    LiveData<List<Task>> getAllTasks(int listId);
+    @Query("SELECT * FROM tasks WHERE list_id = :listId AND is_completed = :isCompleted")
+    LiveData<List<Task>> getAllTasks(int listId, boolean isCompleted);
 
     @Delete
     void deleteTask(Task currentTask);

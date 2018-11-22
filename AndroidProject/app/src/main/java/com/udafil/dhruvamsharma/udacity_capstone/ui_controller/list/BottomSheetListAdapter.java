@@ -36,7 +36,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
 
 
         View view = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.activity_main_single_task_layout, parent, false);
+                R.layout.activity_main_single_list_layout, parent, false);
 
         return new ListViewHolder(view);
     }
@@ -60,7 +60,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
             super(itemView);
 
             //TODO 4: Change the layout. It should be different for the single list
-            list = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
+            list = itemView.findViewById(R.id.list_layout_text_main_activity_list_tv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -414,7 +414,7 @@ public class MainActivity extends AppCompatActivity
     private void retrieveTasks(final int listId) {
 
         LiveData<java.util.List<Task>> tasksLiveData =
-                taskRepository.getAllTasks(listId);
+                taskRepository.getAllTasks(listId, false);
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
@@ -426,6 +426,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             mTaskAdapter.updateTasksData(allTasks);
+                            mTaskAdapter.updateUser(currentUser);
                         }
                     });
             }
@@ -539,4 +540,7 @@ public class MainActivity extends AppCompatActivity
     private Context getContext() {
         return MainActivity.this;
     }
+
+
+
 }
