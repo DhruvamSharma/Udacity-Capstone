@@ -193,8 +193,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                MyGoalsWidget.setUpData(currentUser.getUserId());
-                //setupBottomSheet();
+                setupBottomSheet();
 
             }
         });
@@ -430,8 +429,9 @@ public class MainActivity extends AppCompatActivity
                             mTaskAdapter.updateTasksData(allTasks);
                             mTaskAdapter.updateUser(currentUser);
 
+                            //TODO Add this code somewhere else
                             if(currentUser != null)
-                                MyGoalsWidget.setUpData(currentUser.getUserId());
+                                MyGoalsWidget.setUpData(currentUser.getUserId(), getContext());
                         }
                     });
             }

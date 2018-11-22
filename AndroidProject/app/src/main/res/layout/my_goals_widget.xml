@@ -1,8 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bottom_sheet_background"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
     android:padding="@dimen/widget_margin">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="My lists"
+       android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
 
    <TextView
        android:id="@+id/widget_new_task_et"
@@ -11,4 +18,4 @@
        android:textColor="@android:color/black"
        android:layout_margin="@dimen/element_margin" />
 
-</RelativeLayout>
+</LinearLayout>
