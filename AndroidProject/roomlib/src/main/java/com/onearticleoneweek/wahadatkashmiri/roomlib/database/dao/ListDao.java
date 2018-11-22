@@ -33,4 +33,7 @@ public interface ListDao {
 
     @Query("SELECT COUNT(list_id) FROM lists")
     long getListCount();
+
+    @Query("SELECT * FROM lists WHERE user_id = :userId")
+    java.util.List<List> getListWithoutLiveData(int userId);
 }
