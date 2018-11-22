@@ -8,7 +8,7 @@
     style="@style/BottomSheetDialogTheme"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
-    app:behavior_hideable="true"
+    app:behavior_hideable="false"
     app:behavior_peekHeight="56dp"
     android:background="@drawable/bottom_sheet_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">

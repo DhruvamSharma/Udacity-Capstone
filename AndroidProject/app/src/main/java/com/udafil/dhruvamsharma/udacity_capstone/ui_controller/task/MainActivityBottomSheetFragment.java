@@ -26,8 +26,11 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
 
     private BottomSheetCallBacks mBottomSheetCallBacks;
 
+    private int listId;
+
     public MainActivityBottomSheetFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -48,6 +51,11 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
 
         final FloatingActionButton saveTask = containerView.findViewById(R.id.main_activity_bottom_sheet_save_task_fab);
 
+
+        if(getArguments()!= null)
+            listId = Integer.parseInt(getArguments()
+                    .getString(getResources().getString(R.string.current_list)));
+
         saveTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +75,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
         if(newTask.getText() != null || newTask.getText().toString().equals("")) {
             mTaskDescription = newTask.getText().toString();
 
-            //TODO 3: Change List ID
-            final Task task = new Task(mTaskDescription, false, 1, new Date());
+            final Task task = new Task(mTaskDescription, false, listId, new Date());
 
             final TaskRepository repository = TaskRepository.getCommonRepository(view.getContext());
             AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {

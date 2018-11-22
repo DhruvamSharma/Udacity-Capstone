@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.onearticleoneweek.wahadatkashmiri.loginlib.LoginActivity;
@@ -33,7 +34,9 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -78,6 +81,11 @@ public class MainActivity extends AppCompatActivity
     private java.util.List<List> allLists;
 
 
+    //BottomSheet for List
+    BottomSheetBehavior sheetBehavior;
+    ConstraintLayout bottomSheet;
+
+
     /**
      * Method when the activity is created
      * @param savedInstanceState
@@ -107,13 +115,19 @@ public class MainActivity extends AppCompatActivity
         taskRepository = TaskRepository.getCommonRepository(MainActivity.this);
         userRepository = UserRepository.getUserRepository(MainActivity.this);
 
+
+
         //Check for first-time installs
         //Check for Last accessed items
         setUpSharedPreferences();
 
+
+
         setUpTaskRecyclerView();
         setUpListRecyclerView();
         setUpAds();
+        
+        
 
         MaterialButton newListButton
                 = findViewById(R.id.main_activity_bottom_sheet_create_list_btn);
@@ -179,6 +193,27 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 setupBottomSheet();
+
+            }
+        });
+
+        //setUpListBottomSheet();
+
+    }
+
+    private void setUpListBottomSheet() {
+
+        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
+        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View view, int i) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View view, float v) {
 
             }
         });
@@ -361,9 +396,15 @@ public class MainActivity extends AppCompatActivity
     /**
      * This method takes care of
      * setting up the bottom sheet
+     * and passing the list id
+     * as a bundle
      */
     private void setupBottomSheet() {
 
+        Bundle bundle = new Bundle();
+        bundle.putString(getResources().getString(R.string.current_list), String.valueOf(currentList.getListId()));
+
+        mBottomSheetFragment.setArguments(bundle);
         mBottomSheetFragment.show(getSupportFragmentManager(), mBottomSheetFragment.getTag());
     }
 
@@ -451,6 +492,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListClick(int listId) {
 
+//        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
+//        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         setupActivity(listId, currentUser.getUserId(), false, null);
 
     }
