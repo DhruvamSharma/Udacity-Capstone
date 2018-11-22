@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui_controller.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <TextView
         android:id="@+id/list_name_main_activity_tv"
         style="@style/HeadingTextStyle"
@@ -25,7 +34,7 @@
         android:layout_margin="@dimen/element_margin"
 
         app:layout_anchor="@id/list_name_main_activity_tv"
-        app:layout_anchorGravity="bottom"/>
+        app:layout_anchorGravity="bottom|start"/>
 
     <include
         android:id="@+id/bottom_sheet_fragment_layout"

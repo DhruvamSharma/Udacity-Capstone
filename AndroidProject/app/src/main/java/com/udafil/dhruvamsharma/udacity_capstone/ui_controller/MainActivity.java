@@ -37,6 +37,7 @@ import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity
     //BottomSheet for List
     BottomSheetBehavior sheetBehavior;
     ConstraintLayout bottomSheet;
+    Toolbar myToolbar;
 
 
     /**
@@ -95,6 +97,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         setUpActivity();
 
@@ -362,8 +368,10 @@ public class MainActivity extends AppCompatActivity
                         retrieveTasks(currentList.getListId());
 
                         if (currentList != null) {
+                            myToolbar.setTitle(currentList.getListName());
+                            myToolbar.setTitleTextAppearance(MainActivity.this, R.style.TextAppearance_AppCompat_Display2);
+                            myToolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
 
-                            mListName.setText(currentList.getListName());
                         }
                         else {
 
