@@ -3,11 +3,14 @@ package com.udafil.dhruvamsharma.udacity_capstone;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
@@ -24,7 +27,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
     private static int userId = -1;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+                                int appWidgetId, int userId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
@@ -46,9 +49,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
-        for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
+        setUpData(userId, context);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
      */
     private static void setUpWidget(Context context, final RemoteViews views) {
 
-        final StringBuilder data = new StringBuilder("No Data. Add a task");
+        final StringBuilder data = new StringBuilder();
 
         if(userId == -1) {
             userId = 0;
@@ -80,20 +81,23 @@ public class MyGoalsWidget extends AppWidgetProvider {
 
                 java.util.List<List> lists = listRepository.getListWithoutLiveData(userId);
 
-                for (List list: lists) {
+                if( lists != null) {
+                    for (List list: lists) {
 
-                    data.append(list.getListName());
+                        data.append(list.getListName());
+
+                    }
+
+                    AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            views.setTextViewText(R.id.widget_new_task_et, new String(data));
+                            Log.e("TAG_ERROR" ,new String(data));
+                        }
+                    });
+                } else {
 
                 }
-
-                AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        views.setTextViewText(R.id.widget_new_task_et, new String(data));
-                    }
-                });
-
-
 
             }
         });
@@ -107,8 +111,18 @@ public class MyGoalsWidget extends AppWidgetProvider {
      * for getting the lists
      * @param userID
      */
-    public static void setUpData(int userID) {
+    public static void setUpData(int userID, Context context) {
         userId = userID;
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds( new ComponentName(context, MyGoalsWidget.class));
+
+        // There may be multiple widgets active, so update all of them
+        for (int appWidgetId : appWidgetIds) {
+            updateAppWidget(context, appWidgetManager, appWidgetId, userId);
+        }
+
+
     }
 }
 
