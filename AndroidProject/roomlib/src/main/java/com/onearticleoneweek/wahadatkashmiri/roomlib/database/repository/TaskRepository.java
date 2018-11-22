@@ -39,9 +39,9 @@ public class TaskRepository {
 
     }
 
-    public LiveData<List<Task>> getAllTasks(int listId) {
+    public LiveData<List<Task>> getAllTasks(int listId, Boolean isCompleted) {
 
-        return mDb.getTaskDao().getAllTasks(listId);
+        return mDb.getTaskDao().getAllTasks(listId, isCompleted);
 
     }
 
