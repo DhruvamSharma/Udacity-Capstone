@@ -32,4 +32,6 @@ public interface UserDao {
 
     @Query("SELECT COUNT(user_email) FROM users WHERE user_email = :userEmail")
     long findUserByEmail(String userEmail);
+
+
 }
