@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryDark">@android:color/background_light</color>
+    <color name="colorAccent">#097ed1</color>
+    <color name="pressed_state_list">@color/colorAccent</color>
 </resources>

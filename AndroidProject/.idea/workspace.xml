@@ -40,8 +40,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="685">
-              <caret line="271" column="57" selection-start-line="271" selection-start-column="57" selection-end-line="271" selection-end-column="57" />
+            <state relative-caret-position="299">
+              <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
               <folding>
                 <element signature="e#4792#6971#0" expanded="true" />
                 <element signature="e#4977#6941#0" expanded="true" />
@@ -57,28 +57,28 @@
                 <element signature="e#6970#6971#0" expanded="true" />
                 <element signature="e#7108#7265#0" expanded="true" />
                 <element signature="e#7264#7265#0" expanded="true" />
-                <element signature="e#9404#9477#0" expanded="true" />
-                <element signature="e#10151#10699#0" expanded="true" />
-                <element signature="e#10471#10671#0" expanded="true" />
-                <element signature="e#10670#10671#0" expanded="true" />
-                <element signature="e#10698#10699#0" expanded="true" />
-                <element signature="e#10981#12686#0" expanded="true" />
-                <element signature="e#11245#12659#0" expanded="true" />
-                <element signature="e#11743#11836#0" expanded="true" />
-                <element signature="e#12658#12659#0" expanded="true" />
-                <element signature="e#12685#12686#0" expanded="true" />
-                <element signature="e#12845#12892#0" expanded="true" />
-                <element signature="e#13141#13188#0" expanded="true" />
-                <element signature="e#13592#14338#0" expanded="true" />
-                <element signature="e#13823#14312#0" expanded="true" />
-                <element signature="e#14311#14312#0" expanded="true" />
-                <element signature="e#14337#14338#0" expanded="true" />
-                <element signature="e#14543#15010#0" expanded="true" />
-                <element signature="e#14774#14984#0" expanded="true" />
-                <element signature="e#14983#14984#0" expanded="true" />
-                <element signature="e#15009#15010#0" expanded="true" />
-                <element signature="e#15150#15584#0" expanded="true" />
-                <element signature="e#15583#15584#0" expanded="true" />
+                <element signature="e#9406#9479#0" expanded="true" />
+                <element signature="e#10153#10701#0" expanded="true" />
+                <element signature="e#10473#10673#0" expanded="true" />
+                <element signature="e#10672#10673#0" expanded="true" />
+                <element signature="e#10700#10701#0" expanded="true" />
+                <element signature="e#10983#12668#0" expanded="true" />
+                <element signature="e#11247#12641#0" expanded="true" />
+                <element signature="e#11745#11838#0" expanded="true" />
+                <element signature="e#12640#12641#0" expanded="true" />
+                <element signature="e#12667#12668#0" expanded="true" />
+                <element signature="e#12827#12874#0" expanded="true" />
+                <element signature="e#13123#13170#0" expanded="true" />
+                <element signature="e#13574#14320#0" expanded="true" />
+                <element signature="e#13805#14294#0" expanded="true" />
+                <element signature="e#14293#14294#0" expanded="true" />
+                <element signature="e#14319#14320#0" expanded="true" />
+                <element signature="e#14525#14992#0" expanded="true" />
+                <element signature="e#14756#14966#0" expanded="true" />
+                <element signature="e#14965#14966#0" expanded="true" />
+                <element signature="e#14991#14992#0" expanded="true" />
+                <element signature="e#15132#15566#0" expanded="true" />
+                <element signature="e#15565#15566#0" expanded="true" />
                 <element signature="e#15989#15990#0" expanded="true" />
                 <element signature="e#16029#16030#0" expanded="true" />
               </folding>
@@ -86,74 +86,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/repository/TaskRepository.java">
+      <file leaf-file-name="BottomSheetListAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="663">
+              <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1890#2443#0" expanded="true" />
+                <element signature="e#2442#2443#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_goals_widget.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="android-designer2">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+            <state relative-caret-position="329">
+              <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
               <folding>
-                <element signature="e#633#656#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main_bottom_sheet_fragment.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_bottom_sheet_fragment.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main_single_list_layout.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivityTaskListAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="661">
-              <caret line="154" column="104" selection-start-line="154" selection-start-column="104" selection-end-line="154" selection-end-column="104" />
-              <folding>
-                <element signature="e#2549#2874#0" expanded="true" />
-                <element signature="e#2873#2874#0" expanded="true" />
+                <element signature="e#1832#1855#0" expanded="true" />
+                <element signature="e#1990#2012#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,13 +121,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="Interface" />
         <option value="Singleton" />
         <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -182,6 +139,8 @@
       <find>activity_main_b</find>
       <find>new_tas</find>
       <find>myT</find>
+      <find>myToolbar</find>
+      <find>new_task</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -4837,9 +4796,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/my_goals_widget_info.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/repository/UserRepository.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/DatabaseInstance.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/domain/List.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/domain/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/database/domain/Task.java" />
@@ -4871,7 +4827,6 @@
         <option value="$PROJECT_DIR$/loginlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/loginlib/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/ExpandedBottomSheetBehaviour.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java" />
         <option value="$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/dao/TaskDao.java" />
         <option value="$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/repository/TaskRepository.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/integers.xml" />
@@ -4881,12 +4836,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/MyGoalsWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_task_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_bottom_sheet_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/state_list_drawable.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/button_shape.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java" />
       </list>
     </option>
@@ -4933,6 +4892,45 @@
               <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="drawable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AndroidProject" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -4977,6 +4975,14 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="ui_controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="udacity_capstone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="ui_controller" type="462c0819:PsiDirectoryNode" />
+              <item name="list" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
@@ -5060,10 +5066,16 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="ZY3222CM4C" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/values" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/values/color" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.onearticleoneweek.wahadatkashmiri.roomlib" />
     </key>
@@ -5232,7 +5244,7 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info anchor="bottom" id="Build" weight="0.32969698" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
       <window_info anchor="right" id="Gradle" />
@@ -5311,14 +5323,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="11" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LoginLib/src/main/res/layout/activity_sign_up.xml" />
     <entry file="file://$PROJECT_DIR$/gradle.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state />
@@ -5419,13 +5423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="4" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/NewListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
@@ -5510,13 +5507,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/ExpandedBottomSheetBehaviour.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/dao/TaskDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -5562,16 +5552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/repository/TaskRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/repository/ListRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -5599,6 +5579,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_background.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -5606,8 +5593,92 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_bottom_sheet_fragment.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/repository/TaskRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding>
-            <element signature="e#633#656#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/state_list_drawable.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding>
+            <element signature="e#366#389#0" expanded="true" />
+            <element signature="e#426#449#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="66" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_shape.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1890#2443#0" expanded="true" />
+            <element signature="e#2442#2443#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -5619,68 +5690,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_background.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state relative-caret-position="329">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding>
-            <element signature="e#2088#2110#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_bottom_sheet_fragment.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="58" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="76" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="154" column="104" selection-start-line="154" selection-start-column="104" selection-end-line="154" selection-end-column="104" />
-          <folding>
-            <element signature="e#2549#2874#0" expanded="true" />
-            <element signature="e#2873#2874#0" expanded="true" />
+            <element signature="e#1832#1855#0" expanded="true" />
+            <element signature="e#1990#2012#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="685">
-          <caret line="271" column="57" selection-start-line="271" selection-start-column="57" selection-end-line="271" selection-end-column="57" />
+        <state relative-caret-position="299">
+          <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
           <folding>
             <element signature="e#4792#6971#0" expanded="true" />
             <element signature="e#4977#6941#0" expanded="true" />
@@ -5696,28 +5723,28 @@
             <element signature="e#6970#6971#0" expanded="true" />
             <element signature="e#7108#7265#0" expanded="true" />
             <element signature="e#7264#7265#0" expanded="true" />
-            <element signature="e#9404#9477#0" expanded="true" />
-            <element signature="e#10151#10699#0" expanded="true" />
-            <element signature="e#10471#10671#0" expanded="true" />
-            <element signature="e#10670#10671#0" expanded="true" />
-            <element signature="e#10698#10699#0" expanded="true" />
-            <element signature="e#10981#12686#0" expanded="true" />
-            <element signature="e#11245#12659#0" expanded="true" />
-            <element signature="e#11743#11836#0" expanded="true" />
-            <element signature="e#12658#12659#0" expanded="true" />
-            <element signature="e#12685#12686#0" expanded="true" />
-            <element signature="e#12845#12892#0" expanded="true" />
-            <element signature="e#13141#13188#0" expanded="true" />
-            <element signature="e#13592#14338#0" expanded="true" />
-            <element signature="e#13823#14312#0" expanded="true" />
-            <element signature="e#14311#14312#0" expanded="true" />
-            <element signature="e#14337#14338#0" expanded="true" />
-            <element signature="e#14543#15010#0" expanded="true" />
-            <element signature="e#14774#14984#0" expanded="true" />
-            <element signature="e#14983#14984#0" expanded="true" />
-            <element signature="e#15009#15010#0" expanded="true" />
-            <element signature="e#15150#15584#0" expanded="true" />
-            <element signature="e#15583#15584#0" expanded="true" />
+            <element signature="e#9406#9479#0" expanded="true" />
+            <element signature="e#10153#10701#0" expanded="true" />
+            <element signature="e#10473#10673#0" expanded="true" />
+            <element signature="e#10672#10673#0" expanded="true" />
+            <element signature="e#10700#10701#0" expanded="true" />
+            <element signature="e#10983#12668#0" expanded="true" />
+            <element signature="e#11247#12641#0" expanded="true" />
+            <element signature="e#11745#11838#0" expanded="true" />
+            <element signature="e#12640#12641#0" expanded="true" />
+            <element signature="e#12667#12668#0" expanded="true" />
+            <element signature="e#12827#12874#0" expanded="true" />
+            <element signature="e#13123#13170#0" expanded="true" />
+            <element signature="e#13574#14320#0" expanded="true" />
+            <element signature="e#13805#14294#0" expanded="true" />
+            <element signature="e#14293#14294#0" expanded="true" />
+            <element signature="e#14319#14320#0" expanded="true" />
+            <element signature="e#14525#14992#0" expanded="true" />
+            <element signature="e#14756#14966#0" expanded="true" />
+            <element signature="e#14965#14966#0" expanded="true" />
+            <element signature="e#14991#14992#0" expanded="true" />
+            <element signature="e#15132#15566#0" expanded="true" />
+            <element signature="e#15565#15566#0" expanded="true" />
             <element signature="e#15989#15990#0" expanded="true" />
             <element signature="e#16029#16030#0" expanded="true" />
           </folding>
