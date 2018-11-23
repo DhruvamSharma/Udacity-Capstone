@@ -40,6 +40,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="299">
               <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
               <folding>
@@ -5227,7 +5228,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" weight="0.32969698" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
@@ -5239,6 +5239,7 @@
       <window_info anchor="right" id="Preview" order="3" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32969698" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+
       <window_info anchor="bottom" id="Terminal" weight="0.32969698" />
       <window_info anchor="bottom" id="Logcat" sideWeight="0.49928468" weight="0.69575757" />
       <window_info id="Captures" order="2" weight="0.25" />
@@ -5706,6 +5707,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="299">
           <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
           <folding>
