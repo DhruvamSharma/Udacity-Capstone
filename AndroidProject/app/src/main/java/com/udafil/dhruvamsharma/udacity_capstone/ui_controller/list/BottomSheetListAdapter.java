@@ -1,11 +1,13 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.drawable.DrawableUtils;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 
@@ -13,6 +15,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetListAdapter.ListViewHolder> {
@@ -20,6 +24,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     java.util.List<List> mList;
     private WeakReference<Context> mWeakReference;
     private ListClickListener mListener;
+    int[] state = new int[] {-android.R.attr.state_enabled};
 
     public BottomSheetListAdapter(Context context) {
 
@@ -45,6 +50,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
         holder.list.setText(mList.get(position).getListName());
+        //setState(holder.itemView);
 
     }
 
@@ -56,7 +62,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
         TextView list;
-        public ListViewHolder(@NonNull View itemView) {
+        public ListViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             //TODO 4: Change the layout. It should be different for the single list
@@ -88,5 +94,11 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
 
     public interface ListClickListener {
         void onListClick(int listId);
+    }
+
+    private void setState(View view) {
+
+        view.setSelected(true);
+
     }
 }

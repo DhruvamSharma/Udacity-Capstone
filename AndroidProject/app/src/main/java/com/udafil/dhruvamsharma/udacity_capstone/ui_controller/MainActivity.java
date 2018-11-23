@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mTaskList;
     //recyclerview for all the lists
     private RecyclerView mListList;
+    private RecyclerView mCompletedTaskList;
 
     //A common taskRepository for all the network and
     //database operations
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity
 
     //Task Adapter
     MainActivityTaskListAdapter mTaskAdapter;
+    MainActivityTaskListAdapter mCompletedTaskAdapter;
 
     //List Adapter
     BottomSheetListAdapter mListAdapter;
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity
 
         setUpTaskRecyclerView();
         setUpListRecyclerView();
+        setupCompletedTaskRecyclerView();
         setUpAds();
         
         
@@ -273,6 +276,25 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void setupCompletedTaskRecyclerView() {
+
+        mCompletedTaskList = findViewById(R.id.task_list__completed_main_activity_rv);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+
+        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this);
+
+
+        DividerItemDecoration dividerItemDecoration
+                = new DividerItemDecoration(MainActivity.this, layoutManager.getOrientation());
+
+        mCompletedTaskList.setLayoutManager(layoutManager);
+        mCompletedTaskList.setAdapter(mCompletedTaskAdapter);
+        mCompletedTaskList.addItemDecoration(dividerItemDecoration);
+
+    }
+
     /**
      * This method takes the responsibility
      * of setting the shared preferences.
@@ -373,11 +395,14 @@ public class MainActivity extends AppCompatActivity
                         }
 
                         retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId());
+                        retrieveTasks(currentList.getListId(), true);
+                        retrieveTasks(currentList.getListId(), false);
 
                         if (currentList != null) {
                             myToolbar.setTitle(currentList.getListName());
                             myToolbar.setTitleTextAppearance(MainActivity.this, R.style.TextAppearance_AppCompat_Display2);
+                            myToolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+
                         }
                         else {
 
@@ -426,10 +451,10 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void retrieveTasks(final int listId) {
+    private void retrieveTasks(final int listId, final boolean isCompleted) {
 
         LiveData<java.util.List<Task>> tasksLiveData =
-                taskRepository.getAllTasks(listId, false);
+                taskRepository.getAllTasks(listId, isCompleted);
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
@@ -440,8 +465,15 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mTaskAdapter.updateTasksData(allTasks);
-                            mTaskAdapter.updateUser(currentUser);
+                            if(!isCompleted){
+
+                                mTaskAdapter.updateTasksData(allTasks);
+                                mTaskAdapter.updateUser(currentUser);
+                            }
+                            else {
+                                mCompletedTaskAdapter.updateTasksData(allTasks);
+                                mCompletedTaskAdapter.updateUser(currentUser);
+                            }
 
                             //TODO Add this code somewhere else
                             if(currentUser != null)
@@ -452,6 +484,7 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+
 
     private void retrieveLists(final int userId) {
 
@@ -515,6 +548,8 @@ public class MainActivity extends AppCompatActivity
 //        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
 //        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         setupActivity(listId, currentUser.getUserId(), false, null);
+
+
 
     }
 
