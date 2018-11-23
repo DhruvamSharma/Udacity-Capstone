@@ -10,6 +10,7 @@
     android:paddingTop="8dp"
     app:behavior_hideable="false"
     app:behavior_peekHeight="56dp"
+    android:elevation="@dimen/bottom_sheet_elevation"
     android:background="@drawable/bottom_sheet_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -20,7 +21,6 @@
         android:id="@+id/list_list_main_activity_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/element_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
