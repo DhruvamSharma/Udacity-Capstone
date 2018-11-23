@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
@@ -75,7 +77,7 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
         TextView taskTextView;
         RadioGroup completeTask;
 
-        public TaskViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             taskTextView = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
@@ -87,7 +89,7 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
                     if(i == R.id.select_task_rb) {
 
-                        completeTask(tasks.get(getAdapterPosition()));
+                        completeTask(tasks.get(getAdapterPosition()), itemView);
 
                     }
 
@@ -125,7 +127,7 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
     }
 
-    private void completeTask(final Task task) {
+    private void completeTask(final Task task, final View view) {
 
         task.setComlpleted(true);
 
@@ -149,6 +151,9 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
                     public void run() {
 
                         tasks.remove(task);
+
+                        Snackbar.make( view,"Task Completed, you total points: "+ currentUser.getScore(), Snackbar.LENGTH_LONG).show();
+
                         updateTasksData(tasks);
 
                     }

@@ -41,6 +41,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -239,6 +240,8 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
+
+
         mListAdapter = new BottomSheetListAdapter(MainActivity.this);
 
         mListList.setLayoutManager(layoutManager);
@@ -260,8 +263,13 @@ public class MainActivity extends AppCompatActivity
 
         mTaskAdapter = new MainActivityTaskListAdapter(this);
 
+
+        DividerItemDecoration dividerItemDecoration
+                = new DividerItemDecoration(MainActivity.this, layoutManager.getOrientation());
+
         mTaskList.setLayoutManager(layoutManager);
         mTaskList.setAdapter(mTaskAdapter);
+        mTaskList.addItemDecoration(dividerItemDecoration);
 
     }
 
@@ -370,8 +378,6 @@ public class MainActivity extends AppCompatActivity
                         if (currentList != null) {
                             myToolbar.setTitle(currentList.getListName());
                             myToolbar.setTitleTextAppearance(MainActivity.this, R.style.TextAppearance_AppCompat_Display2);
-                            myToolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
-
                         }
                         else {
 
