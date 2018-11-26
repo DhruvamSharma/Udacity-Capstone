@@ -15,6 +15,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="update_activity_delete_task_btn">Delete</string>
+    <string name="completed_tasks_label">Completed tasks</string>
 
 
 </resources>

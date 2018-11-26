@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
     private UserRepository userRepository;
 
     //List name
-    private TextView mListName;
+    private TextView mCompletedTextLabel;
 
     //Task Adapter
     MainActivityTaskListAdapter mTaskAdapter;
@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity
                 .getString(R.string.is_first_time_install), true);
 
         //List Name Text View
-        mListName = findViewById(R.id.list_name_main_activity_tv);
+        mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
 
         if(isFirstTime) {
 
@@ -461,27 +461,73 @@ public class MainActivity extends AppCompatActivity
             public void onChanged(java.util.List<Task> tasks) {
 
                 allTasks = tasks;
-                if(allTasks != null)
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if(!isCompleted){
 
-                                mTaskAdapter.updateTasksData(allTasks);
-                                mTaskAdapter.updateUser(currentUser);
-                            }
-                            else {
-                                mCompletedTaskAdapter.updateTasksData(allTasks);
-                                mCompletedTaskAdapter.updateUser(currentUser);
-                            }
+                            onTaskRetrieved(isCompleted);
 
-                            //TODO Add this code somewhere else
-                            if(currentUser != null)
-                                MyGoalsWidget.setUpData(currentUser.getUserId(), getContext());
                         }
                     });
             }
         });
+
+    }
+
+    private void onCompletedTaskPresent(Boolean isCompletedTaskPresent) {
+
+        if(isCompletedTaskPresent)
+        mCompletedTaskList.setVisibility(View.VISIBLE);
+        else
+        mCompletedTextLabel.setVisibility(View.GONE);
+    }
+
+
+    /**
+     *
+     * @param isCompleted
+     */
+    private void onTaskRetrieved(Boolean isCompleted) {
+
+        if(!isCompleted ){
+
+            if(allTasks != null) {
+                mTaskList.setVisibility(View.VISIBLE);
+                mTaskAdapter.updateTasksData(allTasks);
+                mTaskAdapter.updateUser(currentUser);
+
+            } else {
+
+                mTaskList.setVisibility(View.GONE);
+                //onCompletedTaskPresent();
+            }
+
+        }
+        else {
+
+            if(allTasks == null ) {
+                onCompletedTaskPresent(false);
+            }
+
+            else {
+
+                if(allTasks.size() == 0) {
+                    //onCompletedTaskPresent();
+                    onCompletedTaskPresent(false);
+                }
+
+                mCompletedTaskAdapter.updateTasksData(allTasks);
+                mCompletedTaskAdapter.updateUser(currentUser);
+
+                onCompletedTaskPresent(true);
+
+            }
+        }
+
+        //TODO Add this code somewhere else
+        if(currentUser != null)
+            MyGoalsWidget.setUpData(currentUser.getUserId(), getContext());
 
     }
 
