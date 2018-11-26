@@ -30,4 +30,6 @@ public interface TaskDao {
     @Delete
     void deleteAllTasks(Task currentTask);
 
+    @Query("SELECT * FROM tasks WHERE list_id = :listId AND is_completed = :isCompleted")
+    List<Task> getAllTasksWithoutLiveData(int listId, Boolean isCompleted);
 }
