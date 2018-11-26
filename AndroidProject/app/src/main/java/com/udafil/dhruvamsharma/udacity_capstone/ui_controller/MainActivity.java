@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity
     ConstraintLayout bottomSheet;
     Toolbar myToolbar;
 
+    Bundle saveInstanceState;
+
 
     /**
      * Method when the activity is created
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        saveInstanceState = savedInstanceState;
+        myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
 
@@ -363,45 +366,157 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
+    /**
+     * This method set ups the live data for the user
+     * Which in turn set ups live data for the list
+     * @param listId
+     * @param userId
+     * @param isFirstTime
+     * @param preferences
+     */
     private void setupActivity(final int listId, int userId,
-                               final boolean isFirstTime, final SharedPreferences preferences) {
+                               final boolean isFirstTime,
+                               final SharedPreferences preferences) {
+
+        setupSingleUserLiveData(listId, userId, isFirstTime, preferences);
+
+    }
+
+
+    /**
+     * This method set ups live data for the user
+     * @param listId
+     * @param userId
+     * @param isFirstTime
+     * @param preferences
+     */
+    private void setupSingleUserLiveData(final int listId, final int userId,
+                                         final  boolean isFirstTime,
+                                         final SharedPreferences preferences) {
 
         LiveData<User> userLiveData = userRepository.getUser(userId);
 
         userLiveData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                currentUser = user;
 
-                LiveData<List> listLiveData = listRepository.getList(listId);
+                setupSingleListLiveData(user, listId, isFirstTime, preferences);
 
-                listLiveData.observe(MainActivity.this, new Observer<List>() {
+            }
+        });
+
+    }
+
+    /**
+     * This method set ups live data for the list
+     * @param listId
+     * @param isFirstTime
+     * @param preferences
+     */
+    private void setupSingleListLiveData(final User user, int listId,
+                                         final boolean isFirstTime,
+                                         final SharedPreferences preferences) {
+
+        LiveData<List> listLiveData = listRepository.getList(listId);
+
+        listLiveData.observe(MainActivity.this, new Observer<List>() {
+            @Override
+            public void onChanged(List list) {
+
+                setupCurrentListAndUser( user, list, isFirstTime, preferences);
+
+
+            }
+        });
+
+    }
+
+    /**
+     * This method is delegated the work for
+     * setting up when the data is ready.
+     * @param user
+     * @param list
+     * @param isFirstTime
+     * @param preferences
+     */
+    private void setupCurrentListAndUser(User user, List list,
+                                         boolean isFirstTime,
+                                         SharedPreferences preferences) {
+
+        currentUser = user;
+        currentList = list;
+
+        if (isFirstTime) {
+
+            allTasks = new ArrayList<>();
+            allLists = new ArrayList<>();
+            allLists.add(currentList);
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(getResources()
+                    .getString(R.string.is_first_time_install), false);
+            editor.apply();
+        }
+
+        if (saveInstanceState == null) {
+
+            retrieveLists(currentUser.getUserId());
+            retrieveTasks(currentList.getListId(), true);
+            retrieveTasks(currentList.getListId(), false);
+
+        } else {
+
+            retrieveLists(currentUser.getUserId());
+            retrieveTasks();
+
+        }
+
+        if (currentList != null) {
+            myToolbar.setTitle(currentList.getListName());
+            myToolbar.setTitleTextAppearance(MainActivity.this,
+                    R.style.TextAppearance_AppCompat_Display2);
+            myToolbar.setTitleTextColor(getResources()
+                    .getColor(android.R.color.black));
+
+        }
+        else {
+
+            //TODO 8: Finish the application gracefully
+            //finish();
+        }
+
+    }
+
+
+    /**
+     *
+     */
+    private void retrieveTasks() {
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+
+            @Override
+            public void run() {
+                final java.util.List<Task> incompleteTasks =  taskRepository.
+                        getAllTasksWithoutLiveData(currentList.getListId(), false);
+
+                final java.util.List<Task>completedTasks = taskRepository.
+                        getAllTasksWithoutLiveData(currentList.getListId(), true);
+
+                runOnUiThread(new Runnable() {
                     @Override
-                    public void onChanged(List list) {
+                    public void run() {
 
-                        currentList = list;
 
-                        if (isFirstTime) {
-
-                            allTasks = new ArrayList<>();
-                            allLists = new ArrayList<>();
-                            allLists.add(currentList);
-
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putBoolean(getResources()
-                                    .getString(R.string.is_first_time_install), false);
-                            editor.apply();
-                        }
-
-                        retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId(), true);
-                        retrieveTasks(currentList.getListId(), false);
+                        onTaskRetrieved(true, completedTasks) ;
+                        onTaskRetrieved(false, incompleteTasks);
 
                         if (currentList != null) {
                             myToolbar.setTitle(currentList.getListName());
-                            myToolbar.setTitleTextAppearance(MainActivity.this, R.style.TextAppearance_AppCompat_Display2);
-                            myToolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+                            myToolbar.setTitleTextAppearance(MainActivity.this,
+                                    R.style.TextAppearance_AppCompat_Display2);
+                            myToolbar.setTitleTextColor(getResources()
+                                    .getColor(android.R.color.black));
 
                         }
                         else {
@@ -410,7 +525,6 @@ public class MainActivity extends AppCompatActivity
                             //finish();
                         }
 
-
                     }
                 });
 
@@ -418,7 +532,6 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-
 
 
     /**
@@ -458,15 +571,13 @@ public class MainActivity extends AppCompatActivity
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
-            public void onChanged(java.util.List<Task> tasks) {
-
-                allTasks = tasks;
+            public void onChanged(final java.util.List<Task> tasks) {
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            onTaskRetrieved(isCompleted);
+                            onTaskRetrieved(isCompleted, tasks);
 
                         }
                     });
@@ -478,7 +589,7 @@ public class MainActivity extends AppCompatActivity
     private void onCompletedTaskPresent(Boolean isCompletedTaskPresent) {
 
         if(isCompletedTaskPresent)
-        mCompletedTaskList.setVisibility(View.VISIBLE);
+        mCompletedTextLabel.setVisibility(View.VISIBLE);
         else
         mCompletedTextLabel.setVisibility(View.GONE);
     }
@@ -487,8 +598,11 @@ public class MainActivity extends AppCompatActivity
     /**
      *
      * @param isCompleted
+     * @param tasks
      */
-    private void onTaskRetrieved(Boolean isCompleted) {
+    private void onTaskRetrieved(Boolean isCompleted, java.util.List<Task> tasks) {
+
+        allTasks = tasks;
 
         if(!isCompleted ){
 
@@ -513,14 +627,13 @@ public class MainActivity extends AppCompatActivity
             else {
 
                 if(allTasks.size() == 0) {
-                    //onCompletedTaskPresent();
                     onCompletedTaskPresent(false);
+                } else {
+                    onCompletedTaskPresent(true);
                 }
 
                 mCompletedTaskAdapter.updateTasksData(allTasks);
                 mCompletedTaskAdapter.updateUser(currentUser);
-
-                onCompletedTaskPresent(true);
 
             }
         }
@@ -540,6 +653,7 @@ public class MainActivity extends AppCompatActivity
         listLiveData.observe(this, new Observer<java.util.List<List>>() {
             @Override
             public void onChanged(java.util.List<List> lists) {
+
                 allLists = lists;
 
                 if(allLists != null)
@@ -589,11 +703,27 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListClick(int listId) {
+    public void onListClick(final int listId) {
 
 //        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
 //        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        setupActivity(listId, currentUser.getUserId(), false, null);
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                currentList = listRepository.getSingleListWithoutLiveData(listId);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        retrieveTasks();
+
+                    }
+                });
+            }
+        });
 
 
 
@@ -624,7 +754,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSignUpComplete() {
 
-        setupActivity(currentList.getListId(), currentUser.getUserId(),
+        setupCurrentListAndUser(currentUser, currentList,
                 false, null);
 
     }

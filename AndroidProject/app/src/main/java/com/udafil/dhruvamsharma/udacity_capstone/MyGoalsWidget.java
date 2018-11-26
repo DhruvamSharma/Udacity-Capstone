@@ -10,13 +10,9 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
-import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
-
-
-import androidx.lifecycle.LiveData;
 
 /**
  * Implementation of App Widget functionality.
@@ -79,7 +75,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
             @Override
             public void run() {
 
-                java.util.List<List> lists = listRepository.getListWithoutLiveData(userId);
+                java.util.List<List> lists = listRepository.getListsWithoutLiveData(userId);
 
                 if( lists != null) {
                     for (List list: lists) {

@@ -36,4 +36,7 @@ public interface ListDao {
 
     @Query("SELECT * FROM lists WHERE user_id = :userId")
     java.util.List<List> getListWithoutLiveData(int userId);
+
+    @Query("SELECT * FROM lists WHERE list_id = :listId")
+    List getSingleListWithoutLiveData(int listId);
 }
