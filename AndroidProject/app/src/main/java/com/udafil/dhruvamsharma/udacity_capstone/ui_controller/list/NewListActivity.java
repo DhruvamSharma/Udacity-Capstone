@@ -47,7 +47,7 @@ public class NewListActivity extends AppCompatActivity {
     private void saveList() {
 
         TextInputEditText newList = findViewById(R.id.new_list_activity_create_list_et);
-        if(newList.getText() != null || newList.getText().toString().equals("")) {
+        if(newList.getText() != null && !newList.getText().toString().equals("")) {
             mListName = newList.getText().toString();
 
 
