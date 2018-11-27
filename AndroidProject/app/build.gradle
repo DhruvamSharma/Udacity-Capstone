@@ -76,6 +76,7 @@ dependencies {
     implementation project(':roomlib')
     implementation project(':loginlib')
     implementation project(':pointslib')
+    implementation project(':firstentrymodule')
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
