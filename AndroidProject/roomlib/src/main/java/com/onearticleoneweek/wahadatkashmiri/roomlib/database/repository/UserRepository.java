@@ -87,4 +87,8 @@ public class UserRepository {
     }
 
 
+    public User getUserWithoutLiveData(int userId) {
+
+        return mDb.getUserDao().getUserWithoutLiveData(userId);
+    }
 }
