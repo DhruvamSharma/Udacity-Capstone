@@ -7,20 +7,15 @@ import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
-import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 
 import org.parceler.Parcels;
-
-import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -82,16 +77,18 @@ public class LoginActivity extends AppCompatActivity {
             final String email = userName.getText().toString();
             if(matchPasswords()) {
 
-                LiveData<User> userLiveData = UserRepository.
+                final LiveData<User> userLiveData = UserRepository.
                         getUserRepository(LoginActivity.this).getUser(currentUser.getUserId());
 
                 userLiveData.observe(LoginActivity.this, new Observer<User>() {
                     @Override
                     public void onChanged(final User user) {
 
+                        userLiveData.removeObservers(LoginActivity.this);
                         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                             @Override
                             public void run() {
+
 
                                 if(checkForUserPresenceAlready(user.getEmailId())) {
                                     addUser(user, email,
@@ -104,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
 
-                                            signupCallbacks.onSignUpComplete();
+                                            signupCallbacks.onSignUpComplete(user);
                                             finish();
 
                                         }
@@ -191,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public interface SignUpCallbacks {
 
-        void onSignUpComplete();
+        void onSignUpComplete(User user);
         void onSignUpFailed(String response);
 
     }

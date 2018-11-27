@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -212,6 +213,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         //setUpListBottomSheet();
+        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
 
     }
 
@@ -267,7 +269,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mTaskAdapter = new MainActivityTaskListAdapter(this);
+        mTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet);
 
 
         DividerItemDecoration dividerItemDecoration
@@ -286,7 +288,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this);
+        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet );
 
 
         DividerItemDecoration dividerItemDecoration
@@ -394,12 +396,13 @@ public class MainActivity extends AppCompatActivity
                                          final  boolean isFirstTime,
                                          final SharedPreferences preferences) {
 
-        LiveData<User> userLiveData = userRepository.getUser(userId);
+        final LiveData<User> userLiveData = userRepository.getUser(userId);
 
         userLiveData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
 
+                userLiveData.removeObservers(MainActivity.this);
                 setupSingleListLiveData(user, listId, isFirstTime, preferences);
 
             }
@@ -417,12 +420,13 @@ public class MainActivity extends AppCompatActivity
                                          final boolean isFirstTime,
                                          final SharedPreferences preferences) {
 
-        LiveData<List> listLiveData = listRepository.getList(listId);
+        final LiveData<List> listLiveData = listRepository.getList(listId);
 
         listLiveData.observe(MainActivity.this, new Observer<List>() {
             @Override
             public void onChanged(List list) {
 
+                listLiveData.removeObservers(MainActivity.this);
                 setupCurrentListAndUser( user, list, isFirstTime, preferences);
 
 
@@ -458,18 +462,10 @@ public class MainActivity extends AppCompatActivity
             editor.apply();
         }
 
-        if (saveInstanceState == null) {
 
-            retrieveLists(currentUser.getUserId());
-            retrieveTasks(currentList.getListId(), true);
-            retrieveTasks(currentList.getListId(), false);
-
-        } else {
-
-            retrieveLists(currentUser.getUserId());
-            retrieveTasks();
-
-        }
+        retrieveLists(currentUser.getUserId());
+        retrieveTasks(currentList.getListId(), true);
+        retrieveTasks(currentList.getListId(), false);
 
         if (currentList != null) {
             myToolbar.setTitle(currentList.getListName());
@@ -506,7 +502,6 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
 
                         onTaskRetrieved(true, completedTasks) ;
                         onTaskRetrieved(false, incompleteTasks);
@@ -566,16 +561,22 @@ public class MainActivity extends AppCompatActivity
 
     private void retrieveTasks(final int listId, final boolean isCompleted) {
 
-        LiveData<java.util.List<Task>> tasksLiveData =
+        Log.e("onTaskRetrieved", "retrieving from database");
+
+        final LiveData<java.util.List<Task>> tasksLiveData =
                 taskRepository.getAllTasks(listId, isCompleted);
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
             public void onChanged(final java.util.List<Task> tasks) {
 
+
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+                            Log.e("onTaskRetrieved", "retrieving from live data " + isCompleted);
 
                             onTaskRetrieved(isCompleted, tasks);
 
@@ -703,29 +704,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListClick(final int listId) {
+    public void onListClick(final List list) {
 
+        setupCurrentListAndUser(currentUser, list, false, null);
 //        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
 //        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-
-                currentList = listRepository.getSingleListWithoutLiveData(listId);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        setupCurrentListAndUser(currentUser, currentList,
-                                false, null);
-
-                    }
-                });
-            }
-        });
-
 
 
     }
@@ -753,9 +736,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSignUpComplete() {
+    public void onSignUpComplete(User user) {
 
-        setupCurrentListAndUser(currentUser, currentList,
+        setupCurrentListAndUser(user, currentList,
                 false, null);
 
     }

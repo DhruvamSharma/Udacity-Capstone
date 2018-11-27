@@ -15,8 +15,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetListAdapter.ListViewHolder> {
@@ -72,7 +70,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
                 @Override
                 public void onClick(View view) {
 
-                    mListener.onListClick(mList.get(getAdapterPosition()).getListId());
+                    mListener.onListClick(mList.get(getAdapterPosition()));
 
 //                    Parcelable parcelable = Parcels.wrap(mList.get(getAdapterPosition()));
 //                    Intent intent = new Intent(mWeakReference.get(), UpdateListActivity.class);
@@ -93,7 +91,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     }
 
     public interface ListClickListener {
-        void onListClick(int listId);
+        void onListClick(List list);
     }
 
     private void setState(View view) {
