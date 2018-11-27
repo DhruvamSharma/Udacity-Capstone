@@ -8,19 +8,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.SplashScreen;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class MyGoalsWidget extends AppWidgetProvider {
 
-    private static ListRepository listRepository;
+    private static UserRepository userRepository;
     private static int userId = -1;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -30,14 +38,12 @@ public class MyGoalsWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_goals_widget);
 
-        listRepository = ListRepository.getCommonRepository(context);
-
         setUpWidget(context, views);
 
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, SplashScreen.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        views.setOnClickPendingIntent(R.id.widget_new_task_et, pendingIntent);
+        views.setOnClickPendingIntent(R.id.widget_app_icon_iv, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -64,7 +70,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
      * @param context
      * @param views
      */
-    private static void setUpWidget(Context context, final RemoteViews views) {
+    private static void setUpWidget(final Context context, final RemoteViews views) {
 
         final StringBuilder data = new StringBuilder();
 
@@ -75,29 +81,20 @@ public class MyGoalsWidget extends AppWidgetProvider {
         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
             public void run() {
-
-                java.util.List<List> lists = listRepository.getListsWithoutLiveData(userId);
-
-                if( lists != null) {
-                    for (List list: lists) {
-
-                        data.append(list.getListName());
+                final User currentUser  = userRepository.getUserWithoutLiveData(userId);
+                views.setTextViewText(R.id.widget_my_points_tv, "" + currentUser.getScore());
+                AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(context, "score: "+ currentUser.getScore(), Toast.LENGTH_LONG).show();
 
                     }
-
-                    AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            views.setTextViewText(R.id.widget_new_task_et, new String(data));
-                            Log.e("TAG_ERROR" ,new String(data));
-                        }
-                    });
-                } else {
-
-                }
+                });
 
             }
         });
+
+
 
 
 
@@ -109,7 +106,10 @@ public class MyGoalsWidget extends AppWidgetProvider {
      * @param userID
      */
     public static void setUpData(int userID, Context context) {
+
         userId = userID;
+
+        userRepository = UserRepository.getUserRepository(context);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds( new ComponentName(context, MyGoalsWidget.class));

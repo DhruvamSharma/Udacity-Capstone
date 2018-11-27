@@ -1,21 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    android:orientation="vertical"
-    android:padding="@dimen/widget_margin">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/widget_margin">
+
+    <ImageView
+        android:id="@+id/widget_app_icon_iv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_height="wrap_content"/>
+
+   <ImageView
+       android:id="@+id/widget_app_open_iv"
+       android:layout_width="0dp"
+       android:layout_weight="1"
+       android:layout_gravity="center"
+       android:src="@drawable/baseline_create_black_18dp"
+       android:layout_height="wrap_content"/>
 
    <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="My lists"
-       android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
-
-   <TextView
-       android:id="@+id/widget_new_task_et"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:textColor="@android:color/black"
-       android:layout_margin="@dimen/element_margin" />
+       android:id="@+id/widget_my_points_tv"
+       android:layout_width="0dp"
+       android:layout_weight="3"
+       tools:text="@string/app_name"
+       android:layout_gravity="center"
+       android:textColor="@color/colorAccent"
+       android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+       android:layout_height="wrap_content" />
 
 </LinearLayout>
