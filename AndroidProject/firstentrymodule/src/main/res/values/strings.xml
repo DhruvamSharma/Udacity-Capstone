@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FirstEntryModule</string>
+
+    <string name="current_list">current_list</string>
+    <string name="current_task">current_task</string>
+    <string name="current_user">current_user</string>
+    <string name="current_score">CurrentScore</string>
+
+    <string name="is_first_time_install">first_time</string>
+</resources>

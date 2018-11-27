@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.onearticleoneweek.wahadatkashmiri.firstentrymodule.FirstTimeInstallActivivity;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
@@ -17,7 +18,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.R;
 
 import java.util.Date;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity implements FirstTimeInstallActivivity.StartAppInterface {
 
     //A common taskRepository for all the network and
     //database operations
@@ -109,28 +110,40 @@ public class SplashScreen extends AppCompatActivity {
 
         if(isFirstTime) {
 
-            Toast.makeText(SplashScreen.this, "is first time: "+ isFirstTime, Toast.LENGTH_SHORT).show();
-
+            FirstTimeInstallActivivity.init(SplashScreen.this);
 
             //TODO open up NewEntering Screen
-            Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+            Intent intent = new Intent(SplashScreen.this, FirstTimeInstallActivivity.class);
             intent.putExtra(getResources().getString(R.string.current_list), listId);
             intent.putExtra(getResources().getString(R.string.current_user), userId);
             intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
-
             startActivity(intent);
+
         } else {
             Toast.makeText(SplashScreen.this, "is first time: "+ isFirstTime, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-            intent.putExtra(getResources().getString(R.string.current_list), listId);
-            intent.putExtra(getResources().getString(R.string.current_user), userId);
-            intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
-
-            startActivity(intent);
+            startApp(listId, userId, isFirstTime);
         }
 
     }
 
+    private void startApp(int listId, int userId, boolean isFirstTime) {
+
+        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+        intent.putExtra(getResources().getString(R.string.current_list), listId);
+        intent.putExtra(getResources().getString(R.string.current_user), userId);
+        intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
+
+        startActivity(intent);
+
+    }
+
+
+    @Override
+    public void start(int intExtra, int extra, boolean booleanExtra) {
+
+        startApp(intExtra, extra, booleanExtra);
+
+    }
 }
 
 
