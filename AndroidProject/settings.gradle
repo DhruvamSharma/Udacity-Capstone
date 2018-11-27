@@ -1,1 +1,1 @@
-include ':app', ':roomlib', ':loginlib'
+include ':app', ':roomlib', ':loginlib', ':pointslib'
