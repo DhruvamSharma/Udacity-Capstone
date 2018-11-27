@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * This is a setup method
      * This methods is reuired for setting up the activity.
-     * It takes care of all the nitty-gritty details
+     * It takes care of all the nity-gritty details
      */
     private void setUpActivity() {
 
@@ -718,7 +718,8 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void run() {
 
-                        retrieveTasks();
+                        setupCurrentListAndUser(currentUser, currentList,
+                                false, null);
 
                     }
                 });
