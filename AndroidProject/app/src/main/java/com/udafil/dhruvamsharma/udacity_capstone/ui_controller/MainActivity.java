@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +26,7 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRep
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udacity_capstone.pointslib.PointsActivity;
-import com.udafil.dhruvamsharma.udacity_capstone.MyGoalsWidget;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget.MyGoalsWidget;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
@@ -134,10 +133,26 @@ public class MainActivity extends AppCompatActivity
         userRepository = UserRepository.getUserRepository(MainActivity.this);
 
 
+        if(getIntent().hasExtra(getResources().getString(R.string.is_first_time_install)) &&
+                getIntent().hasExtra(getResources().getString(R.string.current_user))&&
+                getIntent().hasExtra(getResources().getString(R.string.current_list))) {
 
-        //Check for first-time installs
-        //Check for Last accessed items
-        setUpSharedPreferences();
+            Intent intent = getIntent();
+
+
+            setupActivity(intent.getIntExtra(getResources().getString(R.string.current_list), -1),
+                    intent.getIntExtra(getResources().getString(R.string.current_user), -1),
+                    intent.getBooleanExtra(getResources().getString(R.string.is_first_time_install), true));
+
+        } else {
+
+            //TODO finish app gracefully
+            finish();
+
+        }
+
+
+
 
 
 
@@ -218,6 +233,8 @@ public class MainActivity extends AppCompatActivity
 
         //setUpListBottomSheet();
         bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
+        //List Name Text View
+        mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
 
     }
 
@@ -292,7 +309,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet );
+        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet);
 
 
         DividerItemDecoration dividerItemDecoration
@@ -302,75 +319,8 @@ public class MainActivity extends AppCompatActivity
         mCompletedTaskList.setAdapter(mCompletedTaskAdapter);
         mCompletedTaskList.addItemDecoration(dividerItemDecoration);
 
-    }
-
-    /**
-     * This method takes the responsibility
-     * of setting the shared preferences.
-     */
-    private void setUpSharedPreferences() {
-
-        final SharedPreferences preferences = getApplicationContext()
-                .getSharedPreferences("my_file", MODE_PRIVATE);
-
-        boolean isFirstTime = preferences.getBoolean(getResources()
-                .getString(R.string.is_first_time_install), true);
-
-        //List Name Text View
-        mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
-
-        if(isFirstTime) {
-
-            firsTimeSetUp(preferences);
-
-        } else {
-
-            int userId = preferences
-                    .getInt("user", -1);
-
-
-            int listId = preferences.
-                    getInt("list", -1);
-
-            setupActivity(listId, userId, false, preferences);
-        }
-
-
-
 
     }
-
-
-    private void firsTimeSetUp(final SharedPreferences preferences) {
-
-        final User tempUser = new User("User", new Date(),
-                "password", "emailId", false, 0);
-
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-
-                final int userId = userRepository.createUser(tempUser);
-                List tempList = new List(userId, "My List", new Date());
-                final int listId = listRepository.insertList(tempList);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setupActivity(listId, userId, true, preferences);
-                    }
-                });
-
-
-            }
-        });
-
-
-
-
-
-    }
-
 
     /**
      * This method set ups the live data for the user
@@ -378,13 +328,11 @@ public class MainActivity extends AppCompatActivity
      * @param listId
      * @param userId
      * @param isFirstTime
-     * @param preferences
      */
     private void setupActivity(final int listId, int userId,
-                               final boolean isFirstTime,
-                               final SharedPreferences preferences) {
+                               final boolean isFirstTime) {
 
-        setupSingleUserLiveData(listId, userId, isFirstTime, preferences);
+        setupSingleUserLiveData(listId, userId, isFirstTime);
 
     }
 
@@ -394,11 +342,9 @@ public class MainActivity extends AppCompatActivity
      * @param listId
      * @param userId
      * @param isFirstTime
-     * @param preferences
      */
     private void setupSingleUserLiveData(final int listId, final int userId,
-                                         final  boolean isFirstTime,
-                                         final SharedPreferences preferences) {
+                                         final  boolean isFirstTime) {
 
         final LiveData<User> userLiveData = userRepository.getUser(userId);
 
@@ -407,7 +353,7 @@ public class MainActivity extends AppCompatActivity
             public void onChanged(User user) {
 
                 userLiveData.removeObservers(MainActivity.this);
-                setupSingleListLiveData(user, listId, isFirstTime, preferences);
+                setupSingleListLiveData(user, listId, isFirstTime);
 
             }
         });
@@ -418,11 +364,9 @@ public class MainActivity extends AppCompatActivity
      * This method set ups live data for the list
      * @param listId
      * @param isFirstTime
-     * @param preferences
      */
     private void setupSingleListLiveData(final User user, int listId,
-                                         final boolean isFirstTime,
-                                         final SharedPreferences preferences) {
+                                         final boolean isFirstTime) {
 
         final LiveData<List> listLiveData = listRepository.getList(listId);
 
@@ -431,7 +375,7 @@ public class MainActivity extends AppCompatActivity
             public void onChanged(List list) {
 
                 listLiveData.removeObservers(MainActivity.this);
-                setupCurrentListAndUser( user, list, isFirstTime, preferences);
+                setupCurrentListAndUser( user, list, isFirstTime);
 
 
             }
@@ -445,11 +389,9 @@ public class MainActivity extends AppCompatActivity
      * @param user
      * @param list
      * @param isFirstTime
-     * @param preferences
      */
     private void setupCurrentListAndUser(User user, List list,
-                                         boolean isFirstTime,
-                                         SharedPreferences preferences) {
+                                         boolean isFirstTime) {
 
         currentUser = user;
         currentList = list;
@@ -459,6 +401,9 @@ public class MainActivity extends AppCompatActivity
             allTasks = new ArrayList<>();
             allLists = new ArrayList<>();
             allLists.add(currentList);
+
+            final SharedPreferences preferences = getApplicationContext()
+                    .getSharedPreferences("my_file", MODE_PRIVATE);
 
             SharedPreferences.Editor editor = preferences.edit();
             editor.putBoolean(getResources()
@@ -710,7 +655,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListClick(final List list) {
 
-        setupCurrentListAndUser(currentUser, list, false, null);
+        setupCurrentListAndUser(currentUser, list, false);
 //        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
 //        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
@@ -743,7 +688,7 @@ public class MainActivity extends AppCompatActivity
     public void onSignUpComplete(User user) {
 
         setupCurrentListAndUser(user, currentList,
-                false, null);
+                false);
 
     }
 
