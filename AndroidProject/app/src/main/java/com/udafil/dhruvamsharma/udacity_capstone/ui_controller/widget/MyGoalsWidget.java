@@ -1,4 +1,4 @@
-package com.udafil.dhruvamsharma.udacity_capstone;
+package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
+import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 
 /**
