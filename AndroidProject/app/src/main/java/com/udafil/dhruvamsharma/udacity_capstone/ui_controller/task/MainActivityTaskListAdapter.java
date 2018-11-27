@@ -28,7 +28,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivityTaskListAdapter.TaskViewHolder> {
+public class MainActivityTaskListAdapter extends
+        RecyclerView.Adapter<MainActivityTaskListAdapter.TaskViewHolder> {
 
     private List<Task> tasks;
     private WeakReference<Context> contextWeakReference;
@@ -152,7 +153,9 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
                         tasks.remove(task);
 
-                        Snackbar.make( view,"Task Completed, you total points: "+ currentUser.getScore(), Snackbar.LENGTH_LONG).show();
+                        //TODO ERROR: add another view. The view gets removed before the snackbar appears
+                        Snackbar.make( view,"Task Completed, you total points: " +
+                                currentUser.getScore(), Snackbar.LENGTH_LONG).show();
 
                         updateTasksData(tasks);
 
