@@ -82,7 +82,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
             @Override
             public void run() {
                 final User currentUser  = userRepository.getUserWithoutLiveData(userId);
-                views.setTextViewText(R.id.widget_my_points_tv, "" + currentUser.getScore());
+                //views.setTextViewText(R.id.widget_my_points_tv, "" + currentUser.getScore());
                 AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
                     @Override
                     public void run() {

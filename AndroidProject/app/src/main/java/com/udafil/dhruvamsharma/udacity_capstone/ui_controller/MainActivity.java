@@ -588,9 +588,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        //TODO Add this code somewhere else
-        if(currentUser != null)
-            MyGoalsWidget.setUpData(currentUser.getUserId(), getContext());
+
 
     }
 

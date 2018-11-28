@@ -7,4 +7,8 @@
     <string name="current_score">CurrentScore</string>
 
     <string name="is_first_time_install">first_time</string>
+    <string name="feature_screen_text">Welcome to Goals. Keep your self Organised and never be late.</string>
+    <string name="title_activity_on_boarding">OnBoardingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
