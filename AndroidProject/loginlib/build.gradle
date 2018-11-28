@@ -40,4 +40,7 @@ dependencies {
     //Material Component Dependency
     implementation 'com.google.android.material:material:1.0.0'
 
+    //Intro Screen Dependency
+    implementation 'com.github.paolorotolo:appintro:v5.1.0'
+
 }
