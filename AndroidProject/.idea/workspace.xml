@@ -37,7 +37,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1232">
@@ -59,54 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_goals_widget.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-              <folding>
-                <element signature="e#327#349#0" expanded="true" />
-                <element signature="e#370#392#0" expanded="true" />
-                <element signature="e#1083#1101#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="527">
               <caret line="592" column="75" selection-start-line="592" selection-start-column="75" selection-end-line="592" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyGoalsWidget.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="61" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1487#1529#0" expanded="true" />
-                <element signature="e#2956#3548#0" expanded="true" />
-                <element signature="e#3183#3521#0" expanded="true" />
-                <element signature="e#3520#3521#0" expanded="true" />
-                <element signature="e#3547#3548#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_goals_widget_info.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/my_goals_widget_info.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -6662,7 +6619,6 @@
         <option value="$PROJECT_DIR$/loginlib/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/domain/User.java" />
         <option value="$PROJECT_DIR$/loginlib/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/ExpandedBottomSheetBehaviour.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/integers.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_background.xml" />
@@ -6681,7 +6637,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_task_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/BottomSheetListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java" />
         <option value="$PROJECT_DIR$/loginlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/loginlib/LoginActivity.java" />
         <option value="$PROJECT_DIR$/pointslib/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/pointslib/build.gradle" />
@@ -6704,11 +6659,13 @@
         <option value="$PROJECT_DIR$/app/src/main/res/xml/my_goals_widget_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="714" />
+    <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -6825,6 +6782,13 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="ui_controller" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="ui_controller" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="task" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
@@ -7074,7 +7038,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" weight="0.32969698" />
@@ -7197,13 +7161,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="56" column="81" selection-start-line="56" selection-start-column="81" selection-end-line="56" selection-end-column="81" />
         </state>
       </provider>
     </entry>
@@ -7507,13 +7464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -7573,6 +7523,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/my_goals_widget_info.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-512">
+          <caret line="45" column="61" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1487#1529#0" expanded="true" />
+            <element signature="e#2956#3548#0" expanded="true" />
+            <element signature="e#3183#3521#0" expanded="true" />
+            <element signature="e#3520#3521#0" expanded="true" />
+            <element signature="e#3547#3548#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="88" column="38" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+          <folding>
+            <element signature="e#1885#1932#0" expanded="true" />
+            <element signature="e#1973#2135#0" expanded="true" />
+            <element signature="e#2134#2135#0" expanded="true" />
+            <element signature="e#2710#2869#0" expanded="true" />
+            <element signature="e#2930#3101#0" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+          <folding>
+            <element signature="e#3274#3500#0" expanded="true" />
+            <element signature="e#3499#3500#0" expanded="true" />
+            <element signature="e#3545#3749#0" expanded="true" />
+            <element signature="e#3748#3749#0" expanded="true" />
+            <element signature="e#4377#5790#0" expanded="true" />
+            <element signature="e#4684#4803#0" expanded="true" />
+            <element signature="e#5002#5763#0" expanded="true" />
+            <element signature="e#5762#5763#0" expanded="true" />
+            <element signature="e#5789#5790#0" expanded="true" />
+            <element signature="e#6009#6257#0" expanded="true" />
+            <element signature="e#6256#6257#0" expanded="true" />
+            <element signature="e#6704#8119#0" expanded="true" />
+            <element signature="e#7011#7130#0" expanded="true" />
+            <element signature="e#7329#8092#0" expanded="true" />
+            <element signature="e#8091#8092#0" expanded="true" />
+            <element signature="e#8118#8119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="592" column="75" selection-start-line="592" selection-start-column="75" selection-end-line="592" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding>
+            <element signature="e#327#349#0" expanded="true" />
+            <element signature="e#1029#1047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1232">
@@ -7589,50 +7623,6 @@
             <element signature="e#4182#4229#0" expanded="true" />
             <element signature="e#4264#4311#0" expanded="true" />
             <element signature="e#4346#4402#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/my_goals_widget_info.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding>
-            <element signature="e#327#349#0" expanded="true" />
-            <element signature="e#370#392#0" expanded="true" />
-            <element signature="e#1083#1101#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="592" column="75" selection-start-line="592" selection-start-column="75" selection-end-line="592" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="61" selection-start-line="45" selection-start-column="61" selection-end-line="45" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1487#1529#0" expanded="true" />
-            <element signature="e#2956#3548#0" expanded="true" />
-            <element signature="e#3183#3521#0" expanded="true" />
-            <element signature="e#3520#3521#0" expanded="true" />
-            <element signature="e#3547#3548#0" expanded="true" />
           </folding>
         </state>
       </provider>
