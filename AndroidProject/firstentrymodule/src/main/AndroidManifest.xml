@@ -3,7 +3,7 @@
     package="com.onearticleoneweek.wahadatkashmiri.firstentrymodule">
 
     <application>
-        <activity android:name=".FirstTimeInstallActivivity"></activity>
+        <activity android:name=".FirstTimeInstallActivivity" />
     </application>
 
 </manifest>
