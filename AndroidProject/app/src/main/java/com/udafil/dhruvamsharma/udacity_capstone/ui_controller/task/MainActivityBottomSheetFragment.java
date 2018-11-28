@@ -72,7 +72,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
     private void saveTask(View view) {
 
         TextInputEditText newTask = view.findViewById(R.id.main_activity_bottom_sheet_edit_task_et);
-        if(newTask.getText() != null || newTask.getText().toString().equals("")) {
+        if(newTask.getText() != null && !newTask.getText().toString().equals("")) {
             mTaskDescription = newTask.getText().toString();
 
             final Task task = new Task(mTaskDescription, false, listId, new Date());
@@ -82,13 +82,21 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
                 @Override
                 public void run() {
                     repository.insertTask(task);
+
+                    AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            dismiss();
+                        }
+                    });
                 }
             });
 
 
+
         }
 
-        dismiss();
+
 
 
     }

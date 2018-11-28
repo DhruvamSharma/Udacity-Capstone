@@ -4,6 +4,7 @@ package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,8 +67,10 @@ public class MainActivityTaskListAdapter extends
 
         if(tasks.get(i).getComlpleted()) {
             taskViewHolder.animationView.setProgress(1f);
+            taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             taskViewHolder.animationView.setProgress(0f);
+            taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
         }
 
 
