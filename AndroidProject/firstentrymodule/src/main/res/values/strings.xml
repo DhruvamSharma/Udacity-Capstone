@@ -11,4 +11,17 @@
     <string name="title_activity_on_boarding">OnBoardingActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+
+
+    <string name="fragment_one_desc">Be organised and always be on time</string>
+    <string name="fragment_one_title">Easily Managed</string>
+
+
+    <string name="fragment_two_desc">Earn 5 points on every task you complete. Helps you keep motivated</string>
+    <string name="fragment_two_title">Earn Goal Points</string>
+
+    <string name="fragment_three_desc">No login required. Straight to work. You get 3 lists without login. For the fourth list, happy login</string>
+    <string name="fragment_three_title">No login</string>
+
 </resources>
