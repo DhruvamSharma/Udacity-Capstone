@@ -32,8 +32,8 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        userRepository = UserRepository.getUserRepository(this);
-        listRepository = ListRepository.getCommonRepository(this);
+        userRepository = UserRepository.getUserRepository(SplashScreen.this);
+        listRepository = ListRepository.getCommonRepository(SplashScreen.this);
 
         //Check for first-time installs
         //Check for Last accessed items

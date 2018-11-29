@@ -67,4 +67,7 @@ dependencies {
     implementation project(':pointslib')
     implementation project(':firstentrymodule')
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //Intro Screen Dependency
+    implementation 'com.github.paolorotolo:appintro:v5.1.0'
 }
