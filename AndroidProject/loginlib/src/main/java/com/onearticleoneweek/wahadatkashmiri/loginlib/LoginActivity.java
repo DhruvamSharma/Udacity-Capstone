@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                             .getString(R.string.current_user)));
 
             final String email = userName.getText().toString();
-            if(matchPasswords()) {
+            if(matchPasswords() && checkForEmptyStrings()) {
 
                 final LiveData<User> userLiveData = UserRepository.
                         getUserRepository(LoginActivity.this).getUser(currentUser.getUserId());
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     response = "User already present";
                                     signupCallbacks.onSignUpFailed(response);
-                                    finish();
+                                    //finish();
                                 }
 
                             }
@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 response = "Sorry, passwords do not match";
                 signupCallbacks.onSignUpFailed(response);
-                finish();
+                //finish();
             }
 
         } else {
@@ -186,11 +186,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This interface helps in sign up call backs.
+     */
     public interface SignUpCallbacks {
 
         void onSignUpComplete(User user);
         void onSignUpFailed(String response);
 
+    }
+
+
+    private boolean checkForEmptyStrings() {
+
+        boolean canSaveUser = false;
+
+        if(userName != null || password != null ) {
+            if(userName.getText().toString().equals("") || password.getText().toString().equals("")) {
+                //Do nothing
+            } else {
+                canSaveUser = true;
+            }
+        }
+
+        return canSaveUser;
     }
 
 
