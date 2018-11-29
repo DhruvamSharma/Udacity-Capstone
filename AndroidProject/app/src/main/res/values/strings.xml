@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Udacity_Capstone</string>
+    <string name="app_name">Goals</string>
 
     <string name="admob_app_id">ca-app-pub-5510176989515053~3520917855</string>
     <string name="admob_unit_id">ca-app-pub-5510176989515053/6414674502</string>
@@ -19,6 +19,7 @@
     <string name="completed_tasks_label">Completed tasks</string>
 
     <string name="menu_points_label">Your Points</string>
+    <string name="menu_update_list_label">Update this List</string>
 
 
 </resources>

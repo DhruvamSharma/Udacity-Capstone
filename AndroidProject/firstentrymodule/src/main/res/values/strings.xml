@@ -22,6 +22,6 @@
     <string name="fragment_two_title">Earn Goal Points</string>
 
     <string name="fragment_three_desc">No login required. Straight to work. You get 3 lists without login. For the fourth list, happy login</string>
-    <string name="fragment_three_title">No login</string>
+    <string name="fragment_three_title">No login Required</string>
 
 </resources>

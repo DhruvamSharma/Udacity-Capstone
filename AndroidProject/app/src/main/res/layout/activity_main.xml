@@ -14,52 +14,74 @@
         android:background="@android:color/transparent"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/element_margin">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/task_list_main_activity_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
-            android:id="@+id/completed_task_text_view_tv"
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_gravity="center"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/my_toolbar"
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="bottom">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/completed_tasks_label"
-            android:layout_marginTop="@dimen/element_margin"
-            android:textAppearance="@style/TaskTextStyle"
+            android:layout_margin="@dimen/element_margin">
 
-            app:layout_constraintStart_toStartOf="@id/task_list_main_activity_rv"
-            app:layout_constraintTop_toBottomOf="@id/task_list_main_activity_rv"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list_main_activity_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/task_list__completed_main_activity_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/element_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            app:layout_constraintStart_toStartOf="@id/completed_task_text_view_tv"
-            app:layout_constraintTop_toBottomOf="@id/completed_task_text_view_tv">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:id="@+id/completed_task_text_view_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/completed_tasks_label"
+                android:layout_marginTop="@dimen/element_margin"
+                android:textAppearance="@style/TaskTextStyle"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintStart_toStartOf="@id/task_list_main_activity_rv"
+                app:layout_constraintTop_toBottomOf="@id/task_list_main_activity_rv"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list__completed_main_activity_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/element_margin"
+
+                app:layout_constraintStart_toStartOf="@id/completed_task_text_view_tv"
+                app:layout_constraintTop_toBottomOf="@id/completed_task_text_view_tv">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 
 
 
     <include
         android:id="@+id/bottom_sheet_fragment_layout"
-        layout="@layout/activity_main_bottom_sheet_fragment"/>
+        layout="@layout/activity_main_bottom_sheet_fragment" />
 
 
 
@@ -70,6 +92,7 @@
         app:layout_anchor="@id/bottom_sheet_fragment_layout"
         app:layout_anchorGravity="top|center"
         android:elevation="@dimen/fab_elevation"
+        app:srcCompat="@drawable/round_add_white_18dp"
         android:layout_marginBottom="@dimen/element_margin"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -26,6 +26,7 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRep
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udacity_capstone.pointslib.PointsActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget.MyGoalsWidget;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
@@ -56,7 +57,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MainActivity extends AppCompatActivity
         implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
         BottomSheetListAdapter.ListClickListener,
-        LoginActivity.SignUpCallbacks {
+        LoginActivity.SignUpCallbacks,
+        UpdateListActivity.UpdateListCallBacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
@@ -685,7 +687,27 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
 
+            case R.id.action_list_update: {
+
+                UpdateListActivity.init(MainActivity.this);
+
+                Parcelable parcelable = Parcels.wrap(currentList);
+                Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+                intent.putExtra("current_list", parcelable);
+
+                startActivity(intent);
+
+                break;
+            }
+
         }
         return true;
+    }
+
+    @Override
+    public void onListUpdate(String listName) {
+
+        myToolbar.setTitle(listName);
+
     }
 }
