@@ -9,4 +9,10 @@
         android:id="@+id/action_my_points"
         android:title="@string/menu_points_label"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_list_update"
+        android:title="@string/menu_update_list_label"
+        app:showAsAction="never"/>
+
 </menu>

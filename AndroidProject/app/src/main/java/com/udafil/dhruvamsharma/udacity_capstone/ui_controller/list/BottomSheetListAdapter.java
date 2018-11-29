@@ -72,11 +72,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
 
                     mListener.onListClick(mList.get(getAdapterPosition()));
 
-//                    Parcelable parcelable = Parcels.wrap(mList.get(getAdapterPosition()));
-//                    Intent intent = new Intent(mWeakReference.get(), UpdateListActivity.class);
-//                    intent.putExtra("current_list", parcelable);
-//
-//                    mWeakReference.get().startActivity(intent);
+
 
                 }
             });

@@ -30,7 +30,7 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        //setContentView(R.layout.activity_splash_screen);
 
         userRepository = UserRepository.getUserRepository(SplashScreen.this);
         listRepository = ListRepository.getCommonRepository(SplashScreen.this);
