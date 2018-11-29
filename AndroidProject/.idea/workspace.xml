@@ -68,17 +68,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FirstTimeInstallActivivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FirstTimeInstallActivivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/java/com/onearticleoneweek/wahadatkashmiri/firstentrymodule/FirstTimeInstallActivivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="55" column="88" selection-start-line="55" selection-start-column="88" selection-end-line="55" selection-end-column="88" />
+            <state relative-caret-position="1560">
+              <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
               <folding>
                 <element signature="e#1198#1251#0" expanded="true" />
                 <element signature="e#1289#1341#0" expanded="true" />
                 <element signature="e#1831#1884#0" expanded="true" />
                 <element signature="e#1922#1974#0" expanded="true" />
                 <element signature="e#2461#2516#0" expanded="true" />
+                <element signature="e#2554#2608#0" expanded="true" />
                 <element signature="e#4303#4359#0" expanded="true" />
                 <element signature="e#4401#4448#0" expanded="true" />
                 <element signature="e#4489#4536#0" expanded="true" />
@@ -92,24 +93,117 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/values/strings.xml">
+      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+            <state relative-caret-position="885">
+              <caret line="87" column="60" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1889#2667#0" expanded="true" />
+                <element signature="e#2173#2254#0" expanded="true" />
+                <element signature="e#2666#2667#0" expanded="true" />
+                <element signature="e#3080#3227#0" expanded="true" />
+                <element signature="e#3226#3227#0" expanded="true" />
+                <element signature="e#3400#4200#0" expanded="true" />
+                <element signature="e#3771#3818#0" expanded="true" />
+                <element signature="e#3865#3912#0" expanded="true" />
+                <element signature="e#3959#4015#0" expanded="true" />
+                <element signature="e#4199#4200#0" expanded="true" />
+                <element signature="e#4386#4433#0" expanded="true" />
+                <element signature="e#4468#4515#0" expanded="true" />
+                <element signature="e#4550#4606#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
+      <file leaf-file-name="activity_splash_screen.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2115">
-              <caret line="148" selection-start-line="148" selection-end-line="148" />
+            <state relative-caret-position="150">
+              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="383" selection-start-line="383" selection-end-line="383" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4776#4832#0" expanded="true" />
+                <element signature="e#4874#4921#0" expanded="true" />
+                <element signature="e#4962#5009#0" expanded="true" />
+                <element signature="e#5103#5150#0" expanded="true" />
+                <element signature="e#5196#5243#0" expanded="true" />
+                <element signature="e#5293#5349#0" expanded="true" />
+                <element signature="e#5764#6134#0" expanded="true" />
+                <element signature="e#5924#6104#0" expanded="true" />
+                <element signature="e#6103#6104#0" expanded="true" />
+                <element signature="e#6133#6134#0" expanded="true" />
+                <element signature="e#6271#6428#0" expanded="true" />
+                <element signature="e#6427#6428#0" expanded="true" />
+                <element signature="e#6918#6965#0" expanded="true" />
+                <element signature="e#7040#7193#0" expanded="true" />
+                <element signature="e#7192#7193#0" expanded="true" />
+                <element signature="e#7241#7987#0" expanded="true" />
+                <element signature="e#7607#7654#0" expanded="true" />
+                <element signature="e#7697#7952#0" expanded="true" />
+                <element signature="e#7951#7952#0" expanded="true" />
+                <element signature="e#7986#7987#0" expanded="true" />
+                <element signature="e#11273#11523#0" expanded="true" />
+                <element signature="e#11522#11523#0" expanded="true" />
+                <element signature="e#11913#12163#0" expanded="true" />
+                <element signature="e#12162#12163#0" expanded="true" />
+                <element signature="e#12917#12994#0" expanded="true" />
+                <element signature="e#13809#13856#0" expanded="true" />
+                <element signature="e#14105#14152#0" expanded="true" />
+                <element signature="e#14658#15160#0" expanded="true" />
+                <element signature="e#14826#15134#0" expanded="true" />
+                <element signature="e#15133#15134#0" expanded="true" />
+                <element signature="e#15159#15160#0" expanded="true" />
+                <element signature="e#16646#17114#0" expanded="true" />
+                <element signature="e#16878#17088#0" expanded="true" />
+                <element signature="e#17087#17088#0" expanded="true" />
+                <element signature="e#17113#17114#0" expanded="true" />
+                <element signature="e#17254#17688#0" expanded="true" />
+                <element signature="e#17687#17688#0" expanded="true" />
+                <element signature="e#19573#19620#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_points_points_module.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points_points_module.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+              <folding>
+                <element signature="e#1070#1088#0" expanded="true" />
+                <element signature="e#1541#1559#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_first_time_install_activivity.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/layout/activity_first_time_install_activivity.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="17" selection-end-column="51" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -6676,7 +6770,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/loginlib/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/loginlib/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/roomlib/src/main/java/com/onearticleoneweek/wahadatkashmiri/roomlib/database/domain/User.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/ExpandedBottomSheetBehaviour.java" />
@@ -6702,7 +6795,6 @@
         <option value="$PROJECT_DIR$/pointslib/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main_activity_menu.xml" />
         <option value="$PROJECT_DIR$/pointslib/src/main/java/com/udacity_capstone/pointslib/PointsActivity.java" />
-        <option value="$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/list/NewListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
@@ -6712,21 +6804,23 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/my_goals_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityTaskListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/task/MainActivityBottomSheetFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/res/layout/activity_first_time_install_activivity.xml" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/res/layout/activity_on_boarding.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/loginlib/build.gradle" />
         <option value="$PROJECT_DIR$/firstentrymodule/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/java/com/onearticleoneweek/wahadatkashmiri/firstentrymodule/ZoomOutPageTransformer.java" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/res/values/color.xml" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java" />
         <option value="$PROJECT_DIR$/firstentrymodule/src/main/java/com/onearticleoneweek/wahadatkashmiri/firstentrymodule/FirstTimeInstallActivivity.java" />
+        <option value="$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points.xml" />
+        <option value="$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points_points_module.xml" />
       </list>
     </option>
   </component>
@@ -6837,21 +6931,6 @@
           <expand>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
               <item name="firstentrymodule" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
@@ -6873,9 +6952,18 @@
             </path>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
-              <item name="firstentrymodule" type="feadf853:AndroidModuleNode" />
+              <item name="pointslib" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="pointslib" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
+            </path>
+            <path>
+              <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
+              <item name="pointslib" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="AndroidProject" type="1abcf292:AndroidViewProjectNode" />
@@ -6917,8 +7005,9 @@
       <recent name="com.onearticleoneweek.wahadatkashmiri.roomlib" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/firstentrymodule/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/pointslib/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/firstentrymodule/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/assets" />
     </key>
     <key name="android.template.parentActivityClass">
@@ -7104,7 +7193,7 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5193452" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49928468" weight="0.32848486" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
       <window_info anchor="right" id="Gradle" order="3" />
@@ -7188,16 +7277,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_single_list_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/state_list_drawable.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -7314,16 +7393,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main_activity_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -7348,16 +7417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="24" column="62" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pointslib/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -7369,6 +7428,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
           <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="e#1202#1203#0" expanded="true" />
+            <element signature="e#1261#1262#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -7442,41 +7505,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="15" selection-end-column="51" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/layout/activity_first_time_install_activivity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding>
-            <element signature="e#952#981#0" expanded="true" />
-            <element signature="e#957#975#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/widget/MyGoalsWidget.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="591" selection-start-line="591" selection-end-line="591" />
         </state>
       </provider>
     </entry>
@@ -7555,16 +7587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="148" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -7572,16 +7594,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/app_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="24" column="62" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_screen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="87" column="60" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1889#2667#0" expanded="true" />
+            <element signature="e#2173#2254#0" expanded="true" />
+            <element signature="e#2666#2667#0" expanded="true" />
+            <element signature="e#3080#3227#0" expanded="true" />
+            <element signature="e#3226#3227#0" expanded="true" />
+            <element signature="e#3400#4200#0" expanded="true" />
+            <element signature="e#3771#3818#0" expanded="true" />
+            <element signature="e#3865#3912#0" expanded="true" />
+            <element signature="e#3959#4015#0" expanded="true" />
+            <element signature="e#4199#4200#0" expanded="true" />
+            <element signature="e#4386#4433#0" expanded="true" />
+            <element signature="e#4468#4515#0" expanded="true" />
+            <element signature="e#4550#4606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/java/com/onearticleoneweek/wahadatkashmiri/firstentrymodule/FirstTimeInstallActivivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="55" column="88" selection-start-line="55" selection-start-column="88" selection-end-line="55" selection-end-column="88" />
+        <state relative-caret-position="1560">
+          <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
           <folding>
             <element signature="e#1198#1251#0" expanded="true" />
             <element signature="e#1289#1341#0" expanded="true" />
             <element signature="e#1831#1884#0" expanded="true" />
             <element signature="e#1922#1974#0" expanded="true" />
             <element signature="e#2461#2516#0" expanded="true" />
+            <element signature="e#2554#2608#0" expanded="true" />
             <element signature="e#4303#4359#0" expanded="true" />
             <element signature="e#4401#4448#0" expanded="true" />
             <element signature="e#4489#4536#0" expanded="true" />
@@ -7592,6 +7663,77 @@
             <element signature="e#1349#1350#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/udafil/dhruvamsharma/udacity_capstone/ui_controller/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="383" selection-start-line="383" selection-end-line="383" />
+          <folding>
+            <element signature="e#4776#4832#0" expanded="true" />
+            <element signature="e#4874#4921#0" expanded="true" />
+            <element signature="e#4962#5009#0" expanded="true" />
+            <element signature="e#5103#5150#0" expanded="true" />
+            <element signature="e#5196#5243#0" expanded="true" />
+            <element signature="e#5293#5349#0" expanded="true" />
+            <element signature="e#5764#6134#0" expanded="true" />
+            <element signature="e#5924#6104#0" expanded="true" />
+            <element signature="e#6103#6104#0" expanded="true" />
+            <element signature="e#6133#6134#0" expanded="true" />
+            <element signature="e#6271#6428#0" expanded="true" />
+            <element signature="e#6427#6428#0" expanded="true" />
+            <element signature="e#6918#6965#0" expanded="true" />
+            <element signature="e#7040#7193#0" expanded="true" />
+            <element signature="e#7192#7193#0" expanded="true" />
+            <element signature="e#7241#7987#0" expanded="true" />
+            <element signature="e#7607#7654#0" expanded="true" />
+            <element signature="e#7697#7952#0" expanded="true" />
+            <element signature="e#7951#7952#0" expanded="true" />
+            <element signature="e#7986#7987#0" expanded="true" />
+            <element signature="e#11273#11523#0" expanded="true" />
+            <element signature="e#11522#11523#0" expanded="true" />
+            <element signature="e#11913#12163#0" expanded="true" />
+            <element signature="e#12162#12163#0" expanded="true" />
+            <element signature="e#12917#12994#0" expanded="true" />
+            <element signature="e#13809#13856#0" expanded="true" />
+            <element signature="e#14105#14152#0" expanded="true" />
+            <element signature="e#14658#15160#0" expanded="true" />
+            <element signature="e#14826#15134#0" expanded="true" />
+            <element signature="e#15133#15134#0" expanded="true" />
+            <element signature="e#15159#15160#0" expanded="true" />
+            <element signature="e#16646#17114#0" expanded="true" />
+            <element signature="e#16878#17088#0" expanded="true" />
+            <element signature="e#17087#17088#0" expanded="true" />
+            <element signature="e#17113#17114#0" expanded="true" />
+            <element signature="e#17254#17688#0" expanded="true" />
+            <element signature="e#17687#17688#0" expanded="true" />
+            <element signature="e#19573#19620#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/firstentrymodule/src/main/res/layout/activity_first_time_install_activivity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="17" selection-end-column="51" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pointslib/src/main/res/layout/activity_points_points_module.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding>
+            <element signature="e#1070#1088#0" expanded="true" />
+            <element signature="e#1541#1559#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>

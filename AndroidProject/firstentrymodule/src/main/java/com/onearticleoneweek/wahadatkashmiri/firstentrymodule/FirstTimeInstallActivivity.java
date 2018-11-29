@@ -116,6 +116,8 @@ public class FirstTimeInstallActivivity extends AppIntro2 {
                     intent.getIntExtra(getResources().getString(R.string.current_user), -1),
                     intent.getBooleanExtra(getResources().getString(R.string.is_first_time_install), true));
 
+            finish();
+
         }
 
     }

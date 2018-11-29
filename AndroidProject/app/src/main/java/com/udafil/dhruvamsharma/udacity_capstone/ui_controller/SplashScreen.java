@@ -47,29 +47,38 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
      */
     private void setUpSharedPreferences() {
 
-        final SharedPreferences preferences = getApplicationContext()
-                .getSharedPreferences("my_file", MODE_PRIVATE);
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
 
-        boolean isFirstTime = preferences.getBoolean(getResources()
-                .getString(R.string.is_first_time_install), true);
+                final SharedPreferences preferences = getApplicationContext()
+                        .getSharedPreferences("my_file", MODE_PRIVATE);
 
-
-
-        if(isFirstTime) {
-
-            firsTimeSetUp(preferences);
-
-        } else {
-
-            int userId = preferences
-                    .getInt("user", -1);
+                boolean isFirstTime = preferences.getBoolean(getResources()
+                        .getString(R.string.is_first_time_install), true);
 
 
-            int listId = preferences.
-                    getInt("list", -1);
 
-            setupActivity(listId, userId, false);
-        }
+                if(isFirstTime) {
+
+                    firsTimeSetUp(preferences);
+
+                } else {
+
+                    int userId = preferences
+                            .getInt("user", -1);
+
+
+                    int listId = preferences.
+                            getInt("list", -1);
+
+                    setupActivity(listId, userId, false);
+                }
+
+            }
+        });
+
+
 
 
 
@@ -81,22 +90,14 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
         final User tempUser = new User("User", new Date(),
                 "password", "emailId", false, 0);
 
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+        final int userId = userRepository.createUser(tempUser);
+        List tempList = new List(userId, "My List", new Date());
+        final int listId = listRepository.insertList(tempList);
+
+        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-                final int userId = userRepository.createUser(tempUser);
-                List tempList = new List(userId, "My List", new Date());
-                final int listId = listRepository.insertList(tempList);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setupActivity(listId, userId, true);
-                    }
-                });
-
-
+                setupActivity(listId, userId, true);
             }
         });
 
@@ -104,25 +105,34 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
 
 
 
+
+
     }
 
-    private void setupActivity(int listId, int userId, boolean isFirstTime) {
+    private void setupActivity(final int listId, final int userId, final boolean isFirstTime) {
 
-        if(isFirstTime) {
+        AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+            @Override
+            public void run() {
 
-            FirstTimeInstallActivivity.init(SplashScreen.this);
+                if(isFirstTime) {
 
-            //TODO open up NewEntering Screen
-            Intent intent = new Intent(SplashScreen.this, FirstTimeInstallActivivity.class);
-            intent.putExtra(getResources().getString(R.string.current_list), listId);
-            intent.putExtra(getResources().getString(R.string.current_user), userId);
-            intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
-            startActivity(intent);
+                    FirstTimeInstallActivivity.init(SplashScreen.this);
 
-        } else {
-            Toast.makeText(SplashScreen.this, "is first time: "+ isFirstTime, Toast.LENGTH_SHORT).show();
-            startApp(listId, userId, isFirstTime);
-        }
+                    //TODO open up NewEntering Screen
+                    Intent intent = new Intent(SplashScreen.this, FirstTimeInstallActivivity.class);
+                    intent.putExtra(getResources().getString(R.string.current_list), listId);
+                    intent.putExtra(getResources().getString(R.string.current_user), userId);
+                    intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
+                    startActivity(intent);
+
+                } else {
+                    startApp(listId, userId, isFirstTime);
+                }
+            }
+        });
+
+
 
     }
 
@@ -134,6 +144,7 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
         intent.putExtra(getResources().getString(R.string.is_first_time_install), isFirstTime);
 
         startActivity(intent);
+        finish();
 
     }
 
@@ -142,6 +153,7 @@ public class SplashScreen extends AppCompatActivity implements FirstTimeInstallA
     public void start(int intExtra, int extra, boolean booleanExtra) {
 
         startApp(intExtra, extra, booleanExtra);
+        finish();
 
     }
 }
