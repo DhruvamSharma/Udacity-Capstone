@@ -169,48 +169,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                AppExecutor
-                        .getsInstance().getDiskIO().execute(new Runnable() {
+                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                     @Override
                     public void run() {
 
-                        if(listChecks()) {
-                            final Intent intent
-                                    = new Intent(new Intent(
-                                            MainActivity.this, NewListActivity.class));
-                            intent.putExtra(
-                                    getResources().getString(R.string.current_user)
-                                    , currentUser.getUserId());
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    startActivity(intent);
-                                }
-                            });
-                        } else {
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //Ask for login
-                                    final Intent intent
-                                            = new Intent(MainActivity.this,
-                                            LoginActivity.class);
-                                    Parcelable user = Parcels.wrap(currentUser);
-                                    intent.putExtra(getResources().getString(R.string.current_user), user);
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            LoginActivity.init(getContext());
-                                        }
-                                    });
-
-                                }
-                            });
-
-
-                        }
+                        checkIfUserCanCreateList();
 
                     }
                 });
@@ -236,6 +199,48 @@ public class MainActivity extends AppCompatActivity
         //List Name Text View
         mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
 
+    }
+
+    private void checkIfUserCanCreateList() {
+
+        if(listChecks()) {
+            final Intent intent
+                    = new Intent(new Intent(
+                    MainActivity.this, NewListActivity.class));
+            intent.putExtra(
+                    getResources().getString(R.string.current_user)
+                    , currentUser.getUserId());
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(intent);
+                }
+            });
+
+        } else {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //Ask for login
+                    final Intent intent
+                            = new Intent(MainActivity.this,
+                            LoginActivity.class);
+                    Parcelable user = Parcels.wrap(currentUser);
+                    intent.putExtra(getResources().getString(R.string.current_user), user);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                            LoginActivity.init(getContext());
+                        }
+                    });
+
+                }
+            });
+
+
+        }
     }
 
     private void setUpListBottomSheet() {
@@ -433,49 +438,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    /**
-     *
-     */
-    private void retrieveTasks() {
 
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-
-            @Override
-            public void run() {
-                final java.util.List<Task> incompleteTasks =  taskRepository.
-                        getAllTasksWithoutLiveData(currentList.getListId(), false);
-
-                final java.util.List<Task>completedTasks = taskRepository.
-                        getAllTasksWithoutLiveData(currentList.getListId(), true);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        onTaskRetrieved(true, completedTasks) ;
-                        onTaskRetrieved(false, incompleteTasks);
-
-                        if (currentList != null) {
-                            myToolbar.setTitle(currentList.getListName());
-                            myToolbar.setTitleTextAppearance(MainActivity.this,
-                                    R.style.TextAppearance_AppCompat_Display2);
-                            myToolbar.setTitleTextColor(getResources()
-                                    .getColor(android.R.color.black));
-
-                        }
-                        else {
-
-                            //TODO 8: Finish the application gracefully
-                            //finish();
-                        }
-
-                    }
-                });
-
-            }
-        });
-
-    }
 
 
     /**
