@@ -27,7 +27,6 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRep
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udacity_capstone.pointslib.PointsActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListActivity;
-import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget.MyGoalsWidget;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
@@ -38,7 +37,6 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivity
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -705,9 +703,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onListUpdate(String listName) {
+    public void onListUpdate(List list) {
 
-        myToolbar.setTitle(listName);
+        setupCurrentListAndUser(currentUser, list,
+                false);
 
     }
 }

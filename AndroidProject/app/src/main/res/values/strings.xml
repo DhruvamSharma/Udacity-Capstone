@@ -20,6 +20,7 @@
 
     <string name="menu_points_label">Your Points</string>
     <string name="menu_update_list_label">Update this List</string>
+    <string name="new_task_hint">Create a task</string>
 
 
 </resources>

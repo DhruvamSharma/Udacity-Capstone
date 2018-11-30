@@ -19,7 +19,9 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-
+    <style name="TaskTextStyleDark" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
     <!-- Bottom Sheet Styles -->
 

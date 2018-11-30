@@ -11,7 +11,6 @@ import android.view.View;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
-import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 
@@ -72,7 +71,7 @@ public class UpdateListActivity extends AppCompatActivity {
     }
 
     public interface UpdateListCallBacks {
-        void onListUpdate(String listName);
+        void onListUpdate(List list);
     }
 
 
@@ -90,7 +89,7 @@ public class UpdateListActivity extends AppCompatActivity {
         protected void onPostExecute(List response) {
             super.onPostExecute(response);
 
-            mUpdateListCallBacks.onListUpdate(response.getListName());
+            mUpdateListCallBacks.onListUpdate(response);
             finish();
 
         }
