@@ -11,6 +11,6 @@
         android:id="@+id/list_layout_text_main_activity_list_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/TaskTextStyle" />
+        style="@style/TaskTextStyleDark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,5 +12,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="bottom_sheet_elevation">5dp</dimen>
     <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="bottom_sheet_peek_height">56dp</dimen>
 
 </resources>
