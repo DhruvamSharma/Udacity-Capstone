@@ -25,9 +25,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/main_activity_bottom_sheet_edit_task_et"
             android:layout_width="match_parent"
-            android:drawableEnd="@drawable/round_add_white_18dp"
-            android:drawableRight="@drawable/round_add_white_18dp"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>

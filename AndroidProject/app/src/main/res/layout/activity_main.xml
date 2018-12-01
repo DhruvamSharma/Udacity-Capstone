@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_activity_background_layout"
     android:background="@android:color/background_light"
     tools:context=".ui_controller.MainActivity">
 
@@ -17,20 +16,12 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_gravity="center"
-            />
-
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="?android:attr/actionBarSize"
         app:layout_anchor="@id/my_toolbar"
         app:layout_anchorGravity="bottom|bottom">
 
