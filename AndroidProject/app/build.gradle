@@ -8,7 +8,7 @@ android {
             keyAlias 'chalorebels'
             keyPassword 'chalorebels'
             storePassword 'chalorebels'
-            storeFile file('keystore/debug.keystore')
+            storeFile file('keystore/keystore')
         }
     }
     compileSdkVersion 28
