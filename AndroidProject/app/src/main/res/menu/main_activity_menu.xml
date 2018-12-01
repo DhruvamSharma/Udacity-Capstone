@@ -8,7 +8,8 @@
     <item
         android:id="@+id/action_my_points"
         android:title="@string/menu_points_label"
-        app:showAsAction="never"/>
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/score_points"/>
 
     <item
         android:id="@+id/action_list_update"

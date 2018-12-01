@@ -42,7 +42,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -97,7 +96,6 @@ public class MainActivity extends AppCompatActivity
     Toolbar myToolbar;
 
     Bundle saveInstanceState;
-    CoordinatorLayout mMainActivityBackgroundLayout;
 
 
     /**
@@ -153,6 +151,11 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+
+
+
+
+
         setUpTaskRecyclerView();
         setUpListRecyclerView();
         setupCompletedTaskRecyclerView();
@@ -195,7 +198,6 @@ public class MainActivity extends AppCompatActivity
         bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
         //List Name Text View
         mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
-        mMainActivityBackgroundLayout = findViewById(R.id.main_activity_background_layout);
 
     }
 
@@ -480,17 +482,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onChanged(final java.util.List<Task> tasks) {
 
+
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
                             Log.e("onTaskRetrieved", "retrieving from live data " + isCompleted);
 
-                            if(tasks.isEmpty()) {
-                               mMainActivityBackgroundLayout.setBackgroundResource(R.drawable.no_tasks_white);
-                            } else {
-                                mMainActivityBackgroundLayout.setBackgroundColor(getResources().getColor(android.R.color.background_light));
-                            }
                             onTaskRetrieved(isCompleted, tasks);
 
                         }
@@ -700,7 +699,7 @@ public class MainActivity extends AppCompatActivity
             }
 
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
