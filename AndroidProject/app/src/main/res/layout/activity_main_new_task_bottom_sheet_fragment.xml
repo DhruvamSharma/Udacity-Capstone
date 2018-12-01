@@ -14,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
+        android:textColorHint="@color/colorAccent"
+        android:hint="@string/new_task_hint"
         app:hintTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         app:boxStrokeColor="@color/colorAccent"
 
@@ -23,8 +25,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/main_activity_bottom_sheet_edit_task_et"
             android:layout_width="match_parent"
-            android:textColorHint="@color/colorAccent"
-            android:hint="@string/new_task_hint"
+            android:drawableEnd="@drawable/round_add_white_18dp"
+            android:drawableRight="@drawable/round_add_white_18dp"
             android:textColor="@android:color/white"
             android:layout_height="wrap_content" />
 
@@ -36,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
-        android:text="Save"
+        android:text="@string/save_button_label"
         app:backgroundTint="@color/colorAccent"
 
         app:layout_constraintEnd_toEndOf="@id/main_activity_bottom_sheet_edit_task_til"

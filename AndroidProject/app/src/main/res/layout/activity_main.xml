@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_activity_background_layout"
     android:background="@android:color/background_light"
     tools:context=".ui_controller.MainActivity">
 
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent"
-        android:elevation="4dp"
+        app:elevation="@dimen/toolbar_elevation"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -90,7 +91,7 @@
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottom_sheet_fragment_layout"
         app:layout_anchorGravity="top|center"
-        android:elevation="@dimen/fab_elevation"
+        app:elevation="@dimen/fab_elevation"
         app:srcCompat="@drawable/round_add_white_18dp"
         android:layout_marginBottom="@dimen/element_margin"/>
 
