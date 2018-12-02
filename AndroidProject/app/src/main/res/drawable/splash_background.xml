@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/colorAccent"/>
+    <item android:drawable="@android:color/white"/>
     <item android:height="50dp"
         android:width="50dp"
         android:top="1dp"
@@ -11,7 +11,7 @@
         android:left="1dp"
         android:right="1dp"
         android:gravity="center">
-        <bitmap android:src="@drawable/app_logo"
+        <bitmap android:src="@drawable/splash_screen_logo"
             android:gravity="center" />
     </item>
 
