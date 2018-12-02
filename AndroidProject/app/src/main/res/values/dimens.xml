@@ -15,4 +15,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="bottom_sheet_peek_height">56dp</dimen>
 
+    <integer name="anim_duration_medium">1000</integer>
+
 </resources>

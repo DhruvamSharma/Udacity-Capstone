@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -280,7 +283,7 @@ public class MainActivity extends AppCompatActivity
 
         mListList.setLayoutManager(layoutManager);
         mListList.setAdapter(mListAdapter);
-
+        runLayoutAnimation(mListList);
     }
 
 
@@ -304,6 +307,7 @@ public class MainActivity extends AppCompatActivity
         mTaskList.setLayoutManager(layoutManager);
         mTaskList.setAdapter(mTaskAdapter);
         mTaskList.addItemDecoration(dividerItemDecoration);
+        runLayoutAnimation(mTaskList);
 
     }
 
@@ -323,7 +327,7 @@ public class MainActivity extends AppCompatActivity
         mCompletedTaskList.setLayoutManager(layoutManager);
         mCompletedTaskList.setAdapter(mCompletedTaskAdapter);
         mCompletedTaskList.addItemDecoration(dividerItemDecoration);
-
+        runLayoutAnimation(mCompletedTaskList);
 
     }
 
@@ -548,6 +552,7 @@ public class MainActivity extends AppCompatActivity
                 mCompletedTaskAdapter.updateTasksData(allTasks);
                 mCompletedTaskAdapter.updateUser(currentUser);
 
+
             }
         }
 
@@ -708,5 +713,17 @@ public class MainActivity extends AppCompatActivity
         setupCurrentListAndUser(currentUser, list,
                 false);
 
+    }
+
+
+
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 }
