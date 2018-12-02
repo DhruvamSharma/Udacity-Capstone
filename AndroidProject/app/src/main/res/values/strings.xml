@@ -23,6 +23,7 @@
     <string name="new_task_hint">Create a task</string>
     <string name="save_button_label">Save</string>
     <string name="your_lists_label">Your Lists</string>
+    <string name="new_list_label">Create New List</string>
 
 
 </resources>

@@ -22,7 +22,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     java.util.List<List> mList;
     private WeakReference<Context> mWeakReference;
     private ListClickListener mListener;
-    int[] state = new int[] {-android.R.attr.state_enabled};
+    private int selectedListId = 0;
 
     public BottomSheetListAdapter(Context context) {
 
@@ -48,7 +48,8 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
         holder.list.setText(mList.get(position).getListName());
-        //setState(holder.itemView);
+//        selectedListId = mList.get(position).getListId();
+//        setState(holder.itemView);
 
     }
 
@@ -71,8 +72,8 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
                 public void onClick(View view) {
 
                     mListener.onListClick(mList.get(getAdapterPosition()));
-
-
+//                    selectedListId = mList.get(getAdapterPosition()).getListId();
+//                    setState(itemView);
 
                 }
             });
@@ -92,7 +93,19 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
 
     private void setState(View view) {
 
-        view.setSelected(true);
+        for(int i = 0; i < mList.size() ;i ++) {
+
+            if(selectedListId == mList.get(i).getListId() ) {
+
+                view.setSelected(true);
+
+            } else {
+                view.setSelected(false);
+            }
+
+        }
+
+
 
     }
 }

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +47,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -59,7 +62,8 @@ public class MainActivity extends AppCompatActivity
         implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
         BottomSheetListAdapter.ListClickListener,
         LoginActivity.SignUpCallbacks,
-        UpdateListActivity.UpdateListCallBacks {
+        UpdateListActivity.UpdateListCallBacks,
+        NewListActivity.NewListCallBacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
@@ -114,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-
+        //setUpListBottomSheet();
         setUpActivity();
 
 
@@ -197,8 +201,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        //setUpListBottomSheet();
-        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
+
         //List Name Text View
         mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
 
@@ -207,6 +210,7 @@ public class MainActivity extends AppCompatActivity
     private void checkIfUserCanCreateList() {
 
         if(listChecks()) {
+            NewListActivity.init(getContext());
             final Intent intent
                     = new Intent(new Intent(
                     MainActivity.this, NewListActivity.class));
@@ -428,7 +432,7 @@ public class MainActivity extends AppCompatActivity
         if (currentList != null) {
             myToolbar.setTitle(currentList.getListName());
             myToolbar.setTitleTextAppearance(MainActivity.this,
-                    R.style.TextAppearance_AppCompat_Display2);
+                    R.style.TextAppearance_AppCompat_Display1);
             myToolbar.setTitleTextColor(getResources()
                     .getColor(android.R.color.black));
 
@@ -725,5 +729,11 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutAnimation(controller);
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
+    }
+
+
+    @Override
+    public void newListCallBack(List list) {
+        onListUpdate(list);
     }
 }

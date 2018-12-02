@@ -2,6 +2,7 @@ package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,22 +10,26 @@ import android.view.View;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+
+import org.parceler.Parcels;
 
 import java.util.Date;
 
 public class NewListActivity extends AppCompatActivity {
 
     private String mListName;
+    private static NewListCallBacks mListCallbacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_list);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         if(intent.hasExtra(getResources().getString(R.string.current_user))) {
 
@@ -34,7 +39,8 @@ public class NewListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    saveList();
+                    saveList(intent.getIntExtra(getResources()
+                            .getString(R.string.current_user), -1));
 
                 }
             });
@@ -44,14 +50,18 @@ public class NewListActivity extends AppCompatActivity {
 
     }
 
-    private void saveList() {
+    public static void init(Context context) {
+        mListCallbacks = (NewListCallBacks) context;
+    }
+
+    private void saveList(int userId) {
 
         TextInputEditText newList = findViewById(R.id.new_list_activity_create_list_et);
         if(newList.getText() != null && !newList.getText().toString().equals("")) {
             mListName = newList.getText().toString();
 
 
-            final List list = new List(1, mListName, new Date());
+            final List list = new List(userId, mListName, new Date());
 
             final ListRepository repository = ListRepository.getCommonRepository(NewListActivity.this);
 
@@ -60,13 +70,26 @@ public class NewListActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     repository.insertList(list);
+                    AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListCallbacks.newListCallBack(list);
+                            finish();
+                        }
+                    });
 
-                    finish();
                 }
             });
 
 
         }
+
+    }
+
+
+    public interface NewListCallBacks {
+
+        void newListCallBack(List list);
 
     }
 }
