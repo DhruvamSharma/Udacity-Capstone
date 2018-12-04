@@ -88,18 +88,12 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
                         @Override
                         public void run() {
                             dismiss();
+                            mBottomSheetCallBacks.onBottomSheetDismiss();
                         }
                     });
                 }
             });
-
-
-
         }
-
-
-
-
     }
 
 

@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
@@ -39,28 +40,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-
-            <TextView
-                android:id="@+id/completed_task_text_view_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/completed_tasks_label"
-                android:layout_marginTop="@dimen/element_margin"
-                android:textAppearance="@style/TaskTextStyle"
-
-                app:layout_constraintStart_toStartOf="@id/task_list_main_activity_rv"
-                app:layout_constraintTop_toBottomOf="@id/task_list_main_activity_rv"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/task_list__completed_main_activity_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/element_margin"
-
-                app:layout_constraintStart_toStartOf="@id/completed_task_text_view_tv"
-                app:layout_constraintTop_toBottomOf="@id/completed_task_text_view_tv">
-
-            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

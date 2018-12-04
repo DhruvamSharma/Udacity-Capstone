@@ -16,4 +16,9 @@
         android:title="@string/menu_update_list_label"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_completed_tasks"
+        android:title="@string/menu_completed_tasks_label"
+        app:showAsAction="never"/>
+
 </menu>

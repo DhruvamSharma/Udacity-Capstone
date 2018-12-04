@@ -21,6 +21,8 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListActivity;
 
 import org.parceler.Parcels;
 
@@ -37,13 +39,13 @@ public class MainActivityTaskListAdapter extends
     private List<Task> tasks;
     private WeakReference<Context> contextWeakReference;
     private User currentUser;
-    private View viewForSnackBar;
+    private UpdateCallbacks mCallbacks;
 
-    public MainActivityTaskListAdapter(Context context, View view) {
+    public MainActivityTaskListAdapter(Context context) {
 
         contextWeakReference = new WeakReference<>(context);
-        viewForSnackBar = view;
 
+        //mCallbacks = (UpdateCallbacks) context;
         this.tasks = new ArrayList<>();
     }
 
@@ -160,20 +162,10 @@ public class MainActivityTaskListAdapter extends
                     @Override
                     public void run() {
 
-                        animationView.setProgress(1f);
-
-                        tasks.remove(task);
-
                         Toast.makeText(contextWeakReference.get(), "Task Completed, you total points: " +
                                 currentUser.getScore(), Toast.LENGTH_SHORT).show();
 
-//                        //TODO ERROR: add another view. The view gets removed before the snackbar appears
-//                        Snackbar.make( animationView,"Task Completed, you total points: " +
-//                                currentUser.getScore(), Snackbar.LENGTH_LONG).show();
-
-                        updateTasksData(tasks);
-
-
+                        animationView.setProgress(1f);
 
                     }
                 });
@@ -232,15 +224,7 @@ public class MainActivityTaskListAdapter extends
 
                         animationView.setProgress(0f);
 
-                        tasks.remove(task);
-
-//                        //TODO ERROR: add another view. The view gets removed before the snackbar appears
-//                        Snackbar.make( animationView, "Task incomplete, you total points: " +
-//                                currentUser.getScore(), Snackbar.LENGTH_LONG).show();
-
-                        updateTasksData(tasks);
-
-                        Toast.makeText(contextWeakReference.get(), "Task inComplete, you total points: " +
+                        Toast.makeText(contextWeakReference.get(), "Task inComplete now, you total points: " +
                                 currentUser.getScore(), Toast.LENGTH_SHORT).show();
 
 
@@ -251,4 +235,14 @@ public class MainActivityTaskListAdapter extends
         });
 
     }
+
+
+    public interface UpdateCallbacks {
+
+        void updateList();
+
+    }
+
+
+
 }
