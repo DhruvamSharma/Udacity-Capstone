@@ -22,6 +22,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.onearticleoneweek.wahadatkashmiri.loginlib.LoginActivity;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
@@ -35,6 +36,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListAc
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.CompletedTaskActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
 
@@ -48,6 +50,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -63,13 +66,14 @@ public class MainActivity extends AppCompatActivity
         BottomSheetListAdapter.ListClickListener,
         LoginActivity.SignUpCallbacks,
         UpdateListActivity.UpdateListCallBacks,
-        NewListActivity.NewListCallBacks {
+        NewListActivity.NewListCallBacks,
+        MainActivityTaskListAdapter.UpdateCallbacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
     //recyclerview for all the lists
     private RecyclerView mListList;
-    private RecyclerView mCompletedTaskList;
+
 
     //A common taskRepository for all the network and
     //database operations
@@ -77,18 +81,15 @@ public class MainActivity extends AppCompatActivity
     private ListRepository listRepository;
     private UserRepository userRepository;
 
-    //List name
-    private TextView mCompletedTextLabel;
+
 
     //Task Adapter
     MainActivityTaskListAdapter mTaskAdapter;
-    MainActivityTaskListAdapter mCompletedTaskAdapter;
 
     //List Adapter
     BottomSheetListAdapter mListAdapter;
 
-    MainActivityBottomSheetFragment mBottomSheetFragment
-            = new MainActivityBottomSheetFragment();
+    MainActivityBottomSheetFragment mBottomSheetFragment;
 
 
     private User currentUser;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity
     //BottomSheet for List
     BottomSheetBehavior sheetBehavior;
     ConstraintLayout bottomSheet;
+    CoordinatorLayout mParentLayout;
     Toolbar myToolbar;
 
     Bundle saveInstanceState;
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        //setUpListBottomSheet();
+        setUpListBottomSheet();
         setUpActivity();
 
 
@@ -165,7 +167,7 @@ public class MainActivity extends AppCompatActivity
 
         setUpTaskRecyclerView();
         setUpListRecyclerView();
-        setupCompletedTaskRecyclerView();
+
         setUpAds();
         
         
@@ -202,8 +204,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        //List Name Text View
-        mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
+
 
     }
 
@@ -252,20 +253,27 @@ public class MainActivity extends AppCompatActivity
 
     private void setUpListBottomSheet() {
 
-        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
-        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mParentLayout = findViewById(R.id.main_activity_parent_layout);
 
-        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View view, int i) {
+        bottomSheet = mParentLayout.findViewById(R.id.bottom_sheet_fragment_layout);
+        if(bottomSheet != null) {
+            sheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
-            }
+            sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View view, int i) {
 
-            @Override
-            public void onSlide(@NonNull View view, float v) {
+                }
 
-            }
-        });
+                @Override
+                public void onSlide(@NonNull View view, float v) {
+
+
+
+                }
+            });
+        }
+
 
     }
 
@@ -302,7 +310,7 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
 
-        mTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet);
+        mTaskAdapter = new MainActivityTaskListAdapter(this);
 
 
         DividerItemDecoration dividerItemDecoration
@@ -315,25 +323,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setupCompletedTaskRecyclerView() {
 
-        mCompletedTaskList = findViewById(R.id.task_list__completed_main_activity_rv);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
-
-        mCompletedTaskAdapter = new MainActivityTaskListAdapter(this, bottomSheet);
-
-
-        DividerItemDecoration dividerItemDecoration
-                = new DividerItemDecoration(MainActivity.this, layoutManager.getOrientation());
-
-        mCompletedTaskList.setLayoutManager(layoutManager);
-        mCompletedTaskList.setAdapter(mCompletedTaskAdapter);
-        mCompletedTaskList.addItemDecoration(dividerItemDecoration);
-        runLayoutAnimation(mCompletedTaskList);
-
-    }
 
     /**
      * This method set ups the live data for the user
@@ -426,7 +416,6 @@ public class MainActivity extends AppCompatActivity
 
 
         retrieveLists(currentUser.getUserId());
-        retrieveTasks(currentList.getListId(), true);
         retrieveTasks(currentList.getListId(), false);
 
         if (currentList != null) {
@@ -469,6 +458,8 @@ public class MainActivity extends AppCompatActivity
      */
     private void setupBottomSheet() {
 
+        mBottomSheetFragment = new MainActivityBottomSheetFragment();
+
         Bundle bundle = new Bundle();
         bundle.putString(getResources().getString(R.string.current_list), String.valueOf(currentList.getListId()));
 
@@ -496,7 +487,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void run() {
 
-                            Log.e("onTaskRetrieved", "retrieving from live data " + isCompleted);
+                            Toast.makeText(MainActivity.this, "onTaskRetrieved, retrieving from live data " + isCompleted, Toast.LENGTH_SHORT).show();
 
                             onTaskRetrieved(isCompleted, tasks);
 
@@ -507,13 +498,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void onCompletedTaskPresent(Boolean isCompletedTaskPresent) {
-
-        if(isCompletedTaskPresent)
-        mCompletedTextLabel.setVisibility(View.VISIBLE);
-        else
-        mCompletedTextLabel.setVisibility(View.GONE);
-    }
 
 
     /**
@@ -525,43 +509,16 @@ public class MainActivity extends AppCompatActivity
 
         allTasks = tasks;
 
-        if(!isCompleted ){
+        if(allTasks != null) {
+            mTaskList.setVisibility(View.VISIBLE);
+            mTaskAdapter.updateTasksData(allTasks);
+            mTaskAdapter.updateUser(currentUser);
 
-            if(allTasks != null) {
-                mTaskList.setVisibility(View.VISIBLE);
-                mTaskAdapter.updateTasksData(allTasks);
-                mTaskAdapter.updateUser(currentUser);
+        } else {
 
-            } else {
-
-                mTaskList.setVisibility(View.GONE);
-                //onCompletedTaskPresent();
-            }
-
+            mTaskList.setVisibility(View.GONE);
+            //onCompletedTaskPresent();
         }
-        else {
-
-            if(allTasks == null ) {
-                onCompletedTaskPresent(false);
-            }
-
-            else {
-
-                if(allTasks.size() == 0) {
-                    onCompletedTaskPresent(false);
-                } else {
-                    onCompletedTaskPresent(true);
-                }
-
-                mCompletedTaskAdapter.updateTasksData(allTasks);
-                mCompletedTaskAdapter.updateUser(currentUser);
-
-
-            }
-        }
-
-
-
     }
 
 
@@ -595,6 +552,11 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 
+        saveLastListAndUser();
+
+    }
+
+    private void saveLastListAndUser() {
         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -607,28 +569,29 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
     }
 
     @Override
     public void onBottomSheetDismiss() {
+
+        //setupCurrentListAndUser(currentUser, currentList,
+        //        false);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(currentUser != null)
-        retrieveLists(currentUser.getUserId());
     }
 
     @Override
     public void onListClick(final List list) {
 
-        setupCurrentListAndUser(currentUser, list, false);
-//        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
-//        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
+        setupCurrentListAndUser(currentUser, list, false);
+        if(bottomSheet != null)
+            if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
     }
 
@@ -659,6 +622,7 @@ public class MainActivity extends AppCompatActivity
 
         setupCurrentListAndUser(user, currentList,
                 false);
+        saveLastListAndUser();
 
     }
 
@@ -707,6 +671,21 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
 
+            case R.id.action_completed_tasks: {
+
+                Intent intent = new Intent(MainActivity.this, CompletedTaskActivity.class);
+
+                Parcelable parcel = Parcels.wrap(currentUser);
+                intent.putExtra(getResources().getString(R.string.current_user), parcel);
+
+                Parcelable parcelable = Parcels.wrap(currentList);
+                intent.putExtra(getResources().getString(R.string.current_list), parcelable);
+
+                startActivity(intent);
+
+                break;
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -716,6 +695,7 @@ public class MainActivity extends AppCompatActivity
 
         setupCurrentListAndUser(currentUser, list,
                 false);
+        saveLastListAndUser();
 
     }
 
@@ -734,6 +714,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void newListCallBack(List list) {
-        onListUpdate(list);
+        onListClick(list);
+    }
+
+    @Override
+    public void updateList() {
+        setupCurrentListAndUser(currentUser, currentList, false);
     }
 }

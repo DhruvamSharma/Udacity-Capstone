@@ -22,7 +22,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui_controller.MainActivity"/>
+        <activity android:name=".ui_controller.MainActivity" />
         <activity android:name=".ui_controller.task.UpdateTaskActivity" />
         <activity android:name=".ui_controller.list.UpdateListActivity" />
         <activity android:name=".ui_controller.list.NewListActivity" />
@@ -37,7 +37,8 @@
                 android:resource="@xml/my_goals_widget_info" />
         </receiver>
 
-        <activity android:name=".ui_controller.SplashScreen"
+        <activity
+            android:name=".ui_controller.SplashScreen"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui_controller.task.CompletedTaskActivity"></activity>
     </application>
 
 </manifest>
