@@ -67,12 +67,20 @@ public class MainActivityTaskListAdapter extends
 
         taskViewHolder.taskTextView.setText(tasks.get(i).getTaskDescription());
 
-        if(tasks.get(i).getComlpleted()) {
+        taskViewHolder.animationView.setProgress(0f);
+        taskViewHolder.animationView.setPressed(false);
+        taskViewHolder.animationView.invalidate();
+
+        if(tasks.get(taskViewHolder.getAdapterPosition()).getComlpleted()) {
             taskViewHolder.animationView.setProgress(1f);
             taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
         } else {
+
             taskViewHolder.animationView.setProgress(0f);
             taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+
+
         }
 
 
@@ -192,6 +200,7 @@ public class MainActivityTaskListAdapter extends
 
         } else {
             animationView.setProgress(0f);
+            animationView.invalidate();
 
             inCompleteATask(animationView, task);
 
