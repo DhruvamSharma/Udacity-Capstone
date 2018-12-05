@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="indicator_color_light">#097ed1</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">FirstEntryModule</string>
+    <string name="current_list">current_list</string>
+    <string name="current_score">CurrentScore</string>
+    <string name="current_task">current_task</string>
+    <string name="current_user">current_user</string>
+    <string name="feature_screen_text">Welcome to Goals. Keep your self Organised and never be late.</string>
+    <string name="fragment_one_desc">Be organised and always be on time</string>
+    <string name="fragment_one_title">Easily Managed</string>
+    <string name="fragment_three_desc">No login required. Straight to work. You get 3 lists without login. For the fourth list, happy login</string>
+    <string name="fragment_three_title">No login Required</string>
+    <string name="fragment_two_desc">Earn 5 points on every task you complete. Helps you keep motivated</string>
+    <string name="fragment_two_title">Earn Goal Points</string>
+    <string name="is_first_time_install">first_time</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_on_boarding">OnBoardingActivity</string>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>
