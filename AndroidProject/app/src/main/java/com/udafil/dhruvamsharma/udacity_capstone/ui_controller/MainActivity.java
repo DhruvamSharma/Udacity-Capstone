@@ -1,5 +1,7 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,6 +41,7 @@ import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActiv
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.CompletedTaskActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget.MyGoalsWidget;
 
 
 import org.parceler.Parcels;
@@ -682,6 +685,28 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra(getResources().getString(R.string.current_list), parcelable);
 
                 startActivity(intent);
+
+                break;
+            }
+
+            case R.id.action_add_widget: {
+
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds( new ComponentName(getContext(), MyGoalsWidget.class));
+
+                if(appWidgetIds == null || appWidgetIds.length == 0) {
+
+                    Snackbar.make(mParentLayout, "No Widget created on screen. First Create a Widget", Snackbar.LENGTH_LONG).show();
+
+                    break;
+
+                }
+                else {
+                    MyGoalsWidget.setUpData(currentUser, currentList, allTasks,MainActivity.this);
+                    Snackbar.make(mParentLayout, "Your tasks are now stored on the widget.", Snackbar.LENGTH_LONG).show();
+                }
+
+
 
                 break;
             }

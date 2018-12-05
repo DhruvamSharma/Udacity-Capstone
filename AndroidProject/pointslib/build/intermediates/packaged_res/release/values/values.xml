@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pointsLib</string>
+    <string name="current_score">CurrentScore</string>
+    <string name="current_user">CurrentUser</string>
+</resources>

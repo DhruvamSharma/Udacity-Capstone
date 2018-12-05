@@ -1,0 +1,43 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:3:5-45
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:1-9:12
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:5:5-7:19
+activity#com.udacity_capstone.pointslib.PointsActivity
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:6:9-61
+	android:name
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml:6:19-49
+uses-sdk
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/pointslib/src/main/AndroidManifest.xml

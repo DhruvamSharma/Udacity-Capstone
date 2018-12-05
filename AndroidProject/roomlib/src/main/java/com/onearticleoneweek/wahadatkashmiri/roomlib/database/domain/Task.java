@@ -3,6 +3,7 @@ package com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain;
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -12,7 +13,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tasks")
 @Parcel
-public class Task {
+public class Task implements Serializable {
 
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "task_id")

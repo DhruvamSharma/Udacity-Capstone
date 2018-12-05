@@ -1,0 +1,47 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+	package
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:3:5-69
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:1-11:12
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:5:5-65
+	android:name
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:5:22-63
+application
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:7:5-9:19
+activity#com.onearticleoneweek.wahadatkashmiri.firstentrymodule.FirstTimeInstallActivivity
+ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:8:9-64
+	android:name
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml:8:19-61
+uses-sdk
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		ADDED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml
+		INJECTED from /Users/dhruvamsharma/Udacity-Capstone-Project/AndroidProject/firstentrymodule/src/main/AndroidManifest.xml

@@ -25,6 +25,7 @@
     <string name="your_lists_label">Your Lists</string>
     <string name="new_list_label">Create New List</string>
     <string name="menu_completed_tasks_label">Completed Tasks</string>
+    <string name="menu_update_widget_data">Save to widget</string>
 
 
 </resources>
