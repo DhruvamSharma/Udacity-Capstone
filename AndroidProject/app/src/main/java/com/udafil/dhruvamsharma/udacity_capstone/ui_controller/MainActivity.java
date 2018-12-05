@@ -1,11 +1,21 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +24,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.onearticleoneweek.wahadatkashmiri.loginlib.LoginActivity;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
@@ -22,23 +33,27 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
-import com.udafil.dhruvamsharma.udacity_capstone.MyGoalsWidget;
+import com.udacity_capstone.pointslib.PointsActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.BottomSheetListAdapter;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.NewListActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.CompletedTaskActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityBottomSheetFragment;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task.MainActivityTaskListAdapter;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.widget.MyGoalsWidget;
 
 
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -52,12 +67,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MainActivity extends AppCompatActivity
         implements MainActivityBottomSheetFragment.BottomSheetCallBacks,
         BottomSheetListAdapter.ListClickListener,
-        LoginActivity.SignUpCallbacks {
+        LoginActivity.SignUpCallbacks,
+        UpdateListActivity.UpdateListCallBacks,
+        NewListActivity.NewListCallBacks,
+        MainActivityTaskListAdapter.UpdateCallbacks {
 
     //recycler view for all the tasks
     private RecyclerView mTaskList;
     //recyclerview for all the lists
     private RecyclerView mListList;
+
 
     //A common taskRepository for all the network and
     //database operations
@@ -65,8 +84,7 @@ public class MainActivity extends AppCompatActivity
     private ListRepository listRepository;
     private UserRepository userRepository;
 
-    //List name
-    private TextView mListName;
+
 
     //Task Adapter
     MainActivityTaskListAdapter mTaskAdapter;
@@ -74,8 +92,7 @@ public class MainActivity extends AppCompatActivity
     //List Adapter
     BottomSheetListAdapter mListAdapter;
 
-    MainActivityBottomSheetFragment mBottomSheetFragment
-            = new MainActivityBottomSheetFragment();
+    MainActivityBottomSheetFragment mBottomSheetFragment;
 
 
     private User currentUser;
@@ -87,7 +104,10 @@ public class MainActivity extends AppCompatActivity
     //BottomSheet for List
     BottomSheetBehavior sheetBehavior;
     ConstraintLayout bottomSheet;
+    CoordinatorLayout mParentLayout;
     Toolbar myToolbar;
+
+    Bundle saveInstanceState;
 
 
     /**
@@ -99,10 +119,11 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        saveInstanceState = savedInstanceState;
+        myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-
+        setUpListBottomSheet();
         setUpActivity();
 
 
@@ -111,7 +132,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * This is a setup method
      * This methods is reuired for setting up the activity.
-     * It takes care of all the nitty-gritty details
+     * It takes care of all the nity-gritty details
      */
     private void setUpActivity() {
 
@@ -124,15 +145,32 @@ public class MainActivity extends AppCompatActivity
         userRepository = UserRepository.getUserRepository(MainActivity.this);
 
 
+        if(getIntent().hasExtra(getResources().getString(R.string.is_first_time_install)) &&
+                getIntent().hasExtra(getResources().getString(R.string.current_user))&&
+                getIntent().hasExtra(getResources().getString(R.string.current_list))) {
 
-        //Check for first-time installs
-        //Check for Last accessed items
-        setUpSharedPreferences();
+            Intent intent = getIntent();
+
+
+            setupActivity(intent.getIntExtra(getResources().getString(R.string.current_list), -1),
+                    intent.getIntExtra(getResources().getString(R.string.current_user), -1),
+                    intent.getBooleanExtra(getResources().getString(R.string.is_first_time_install), true));
+
+        } else {
+
+            //TODO finish app gracefully
+            finish();
+
+        }
+
+
+
 
 
 
         setUpTaskRecyclerView();
         setUpListRecyclerView();
+
         setUpAds();
         
         
@@ -143,48 +181,11 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                AppExecutor
-                        .getsInstance().getDiskIO().execute(new Runnable() {
+                AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                     @Override
                     public void run() {
 
-                        if(listChecks()) {
-                            final Intent intent
-                                    = new Intent(new Intent(
-                                            MainActivity.this, NewListActivity.class));
-                            intent.putExtra(
-                                    getResources().getString(R.string.current_user)
-                                    , currentUser.getUserId());
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    startActivity(intent);
-                                }
-                            });
-                        } else {
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //Ask for login
-                                    final Intent intent
-                                            = new Intent(MainActivity.this,
-                                            LoginActivity.class);
-                                    Parcelable user = Parcels.wrap(currentUser);
-                                    intent.putExtra(getResources().getString(R.string.current_user), user);
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            startActivity(intent);
-                                            LoginActivity.init(getContext());
-                                        }
-                                    });
-
-                                }
-                            });
-
-
-                        }
+                        checkIfUserCanCreateList();
 
                     }
                 });
@@ -205,26 +206,77 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        //setUpListBottomSheet();
 
+
+
+    }
+
+    private void checkIfUserCanCreateList() {
+
+        if(listChecks()) {
+            NewListActivity.init(getContext());
+            final Intent intent
+                    = new Intent(new Intent(
+                    MainActivity.this, NewListActivity.class));
+            intent.putExtra(
+                    getResources().getString(R.string.current_user)
+                    , currentUser.getUserId());
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(intent);
+                }
+            });
+
+        } else {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    //Ask for login
+                    final Intent intent
+                            = new Intent(MainActivity.this,
+                            LoginActivity.class);
+                    Parcelable user = Parcels.wrap(currentUser);
+                    intent.putExtra(getResources().getString(R.string.current_user), user);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(intent);
+                            LoginActivity.init(getContext());
+                        }
+                    });
+
+                }
+            });
+
+
+        }
     }
 
     private void setUpListBottomSheet() {
 
-        bottomSheet = findViewById(R.id.activity_main_bottom_sheet_bs);
-        sheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mParentLayout = findViewById(R.id.main_activity_parent_layout);
 
-        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View view, int i) {
+        bottomSheet = mParentLayout.findViewById(R.id.bottom_sheet_fragment_layout);
+        if(bottomSheet != null) {
+            sheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
-            }
+            sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+                @Override
+                public void onStateChanged(@NonNull View view, int i) {
 
-            @Override
-            public void onSlide(@NonNull View view, float v) {
+                }
 
-            }
-        });
+                @Override
+                public void onSlide(@NonNull View view, float v) {
+
+
+
+                }
+            });
+        }
+
 
     }
 
@@ -246,7 +298,7 @@ public class MainActivity extends AppCompatActivity
 
         mListList.setLayoutManager(layoutManager);
         mListList.setAdapter(mListAdapter);
-
+        runLayoutAnimation(mListList);
     }
 
 
@@ -270,129 +322,122 @@ public class MainActivity extends AppCompatActivity
         mTaskList.setLayoutManager(layoutManager);
         mTaskList.setAdapter(mTaskAdapter);
         mTaskList.addItemDecoration(dividerItemDecoration);
+        runLayoutAnimation(mTaskList);
 
     }
+
+
 
     /**
-     * This method takes the responsibility
-     * of setting the shared preferences.
+     * This method set ups the live data for the user
+     * Which in turn set ups live data for the list
+     * @param listId
+     * @param userId
+     * @param isFirstTime
      */
-    private void setUpSharedPreferences() {
-
-        final SharedPreferences preferences = getApplicationContext()
-                .getSharedPreferences("my_file", MODE_PRIVATE);
-
-        boolean isFirstTime = preferences.getBoolean(getResources()
-                .getString(R.string.is_first_time_install), true);
-
-        //List Name Text View
-        mListName = findViewById(R.id.list_name_main_activity_tv);
-
-        if(isFirstTime) {
-
-            firsTimeSetUp(preferences);
-
-        } else {
-
-            int userId = preferences
-                    .getInt("user", -1);
-
-
-            int listId = preferences.
-                    getInt("list", -1);
-
-            setupActivity(listId, userId, false, preferences);
-        }
-
-
-
-
-    }
-
-
-    private void firsTimeSetUp(final SharedPreferences preferences) {
-
-        final User tempUser = new User("User", new Date(),
-                "password", "emailId", false, 0);
-
-        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-
-                final int userId = userRepository.createUser(tempUser);
-                List tempList = new List(userId, "My List", new Date());
-                final int listId = listRepository.insertList(tempList);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setupActivity(listId, userId, true, preferences);
-                    }
-                });
-
-
-            }
-        });
-
-
-
-
-
-    }
-
-
-
     private void setupActivity(final int listId, int userId,
-                               final boolean isFirstTime, final SharedPreferences preferences) {
+                               final boolean isFirstTime) {
 
-        LiveData<User> userLiveData = userRepository.getUser(userId);
+        setupSingleUserLiveData(listId, userId, isFirstTime);
+
+    }
+
+
+    /**
+     * This method set ups live data for the user
+     * @param listId
+     * @param userId
+     * @param isFirstTime
+     */
+    private void setupSingleUserLiveData(final int listId, final int userId,
+                                         final  boolean isFirstTime) {
+
+        final LiveData<User> userLiveData = userRepository.getUser(userId);
 
         userLiveData.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                currentUser = user;
 
-                LiveData<List> listLiveData = listRepository.getList(listId);
-
-                listLiveData.observe(MainActivity.this, new Observer<List>() {
-                    @Override
-                    public void onChanged(List list) {
-
-                        currentList = list;
-
-                        if (isFirstTime) {
-
-                            allTasks = new ArrayList<>();
-                            allLists = new ArrayList<>();
-                            allLists.add(currentList);
-
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putBoolean(getResources()
-                                    .getString(R.string.is_first_time_install), false);
-                            editor.apply();
-                        }
-
-                        retrieveLists(currentUser.getUserId());
-                        retrieveTasks(currentList.getListId());
-
-                        if (currentList != null) {
-                            myToolbar.setTitle(currentList.getListName());
-                            myToolbar.setTitleTextAppearance(MainActivity.this, R.style.TextAppearance_AppCompat_Display2);
-                        }
-                        else {
-
-                            //TODO 8: Finish the application gracefully
-                            //finish();
-                        }
-
-
-                    }
-                });
+                userLiveData.removeObservers(MainActivity.this);
+                setupSingleListLiveData(user, listId, isFirstTime);
 
             }
         });
 
     }
+
+    /**
+     * This method set ups live data for the list
+     * @param listId
+     * @param isFirstTime
+     */
+    private void setupSingleListLiveData(final User user, int listId,
+                                         final boolean isFirstTime) {
+
+        final LiveData<List> listLiveData = listRepository.getList(listId);
+
+        listLiveData.observe(MainActivity.this, new Observer<List>() {
+            @Override
+            public void onChanged(List list) {
+
+                listLiveData.removeObservers(MainActivity.this);
+                setupCurrentListAndUser( user, list, isFirstTime);
+
+
+            }
+        });
+
+    }
+
+    /**
+     * This method is delegated the work for
+     * setting up when the data is ready.
+     * @param user
+     * @param list
+     * @param isFirstTime
+     */
+    private void setupCurrentListAndUser(User user, List list,
+                                         boolean isFirstTime) {
+
+        currentUser = user;
+        currentList = list;
+
+        if (isFirstTime) {
+
+            allTasks = new ArrayList<>();
+            allLists = new ArrayList<>();
+            allLists.add(currentList);
+
+            final SharedPreferences preferences = getApplicationContext()
+                    .getSharedPreferences("my_file", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean(getResources()
+                    .getString(R.string.is_first_time_install), false);
+            editor.apply();
+        }
+
+
+        retrieveLists(currentUser.getUserId());
+        retrieveTasks(currentList.getListId(), false);
+
+        if (currentList != null) {
+            myToolbar.setTitle(currentList.getListName());
+            myToolbar.setTitleTextAppearance(MainActivity.this,
+                    R.style.TextAppearance_AppCompat_Display1);
+            myToolbar.setTitleTextColor(getResources()
+                    .getColor(android.R.color.black));
+
+        }
+        else {
+
+            //TODO 8: Finish the application gracefully
+            //finish();
+        }
+
+    }
+
+
 
 
 
@@ -416,6 +461,8 @@ public class MainActivity extends AppCompatActivity
      */
     private void setupBottomSheet() {
 
+        mBottomSheetFragment = new MainActivityBottomSheetFragment();
+
         Bundle bundle = new Bundle();
         bundle.putString(getResources().getString(R.string.current_list), String.valueOf(currentList.getListId()));
 
@@ -426,32 +473,57 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void retrieveTasks(final int listId) {
+    private void retrieveTasks(final int listId, final boolean isCompleted) {
 
-        LiveData<java.util.List<Task>> tasksLiveData =
-                taskRepository.getAllTasks(listId, false);
+        Log.e("onTaskRetrieved", "retrieving from database");
+
+        final LiveData<java.util.List<Task>> tasksLiveData =
+                taskRepository.getAllTasks(listId, isCompleted);
 
         tasksLiveData.observe(this, new Observer<java.util.List<Task>>() {
             @Override
-            public void onChanged(java.util.List<Task> tasks) {
+            public void onChanged(final java.util.List<Task> tasks) {
 
-                allTasks = tasks;
-                if(allTasks != null)
+
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mTaskAdapter.updateTasksData(allTasks);
-                            mTaskAdapter.updateUser(currentUser);
 
-                            //TODO Add this code somewhere else
-                            if(currentUser != null)
-                                MyGoalsWidget.setUpData(currentUser.getUserId(), getContext());
+                            Toast.makeText(MainActivity.this, "onTaskRetrieved, retrieving from live data " + isCompleted, Toast.LENGTH_SHORT).show();
+
+                            onTaskRetrieved(isCompleted, tasks);
+
                         }
                     });
             }
         });
 
     }
+
+
+
+    /**
+     *
+     * @param isCompleted
+     * @param tasks
+     */
+    private void onTaskRetrieved(Boolean isCompleted, java.util.List<Task> tasks) {
+
+        allTasks = tasks;
+
+        if(allTasks != null) {
+            mTaskList.setVisibility(View.VISIBLE);
+            mTaskAdapter.updateTasksData(allTasks);
+            mTaskAdapter.updateUser(currentUser);
+
+        } else {
+
+            mTaskList.setVisibility(View.GONE);
+            //onCompletedTaskPresent();
+        }
+    }
+
 
     private void retrieveLists(final int userId) {
 
@@ -461,6 +533,7 @@ public class MainActivity extends AppCompatActivity
         listLiveData.observe(this, new Observer<java.util.List<List>>() {
             @Override
             public void onChanged(java.util.List<List> lists) {
+
                 allLists = lists;
 
                 if(allLists != null)
@@ -482,6 +555,11 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 
+        saveLastListAndUser();
+
+    }
+
+    private void saveLastListAndUser() {
         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -494,27 +572,29 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
     }
 
     @Override
     public void onBottomSheetDismiss() {
+
+        //setupCurrentListAndUser(currentUser, currentList,
+        //        false);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(currentUser != null)
-        retrieveLists(currentUser.getUserId());
     }
 
     @Override
-    public void onListClick(int listId) {
+    public void onListClick(final List list) {
 
-//        if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
-//        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        setupActivity(listId, currentUser.getUserId(), false, null);
+
+        setupCurrentListAndUser(currentUser, list, false);
+        if(bottomSheet != null)
+            if(sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED)
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
     }
 
@@ -541,10 +621,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSignUpComplete() {
+    public void onSignUpComplete(User user) {
 
-        setupActivity(currentList.getListId(), currentUser.getUserId(),
-                false, null);
+        setupCurrentListAndUser(user, currentList,
+                false);
+        saveLastListAndUser();
 
     }
 
@@ -561,5 +642,108 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_my_points: {
+
+                Intent intent = new Intent(MainActivity.this, PointsActivity.class);
+
+                Parcelable parcel = Parcels.wrap(currentUser);
+                intent.putExtra(getResources().getString(R.string.current_user), parcel);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.action_list_update: {
+
+                UpdateListActivity.init(MainActivity.this);
+
+                Parcelable parcelable = Parcels.wrap(currentList);
+                Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+                intent.putExtra("current_list", parcelable);
+
+                startActivity(intent);
+
+                break;
+            }
+
+            case R.id.action_completed_tasks: {
+
+                Intent intent = new Intent(MainActivity.this, CompletedTaskActivity.class);
+
+                Parcelable parcel = Parcels.wrap(currentUser);
+                intent.putExtra(getResources().getString(R.string.current_user), parcel);
+
+                Parcelable parcelable = Parcels.wrap(currentList);
+                intent.putExtra(getResources().getString(R.string.current_list), parcelable);
+
+                startActivity(intent);
+
+                break;
+            }
+
+            case R.id.action_add_widget: {
+
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getContext());
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds( new ComponentName(getContext(), MyGoalsWidget.class));
+
+                if(appWidgetIds == null || appWidgetIds.length == 0) {
+
+                    Snackbar.make(mParentLayout, "No Widget created on screen. First Create a Widget", Snackbar.LENGTH_LONG).show();
+
+                    break;
+
+                }
+                else {
+                    MyGoalsWidget.setUpData(currentUser, currentList, allTasks,MainActivity.this);
+                    Snackbar.make(mParentLayout, "Your tasks are now stored on the widget.", Snackbar.LENGTH_LONG).show();
+                }
+
+
+
+                break;
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListUpdate(List list) {
+
+        setupCurrentListAndUser(currentUser, list,
+                false);
+        saveLastListAndUser();
+
+    }
+
+
+
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
+    }
+
+
+    @Override
+    public void newListCallBack(List list) {
+        onListClick(list);
+    }
+
+    @Override
+    public void updateList() {
+        setupCurrentListAndUser(currentUser, currentList, false);
+    }
 }

@@ -6,6 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:id="@+id/app_logo_login_iv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:src="@drawable/app_logo_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_title_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/login_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_title"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_logo_login_iv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_activity_username_edit_task_til"/>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_activity_username_edit_task_til"
@@ -13,11 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/login_title_tv"
+        app:layout_constraintBottom_toTopOf="@id/login_activity_password_edit_task_til">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_activity_username_edit_task_et"
             android:layout_width="match_parent"
+            android:hint="Type You Name"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -29,11 +56,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         app:layout_constraintStart_toStartOf="@id/login_activity_username_edit_task_til"
-        app:layout_constraintTop_toBottomOf="@id/login_activity_username_edit_task_til">
+        app:layout_constraintTop_toBottomOf="@id/login_activity_username_edit_task_til"
+        app:layout_constraintBottom_toTopOf="@id/login_activity_password_again_edit_task_til">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_activity_password_edit_task_et"
             android:layout_width="match_parent"
+            android:inputType="textPassword"
+            android:hint="Create password"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,6 +80,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_activity_password_again_edit_task_et"
             android:layout_width="match_parent"
+            android:inputType="textPassword"
+            android:hint="Type your new password again"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,9 +91,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_activity_sign_up_button_text"
-
+        android:layout_margin="@dimen/activity_vertical_margin"
         app:layout_constraintEnd_toEndOf="@id/login_activity_password_again_edit_task_til"
         app:layout_constraintTop_toBottomOf="@id/login_activity_password_again_edit_task_til"/>
+
+
+    <TextView
+        android:id="@+id/login_desc_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_desc"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:textColor="@android:color/black"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_btn"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

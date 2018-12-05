@@ -1,8 +1,10 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
@@ -18,6 +21,8 @@ import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
+import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list.UpdateListActivity;
 
 import org.parceler.Parcels;
 
@@ -28,16 +33,19 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivityTaskListAdapter.TaskViewHolder> {
+public class MainActivityTaskListAdapter extends
+        RecyclerView.Adapter<MainActivityTaskListAdapter.TaskViewHolder> {
 
     private List<Task> tasks;
     private WeakReference<Context> contextWeakReference;
     private User currentUser;
+    private UpdateCallbacks mCallbacks;
 
     public MainActivityTaskListAdapter(Context context) {
 
         contextWeakReference = new WeakReference<>(context);
 
+        //mCallbacks = (UpdateCallbacks) context;
         this.tasks = new ArrayList<>();
     }
 
@@ -59,6 +67,23 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
         taskViewHolder.taskTextView.setText(tasks.get(i).getTaskDescription());
 
+        taskViewHolder.animationView.setProgress(0f);
+        taskViewHolder.animationView.setPressed(false);
+        taskViewHolder.animationView.invalidate();
+
+        if(tasks.get(taskViewHolder.getAdapterPosition()).getComlpleted()) {
+            taskViewHolder.animationView.setProgress(1f);
+            taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        } else {
+
+            taskViewHolder.animationView.setProgress(0f);
+            taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+
+
+        }
+
+
     }
 
     @Override
@@ -75,24 +100,19 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
     public class TaskViewHolder extends RecyclerView.ViewHolder {
 
         TextView taskTextView;
-        RadioGroup completeTask;
+        private LottieAnimationView animationView;
 
         public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             taskTextView = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
-            completeTask = itemView.findViewById(R.id.select_task_rg);
+            animationView = itemView.findViewById(R.id.select_task_rg);
 
-            completeTask.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            animationView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                public void onClick(View view) {
 
-                    if(i == R.id.select_task_rb) {
-
-                        completeTask(tasks.get(getAdapterPosition()), itemView);
-
-                    }
-
+                    startCheckAnimation(animationView, tasks.get(getAdapterPosition()) );
                 }
             });
 
@@ -127,7 +147,7 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
 
     }
 
-    private void completeTask(final Task task, final View view) {
+    private void completeTask(final LottieAnimationView animationView, final Task task) {
 
         task.setComlpleted(true);
 
@@ -150,11 +170,10 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
                     @Override
                     public void run() {
 
-                        tasks.remove(task);
+                        Toast.makeText(contextWeakReference.get(), "Task Completed, you total points: " +
+                                currentUser.getScore(), Toast.LENGTH_SHORT).show();
 
-                        Snackbar.make( view,"Task Completed, you total points: "+ currentUser.getScore(), Snackbar.LENGTH_LONG).show();
-
-                        updateTasksData(tasks);
+                        animationView.setProgress(1f);
 
                     }
                 });
@@ -163,4 +182,76 @@ public class MainActivityTaskListAdapter extends RecyclerView.Adapter<MainActivi
         });
 
     }
+
+
+    private void startCheckAnimation(final LottieAnimationView animationView, Task task) {
+        ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f).setDuration(500);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                animationView.setProgress((Float) valueAnimator.getAnimatedValue());
+            }
+        });
+
+        if (animationView.getProgress() == 0f) {
+            animator.start();
+
+            completeTask(animationView, task);
+
+        } else {
+            animationView.setProgress(0f);
+            animationView.invalidate();
+
+            inCompleteATask(animationView, task);
+
+
+        }
+    }
+
+    private void inCompleteATask(final LottieAnimationView animationView, final Task task) {
+
+        task.setComlpleted(false);
+
+        AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                TaskRepository
+                        .getCommonRepository(contextWeakReference.get())
+                        .updateTask(task);
+
+                currentUser
+                        .setScore(currentUser.getScore() - contextWeakReference.get()
+                                .getResources().getInteger(R.integer.score_on_task_complete));
+
+                UserRepository.getUserRepository(contextWeakReference.get())
+                        .updateUser(currentUser);
+
+                AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        animationView.setProgress(0f);
+
+                        Toast.makeText(contextWeakReference.get(), "Task inComplete now, you total points: " +
+                                currentUser.getScore(), Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+
+            }
+        });
+
+    }
+
+
+    public interface UpdateCallbacks {
+
+        void updateList();
+
+    }
+
+
+
 }

@@ -1,11 +1,13 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.list;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.drawable.DrawableUtils;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.List;
 import com.udafil.dhruvamsharma.udacity_capstone.R;
 
@@ -20,6 +22,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     java.util.List<List> mList;
     private WeakReference<Context> mWeakReference;
     private ListClickListener mListener;
+    private int selectedListId = 0;
 
     public BottomSheetListAdapter(Context context) {
 
@@ -45,6 +48,8 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
         holder.list.setText(mList.get(position).getListName());
+//        selectedListId = mList.get(position).getListId();
+//        setState(holder.itemView);
 
     }
 
@@ -56,7 +61,7 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
         TextView list;
-        public ListViewHolder(@NonNull View itemView) {
+        public ListViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             //TODO 4: Change the layout. It should be different for the single list
@@ -66,13 +71,9 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
                 @Override
                 public void onClick(View view) {
 
-                    mListener.onListClick(mList.get(getAdapterPosition()).getListId());
-
-//                    Parcelable parcelable = Parcels.wrap(mList.get(getAdapterPosition()));
-//                    Intent intent = new Intent(mWeakReference.get(), UpdateListActivity.class);
-//                    intent.putExtra("current_list", parcelable);
-//
-//                    mWeakReference.get().startActivity(intent);
+                    mListener.onListClick(mList.get(getAdapterPosition()));
+//                    selectedListId = mList.get(getAdapterPosition()).getListId();
+//                    setState(itemView);
 
                 }
             });
@@ -87,6 +88,24 @@ public class BottomSheetListAdapter extends RecyclerView.Adapter<BottomSheetList
     }
 
     public interface ListClickListener {
-        void onListClick(int listId);
+        void onListClick(List list);
+    }
+
+    private void setState(View view) {
+
+        for(int i = 0; i < mList.size() ;i ++) {
+
+            if(selectedListId == mList.get(i).getListId() ) {
+
+                view.setSelected(true);
+
+            } else {
+                view.setSelected(false);
+            }
+
+        }
+
+
+
     }
 }

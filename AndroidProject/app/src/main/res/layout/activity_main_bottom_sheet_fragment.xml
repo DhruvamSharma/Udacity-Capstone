@@ -9,12 +9,25 @@
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
     app:behavior_hideable="false"
-    app:behavior_peekHeight="56dp"
+    app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
     android:elevation="@dimen/bottom_sheet_elevation"
     android:background="@drawable/bottom_sheet_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <!-- TODO 5: Add a layout of peekHeight -->
+
+    <LinearLayout
+        android:id="@+id/peek_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bottom_sheet_peek_height"
+        android:orientation="vertical"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Add a layout here-->
+
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +36,8 @@
         android:layout_height="wrap_content"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/peek_layout"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
     <com.google.android.material.button.MaterialButton

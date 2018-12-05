@@ -86,7 +86,11 @@ public class ListRepository {
 
     }
 
-    public java.util.List<List> getListWithoutLiveData(int userId) {
+    public java.util.List<List> getListsWithoutLiveData(int userId) {
         return mDb.getListDao().getListWithoutLiveData(userId);
+    }
+
+    public List getSingleListWithoutLiveData(int listId) {
+        return  mDb.getListDao().getSingleListWithoutLiveData(listId);
     }
 }

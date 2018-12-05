@@ -7,20 +7,15 @@ import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
-import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
 
 import org.parceler.Parcels;
-
-import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -80,18 +75,20 @@ public class LoginActivity extends AppCompatActivity {
                             .getString(R.string.current_user)));
 
             final String email = userName.getText().toString();
-            if(matchPasswords()) {
+            if(matchPasswords() && checkForEmptyStrings()) {
 
-                LiveData<User> userLiveData = UserRepository.
+                final LiveData<User> userLiveData = UserRepository.
                         getUserRepository(LoginActivity.this).getUser(currentUser.getUserId());
 
                 userLiveData.observe(LoginActivity.this, new Observer<User>() {
                     @Override
                     public void onChanged(final User user) {
 
+                        userLiveData.removeObservers(LoginActivity.this);
                         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
                             @Override
                             public void run() {
+
 
                                 if(checkForUserPresenceAlready(user.getEmailId())) {
                                     addUser(user, email,
@@ -104,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
 
-                                            signupCallbacks.onSignUpComplete();
+                                            signupCallbacks.onSignUpComplete(user);
                                             finish();
 
                                         }
@@ -112,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     response = "User already present";
                                     signupCallbacks.onSignUpFailed(response);
-                                    finish();
+                                    //finish();
                                 }
 
                             }
@@ -126,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 response = "Sorry, passwords do not match";
                 signupCallbacks.onSignUpFailed(response);
-                finish();
+                //finish();
             }
 
         } else {
@@ -189,11 +186,30 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This interface helps in sign up call backs.
+     */
     public interface SignUpCallbacks {
 
-        void onSignUpComplete();
+        void onSignUpComplete(User user);
         void onSignUpFailed(String response);
 
+    }
+
+
+    private boolean checkForEmptyStrings() {
+
+        boolean canSaveUser = false;
+
+        if(userName != null || password != null ) {
+            if(userName.getText().toString().equals("") || password.getText().toString().equals("")) {
+                //Do nothing
+            } else {
+                canSaveUser = true;
+            }
+        }
+
+        return canSaveUser;
     }
 
 

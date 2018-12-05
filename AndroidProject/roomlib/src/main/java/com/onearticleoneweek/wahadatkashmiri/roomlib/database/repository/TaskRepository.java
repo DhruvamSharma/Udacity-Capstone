@@ -51,6 +51,10 @@ public class TaskRepository {
 
     }
 
+    public List<Task> getAllTasksWithoutLiveData(int listId, Boolean isCompleted) {
+        return mDb.getTaskDao().getAllTasksWithoutLiveData(listId, isCompleted);
+    }
+
 
     /**
      * This method makes sure that Repository

@@ -19,7 +19,9 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-
+    <style name="TaskTextStyleDark" parent="Base.TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
     <!-- Bottom Sheet Styles -->
 
@@ -34,6 +36,12 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+
+
+    <!-- Splash Screen theme. -->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
 
 
 </resources>

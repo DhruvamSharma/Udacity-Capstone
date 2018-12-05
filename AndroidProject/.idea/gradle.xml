@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/firstentrymodule" />
             <option value="$PROJECT_DIR$/loginlib" />
+            <option value="$PROJECT_DIR$/pointslib" />
             <option value="$PROJECT_DIR$/roomlib" />
           </set>
         </option>

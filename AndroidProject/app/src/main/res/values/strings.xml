@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Udacity_Capstone</string>
+    <string name="app_name">Goals</string>
 
     <string name="admob_app_id">ca-app-pub-5510176989515053~3520917855</string>
     <string name="admob_unit_id">ca-app-pub-5510176989515053/6414674502</string>
@@ -10,11 +10,22 @@
     <string name="current_list">current_list</string>
     <string name="current_task">current_task</string>
     <string name="current_user">current_user</string>
+    <string name="current_score">CurrentScore</string>
 
     <string name="is_first_time_install">first_time</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="update_activity_delete_task_btn">Delete</string>
+    <string name="completed_tasks_label">Completed tasks</string>
+
+    <string name="menu_points_label">Your Points</string>
+    <string name="menu_update_list_label">Update this List</string>
+    <string name="new_task_hint">Create a task</string>
+    <string name="save_button_label">Save</string>
+    <string name="your_lists_label">Your Lists</string>
+    <string name="new_list_label">Create New List</string>
+    <string name="menu_completed_tasks_label">Completed Tasks</string>
+    <string name="menu_update_widget_data">Save to widget</string>
 
 
 </resources>

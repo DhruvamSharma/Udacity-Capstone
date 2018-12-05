@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
@@ -49,7 +50,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
         final View containerView = inflater.inflate(R.layout.activity_main_new_task_bottom_sheet_fragment,
                 container, false);
 
-        final FloatingActionButton saveTask = containerView.findViewById(R.id.main_activity_bottom_sheet_save_task_fab);
+        final MaterialButton saveTask = containerView.findViewById(R.id.main_activity_bottom_sheet_save_task_fab);
 
 
         if(getArguments()!= null)
@@ -72,7 +73,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
     private void saveTask(View view) {
 
         TextInputEditText newTask = view.findViewById(R.id.main_activity_bottom_sheet_edit_task_et);
-        if(newTask.getText() != null || newTask.getText().toString().equals("")) {
+        if(newTask.getText() != null && !newTask.getText().toString().equals("")) {
             mTaskDescription = newTask.getText().toString();
 
             final Task task = new Task(mTaskDescription, false, listId, new Date());
@@ -82,15 +83,17 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
                 @Override
                 public void run() {
                     repository.insertTask(task);
+
+                    AppExecutor.getsInstance().getMainThread().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            dismiss();
+                            mBottomSheetCallBacks.onBottomSheetDismiss();
+                        }
+                    });
                 }
             });
-
-
         }
-
-        dismiss();
-
-
     }
 
 
