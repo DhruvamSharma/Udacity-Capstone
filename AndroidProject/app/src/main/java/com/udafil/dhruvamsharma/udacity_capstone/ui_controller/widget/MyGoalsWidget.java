@@ -24,6 +24,8 @@ import com.udafil.dhruvamsharma.udacity_capstone.R;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.MainActivity;
 import com.udafil.dhruvamsharma.udacity_capstone.ui_controller.SplashScreen;
 
+import java.util.ArrayList;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
@@ -36,7 +38,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
     private static int userId = -1;
     private static User currentUser;
     private static List currentList;
-    private static java.util.List<Task> currentTasks;
+    private static ArrayList<Task> currentTasks;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -92,10 +94,14 @@ public class MyGoalsWidget extends AppWidgetProvider {
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
 
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList(context.getResources().getString(R.string.current_list), currentTasks);
 
             intent.putExtra(context.getResources().getString(R.string.current_list), currentList.getListId());
 
             views.setRemoteAdapter(R.id.widget_list_lv, intent);
+
+            views.setTextViewText(R.id.widget_list_name_tv, currentList.getListName());
         }
 
     }
@@ -107,7 +113,7 @@ public class MyGoalsWidget extends AppWidgetProvider {
      * @param list
      * @param context
      */
-    public static void setUpData(User user, List list, java.util.List<Task> tasks, Context context) {
+    public static void setUpData(User user, List list, ArrayList<Task> tasks, Context context) {
 
         userRepository = UserRepository.getUserRepository(context);
         currentUser = user;

@@ -1,5 +1,7 @@
 package com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain;
 
+import android.os.Parcelable;
+
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
@@ -13,7 +15,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tasks")
 @Parcel
-public class Task implements Serializable {
+public class Task implements Parcelable {
 
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "task_id")
@@ -94,5 +96,18 @@ public class Task implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(android.os.Parcel parcel, int i) {
+
+
+
+
     }
 }
