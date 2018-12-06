@@ -50,7 +50,6 @@ public class MainActivityTaskListAdapter extends
     }
 
 
-
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -63,13 +62,11 @@ public class MainActivityTaskListAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final TaskViewHolder taskViewHolder, final int i) {
 
         taskViewHolder.taskTextView.setText(tasks.get(i).getTaskDescription());
 
         taskViewHolder.animationView.setProgress(0f);
-        taskViewHolder.animationView.setPressed(false);
-        taskViewHolder.animationView.invalidate();
 
         if(tasks.get(taskViewHolder.getAdapterPosition()).getComlpleted()) {
             taskViewHolder.animationView.setProgress(1f);
@@ -82,6 +79,24 @@ public class MainActivityTaskListAdapter extends
 
 
         }
+
+
+        taskViewHolder.animationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startCheckAnimation(taskViewHolder.animationView, tasks.get(i) );
+            }
+        });
+
+        taskViewHolder.taskTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                upDateTask( tasks.get(i) );
+
+            }
+        });
 
 
     }
@@ -108,23 +123,8 @@ public class MainActivityTaskListAdapter extends
             taskTextView = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
             animationView = itemView.findViewById(R.id.select_task_rg);
 
-            animationView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    startCheckAnimation(animationView, tasks.get(getAdapterPosition()) );
-                }
-            });
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    upDateTask( tasks.get(getAdapterPosition()) );
-
-                }
-            });
         }
     }
 

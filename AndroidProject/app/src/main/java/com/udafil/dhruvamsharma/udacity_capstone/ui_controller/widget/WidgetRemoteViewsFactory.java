@@ -41,6 +41,13 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
     @Override
     public void onCreate() {
 
+        setupData();
+
+    }
+
+    private void setupData() {
+
+
         AppExecutor.getsInstance().getDiskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -49,22 +56,13 @@ public class WidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
             }
         });
 
-    }
-
-    private void setupData() {
-
-        // For inintialization purpose
-        tasks = new ArrayList<>();
-
-
-
 
 
     }
 
     @Override
     public void onDataSetChanged() {
-
+        setupData();
     }
 
     @Override

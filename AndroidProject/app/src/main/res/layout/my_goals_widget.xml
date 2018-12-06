@@ -34,6 +34,14 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/widget_list_name_tv"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:padding="@dimen/element_margin"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_height="wrap_content" />
+
 
     <!--<ImageView-->
         <!--android:id="@+id/widget_app_score_iv"-->
