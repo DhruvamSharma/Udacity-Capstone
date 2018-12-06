@@ -555,7 +555,7 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         super.onPause();
 
-        saveLastListAndUser();
+        //saveLastListAndUser();
 
     }
 
@@ -702,7 +702,9 @@ public class MainActivity extends AppCompatActivity
 
                 }
                 else {
-                    MyGoalsWidget.setUpData(currentUser, currentList, allTasks,MainActivity.this);
+                    ArrayList<Task> newList = new ArrayList<>();
+                    newList.addAll(allTasks);
+                    MyGoalsWidget.setUpData(currentUser, currentList, newList,MainActivity.this);
                     Snackbar.make(mParentLayout, "Your tasks are now stored on the widget.", Snackbar.LENGTH_LONG).show();
                 }
 

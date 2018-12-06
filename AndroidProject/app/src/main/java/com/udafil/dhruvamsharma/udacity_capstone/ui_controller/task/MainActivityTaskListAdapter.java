@@ -9,6 +9,8 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,15 +68,15 @@ public class MainActivityTaskListAdapter extends
 
         taskViewHolder.taskTextView.setText(tasks.get(i).getTaskDescription());
 
-        taskViewHolder.animationView.setProgress(0f);
+        taskViewHolder.animationView.setChecked(false);
 
         if(tasks.get(taskViewHolder.getAdapterPosition()).getComlpleted()) {
-            taskViewHolder.animationView.setProgress(1f);
+            taskViewHolder.animationView.setChecked(true);
             taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         } else {
 
-            taskViewHolder.animationView.setProgress(0f);
+            taskViewHolder.animationView.setChecked(false);
             taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
 
 
@@ -115,7 +117,7 @@ public class MainActivityTaskListAdapter extends
     public class TaskViewHolder extends RecyclerView.ViewHolder {
 
         TextView taskTextView;
-        private LottieAnimationView animationView;
+        private RadioButton animationView;
 
         public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -147,7 +149,7 @@ public class MainActivityTaskListAdapter extends
 
     }
 
-    private void completeTask(final LottieAnimationView animationView, final Task task) {
+    private void completeTask(final RadioButton animationView, final Task task) {
 
         task.setComlpleted(true);
 
@@ -173,7 +175,7 @@ public class MainActivityTaskListAdapter extends
                         Toast.makeText(contextWeakReference.get(), "Task Completed, you total points: " +
                                 currentUser.getScore(), Toast.LENGTH_SHORT).show();
 
-                        animationView.setProgress(1f);
+                        animationView.setChecked(true);
 
                     }
                 });
@@ -184,23 +186,14 @@ public class MainActivityTaskListAdapter extends
     }
 
 
-    private void startCheckAnimation(final LottieAnimationView animationView, Task task) {
-        ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f).setDuration(500);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                animationView.setProgress((Float) valueAnimator.getAnimatedValue());
-            }
-        });
+    private void startCheckAnimation(final RadioButton animationView, Task task) {
 
-        if (animationView.getProgress() == 0f) {
-            animator.start();
+
+        if (animationView.isChecked()) {
 
             completeTask(animationView, task);
 
         } else {
-            animationView.setProgress(0f);
-            animationView.invalidate();
 
             inCompleteATask(animationView, task);
 
@@ -208,7 +201,7 @@ public class MainActivityTaskListAdapter extends
         }
     }
 
-    private void inCompleteATask(final LottieAnimationView animationView, final Task task) {
+    private void inCompleteATask(final RadioButton animationView, final Task task) {
 
         task.setComlpleted(false);
 
@@ -231,7 +224,7 @@ public class MainActivityTaskListAdapter extends
                     @Override
                     public void run() {
 
-                        animationView.setProgress(0f);
+                        animationView.setChecked(false);
 
                         Toast.makeText(contextWeakReference.get(), "Task inComplete now, you total points: " +
                                 currentUser.getScore(), Toast.LENGTH_SHORT).show();

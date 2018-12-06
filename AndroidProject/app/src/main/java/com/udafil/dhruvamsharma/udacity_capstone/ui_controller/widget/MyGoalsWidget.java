@@ -94,9 +94,6 @@ public class MyGoalsWidget extends AppWidgetProvider {
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
 
-            Bundle bundle = new Bundle();
-            bundle.putParcelableArrayList(context.getResources().getString(R.string.current_list), currentTasks);
-
             intent.putExtra(context.getResources().getString(R.string.current_list), currentList.getListId());
 
             views.setRemoteAdapter(R.id.widget_list_lv, intent);
