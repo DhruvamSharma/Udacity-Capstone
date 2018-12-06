@@ -5,7 +5,6 @@ import android.os.Parcelable;
 import org.parceler.Parcel;
 import org.parceler.ParcelConstructor;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -58,6 +57,26 @@ public class Task implements Parcelable {
 
     }
 
+    protected Task(android.os.Parcel in) {
+        taskId = in.readInt();
+        taskDescription = in.readString();
+        byte tmpIsComlpleted = in.readByte();
+        isComlpleted = tmpIsComlpleted == 0 ? null : tmpIsComlpleted == 1;
+        listId = in.readInt();
+    }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(android.os.Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
+
     public int getTaskId() {
         return taskId;
     }
@@ -106,8 +125,11 @@ public class Task implements Parcelable {
     @Override
     public void writeToParcel(android.os.Parcel parcel, int i) {
 
-
-
+        parcel.writeInt(taskId);
+        parcel.writeString(taskDescription);
+        parcel.writeInt(listId);
+        parcel.writeLong(createdAt.getTime());
+        parcel.writeByte((byte) (isComlpleted ? 1 : 0));
 
     }
 }
