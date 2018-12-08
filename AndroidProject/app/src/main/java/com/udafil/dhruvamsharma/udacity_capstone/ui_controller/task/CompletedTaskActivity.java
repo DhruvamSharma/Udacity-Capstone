@@ -1,6 +1,8 @@
 package com.udafil.dhruvamsharma.udacity_capstone.ui_controller.task;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.Task;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.domain.User;
+import com.onearticleoneweek.wahadatkashmiri.roomlib.database.helper.AppExecutor;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.ListRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.TaskRepository;
 import com.onearticleoneweek.wahadatkashmiri.roomlib.database.repository.UserRepository;
@@ -31,6 +34,7 @@ import org.parceler.Parcels;
 public class CompletedTaskActivity extends AppCompatActivity {
 
     private RecyclerView mCompletedTaskList;
+    private Toolbar myToolbar;
     //List name
     private TextView mCompletedTextLabel;
     //A common taskRepository for all the network and
@@ -45,6 +49,8 @@ public class CompletedTaskActivity extends AppCompatActivity {
     private java.util.List<Task> allTasks;
 
     MainActivityTaskListAdapter mCompletedTaskAdapter;
+
+    private ConstraintLayout mNoTasksPresentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +77,37 @@ public class CompletedTaskActivity extends AppCompatActivity {
             setupCompletedTaskRecyclerView();
             //List Name Text View
             mCompletedTextLabel = findViewById(R.id.completed_task_text_view_tv);
+
+
+            setupToolbar(currentList);
+
         } else {
             // TODO finish gracefully
         }
+
+
+
+    }
+
+    private void setupToolbar(List currentList) {
+
+        //Toolbar Setup
+        myToolbar = findViewById(R.id.my_toolbar_completed_tasks);
+        setSupportActionBar(myToolbar);
+
+        if(currentList != null) {
+
+            myToolbar.setTitle(currentList.getListName());
+        } else {
+
+            myToolbar.setTitle(getResources().getString(R.string.app_name));
+        }
+
+        myToolbar.setTitleTextAppearance(CompletedTaskActivity.this,
+                R.style.TextAppearance_AppCompat_Display1);
+        myToolbar.setTitleTextColor(getResources()
+                .getColor(android.R.color.black));
+
 
 
 
@@ -109,10 +143,15 @@ public class CompletedTaskActivity extends AppCompatActivity {
 
     private void onCompletedTaskPresent(Boolean isCompletedTaskPresent) {
 
-        if(isCompletedTaskPresent)
+        if(isCompletedTaskPresent) {
             mCompletedTextLabel.setVisibility(View.VISIBLE);
-        else
+            mNoTasksPresentLayout.setVisibility(View.GONE);
+        }
+        else {
             mCompletedTextLabel.setVisibility(View.GONE);
+            mNoTasksPresentLayout.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
@@ -124,6 +163,8 @@ public class CompletedTaskActivity extends AppCompatActivity {
     private void onTaskRetrieved(Boolean isCompleted, java.util.List<Task> tasks) {
 
         allTasks = tasks;
+
+        mNoTasksPresentLayout = findViewById(R.id.no_completed_tasks_present_layout);
 
         if(allTasks == null ) {
             onCompletedTaskPresent(false);

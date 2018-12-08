@@ -46,8 +46,10 @@
     </ScrollView>
 
 
-
-
+    <include android:id="@+id/no_tasks_present_layout"
+        layout="@layout/no_task_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <include
         android:id="@+id/bottom_sheet_fragment_layout"

@@ -6,16 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui_controller.task.CompletedTaskActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_completed_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:elevation="@dimen/toolbar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <TextView
         android:id="@+id/completed_task_text_view_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/completed_tasks_label"
-        android:layout_marginTop="@dimen/element_margin"
+        android:layout_margin="@dimen/element_margin"
         android:textAppearance="@style/TaskTextStyle"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/my_toolbar_completed_tasks"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/task_list__completed_main_activity_rv"
@@ -27,5 +36,10 @@
         app:layout_constraintTop_toBottomOf="@id/completed_task_text_view_tv">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <include android:id="@+id/no_completed_tasks_present_layout"
+        layout="@layout/no_task_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

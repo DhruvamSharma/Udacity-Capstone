@@ -79,9 +79,7 @@ public class MainActivityTaskListAdapter extends
             taskViewHolder.animationView.setChecked(false);
             taskViewHolder.taskTextView.setPaintFlags(taskViewHolder.taskTextView.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
 
-
         }
-
 
         taskViewHolder.animationView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +89,7 @@ public class MainActivityTaskListAdapter extends
             }
         });
 
-        taskViewHolder.taskTextView.setOnClickListener(new View.OnClickListener() {
+        taskViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -99,7 +97,6 @@ public class MainActivityTaskListAdapter extends
 
             }
         });
-
 
     }
 
@@ -117,14 +114,13 @@ public class MainActivityTaskListAdapter extends
     public class TaskViewHolder extends RecyclerView.ViewHolder {
 
         TextView taskTextView;
-        private RadioButton animationView;
+        private CheckBox animationView;
 
         public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             taskTextView = itemView.findViewById(R.id.task_layout_text_main_activity_task_list_tv);
             animationView = itemView.findViewById(R.id.select_task_rg);
-
 
 
         }
@@ -136,7 +132,7 @@ public class MainActivityTaskListAdapter extends
 
         Intent intent = new Intent(contextWeakReference.get(), UpdateTaskActivity.class);
 
-        intent.putExtra("current_task", parcelable);
+        intent.putExtra(contextWeakReference.get().getResources().getString(R.string.current_task), parcelable);
 
         contextWeakReference.get().startActivity(intent);
 
@@ -149,7 +145,7 @@ public class MainActivityTaskListAdapter extends
 
     }
 
-    private void completeTask(final RadioButton animationView, final Task task) {
+    private void completeTask(final CheckBox animationView, final Task task) {
 
         task.setComlpleted(true);
 
@@ -186,10 +182,10 @@ public class MainActivityTaskListAdapter extends
     }
 
 
-    private void startCheckAnimation(final RadioButton animationView, Task task) {
+    private void startCheckAnimation(final CheckBox animationView, Task task) {
 
 
-        if (animationView.isChecked()) {
+        if (!task.getComlpleted()) {
 
             completeTask(animationView, task);
 
@@ -201,7 +197,7 @@ public class MainActivityTaskListAdapter extends
         }
     }
 
-    private void inCompleteATask(final RadioButton animationView, final Task task) {
+    private void inCompleteATask(final CheckBox animationView, final Task task) {
 
         task.setComlpleted(false);
 
