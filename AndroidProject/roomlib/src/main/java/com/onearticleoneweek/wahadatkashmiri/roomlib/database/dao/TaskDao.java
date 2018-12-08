@@ -25,7 +25,7 @@ public interface TaskDao {
     long insertTask(Task currentTask);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateTask(Task currentTask);
+    int updateTask(Task currentTask);
 
     @Delete
     void deleteAllTasks(Task currentTask);

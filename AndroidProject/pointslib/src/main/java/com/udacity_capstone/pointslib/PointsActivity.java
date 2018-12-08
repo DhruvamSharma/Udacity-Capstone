@@ -3,6 +3,8 @@ package com.udacity_capstone.pointslib;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,8 +43,34 @@ public class PointsActivity extends AppCompatActivity {
                 getParcelableExtra(getResources().
                         getString(R.string.current_user)));
 
-        mPointsLabel.setText(""+ user.getScore());
+        setupPoints(user);
+
         mMotivationLabel.setText("This is your current score. \n Let's keep on scoring more. Click on the button below.");
+
+
+
+    }
+
+    private void setupPoints(final User user) {
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ValueAnimator animator = ValueAnimator.ofInt(0, user.getScore());
+        animator.setDuration(500);
+        animator.start();
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+
+                mPointsLabel.setText(String.valueOf(valueAnimator.getAnimatedValue()));
+
+            }
+        });
 
 
 

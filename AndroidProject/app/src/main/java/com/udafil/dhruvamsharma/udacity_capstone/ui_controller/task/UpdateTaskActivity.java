@@ -136,11 +136,14 @@ public class UpdateTaskActivity extends AppCompatActivity {
             @Override
             public void run() {
                 task.setTaskDescription(updatedText.getText().toString());
-                TaskRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
+                final boolean updated = TaskRepository.getCommonRepository(UpdateTaskActivity.this).updateTask(task);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        finish();
+                        if(updated)
+                            finish();
+                        else
+                            Toast.makeText(UpdateTaskActivity.this, updatedText.getText().toString(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
