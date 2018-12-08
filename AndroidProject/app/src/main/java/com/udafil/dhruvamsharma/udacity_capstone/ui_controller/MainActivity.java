@@ -485,7 +485,6 @@ public class MainActivity extends AppCompatActivity
 
     private void retrieveTasks(final int listId, final boolean isCompleted) {
 
-        Log.e("onTaskRetrieved", "retrieving from database");
 
         final LiveData<java.util.List<Task>> tasksLiveData =
                 taskRepository.getAllTasks(listId, isCompleted);
@@ -499,8 +498,6 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-                            Toast.makeText(MainActivity.this, "onTaskRetrieved, retrieving from live data " + isCompleted, Toast.LENGTH_SHORT).show();
 
                             onTaskRetrieved(isCompleted, tasks);
 

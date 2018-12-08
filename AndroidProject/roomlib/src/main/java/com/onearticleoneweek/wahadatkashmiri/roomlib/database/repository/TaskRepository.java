@@ -33,9 +33,9 @@ public class TaskRepository {
 
     }
 
-    public void updateTask(Task currentTask) {
+    public boolean updateTask(Task currentTask) {
 
-        mDb.getTaskDao().updateTask(currentTask);
+        return mDb.getTaskDao().updateTask(currentTask) == 1 ;
 
     }
 
