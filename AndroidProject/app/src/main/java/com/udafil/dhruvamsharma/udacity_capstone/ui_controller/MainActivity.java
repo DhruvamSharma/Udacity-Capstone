@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,9 +106,11 @@ public class MainActivity extends AppCompatActivity
     BottomSheetBehavior sheetBehavior;
     ConstraintLayout bottomSheet;
     CoordinatorLayout mParentLayout;
-    Toolbar myToolbar;
+    Toolbar myToolbar, bottomSheetToolbar;
 
     Bundle saveInstanceState;
+
+    private ConstraintLayout mNoTasksPresentLayout;
 
 
     /**
@@ -123,7 +126,14 @@ public class MainActivity extends AppCompatActivity
         myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+
+
+
         setUpListBottomSheet();
+
+        bottomSheetToolbar = bottomSheet.findViewById(R.id.my_toolbar_bottom_sheet);
+        bottomSheetToolbar.setLogo(getResources().getDrawable(R.drawable.round_reorder_24));
+
         setUpActivity();
 
 
@@ -206,7 +216,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
+        mNoTasksPresentLayout = findViewById(R.id.no_tasks_present_layout);
 
 
     }
@@ -512,14 +522,16 @@ public class MainActivity extends AppCompatActivity
 
         allTasks = tasks;
 
-        if(allTasks != null) {
+        if( allTasks != null && allTasks.size() != 0 ) {
             mTaskList.setVisibility(View.VISIBLE);
             mTaskAdapter.updateTasksData(allTasks);
             mTaskAdapter.updateUser(currentUser);
+            mNoTasksPresentLayout.setVisibility(View.GONE);
 
         } else {
 
             mTaskList.setVisibility(View.GONE);
+            mNoTasksPresentLayout.setVisibility(View.VISIBLE);
             //onCompletedTaskPresent();
         }
     }

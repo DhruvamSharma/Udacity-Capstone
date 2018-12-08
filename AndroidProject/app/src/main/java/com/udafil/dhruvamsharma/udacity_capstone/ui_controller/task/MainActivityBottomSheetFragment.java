@@ -50,7 +50,7 @@ public class MainActivityBottomSheetFragment extends BottomSheetDialogFragment {
         final View containerView = inflater.inflate(R.layout.activity_main_new_task_bottom_sheet_fragment,
                 container, false);
 
-        final MaterialButton saveTask = containerView.findViewById(R.id.main_activity_bottom_sheet_save_task_fab);
+        final FloatingActionButton saveTask = containerView.findViewById(R.id.main_activity_bottom_sheet_save_task_fab);
 
 
         if(getArguments()!= null)

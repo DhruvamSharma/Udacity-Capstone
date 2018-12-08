@@ -7,12 +7,22 @@
     android:orientation="vertical"
     style="@style/BottomSheetDialogTheme"
     android:paddingBottom="8dp"
-    android:paddingTop="8dp"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
     android:elevation="@dimen/bottom_sheet_elevation"
     android:background="@drawable/bottom_sheet_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        app:elevation="@dimen/toolbar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
 
     <!-- TODO 5: Add a layout of peekHeight -->
 
@@ -39,15 +49,29 @@
         app:layout_constraintTop_toBottomOf="@+id/peek_layout"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="@dimen/element_margin"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_list_main_activity_rv"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:text="@string/main_activity_single_task_bottom_sheet_button"
         android:layout_margin="@dimen/element_margin"
+        android:drawableLeft="@drawable/baseline_create_black_18dp"
+        android:drawablePadding="@dimen/element_margin"
         android:id="@+id/main_activity_bottom_sheet_create_list_btn"
 
         app:layout_constraintStart_toStartOf="@id/list_list_main_activity_rv"
-        app:layout_constraintTop_toBottomOf="@id/list_list_main_activity_rv"/>
+        app:layout_constraintTop_toBottomOf="@id/divider"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

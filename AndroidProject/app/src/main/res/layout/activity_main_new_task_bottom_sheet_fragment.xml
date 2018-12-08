@@ -15,32 +15,38 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/element_margin"
         android:textColorHint="@color/colorAccent"
-        android:hint="@string/new_task_hint"
+        app:boxBackgroundColor="@android:color/transparent"
         app:hintTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         app:boxStrokeColor="@color/colorAccent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/main_activity_bottom_sheet_edit_task_et"
             android:layout_width="match_parent"
+            android:background="@android:color/transparent"
+            android:hint="@string/new_task_hint"
             android:textColor="@android:color/black"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_activity_bottom_sheet_save_task_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/element_margin"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="@string/save_button_label"
         app:backgroundTint="@color/colorAccent"
+        app:fabCustomSize="32dp"
+        app:srcCompat="@drawable/round_add_white_18dp"
 
-        app:layout_constraintEnd_toEndOf="@id/main_activity_bottom_sheet_edit_task_til"
-        app:layout_constraintTop_toBottomOf="@id/main_activity_bottom_sheet_edit_task_til"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/main_activity_bottom_sheet_edit_task_til"
+        app:layout_constraintBottom_toBottomOf="@id/main_activity_bottom_sheet_edit_task_til"
+        app:layout_constraintStart_toEndOf="@id/main_activity_bottom_sheet_edit_task_til"/>
 
 
 
